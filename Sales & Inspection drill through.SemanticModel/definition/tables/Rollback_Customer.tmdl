@@ -1,0 +1,99 @@
+table Rollback_Customer
+	lineageTag: 25a2f3ec-3454-48de-ac2b-9f4b5ca2a71c
+
+	column 'Invoice Month'
+		dataType: string
+		lineageTag: 1a336896-473e-413b-a565-a213feb96db5
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Invoice Month]
+		sortByColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Invoice Year'
+		dataType: int64
+		formatString: 0
+		lineageTag: 3189b134-5417-4d81-8175-3cf82f80554a
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Invoice Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: f16760ba-aa6e-451c-830c-ea2d20908609
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Text'
+		dataType: string
+		lineageTag: 30308777-d6a8-4eac-9900-49b9aa50e23a
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Year Text]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Month' =
+			
+			Var Current_Month = Year(TODAY())
+			VAR MAX_ValidationDate =Month(TODAY())
+			VAR Previous_Month_Date =
+			    IF(Month(Rollback_Customer[Invoice Date]) =MAX_ValidationDate && Year(Rollback_Customer[Invoice Date]) = Current_Month ,"Current Month", Rollback_Customer[Invoice Month])
+			RETURN Previous_Month_Date
+		dataType: string
+		lineageTag: 4ad76c6c-74d2-486c-8dab-5afa703a087e
+		summarizeBy: none
+		isDataTypeInferred
+		sortByColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Year' =
+			
+			Var Current_Year = Year(TODAY())
+			VAR Current_Year_Date =
+			    IF(Year(Rollback_Customer[Invoice Date])= Current_Year,"Current Year",Rollback_Customer[Year Text])
+			RETURN Current_Year_Date
+		dataType: string
+		lineageTag: 0e300314-6958-487e-835a-d38e804f5870
+		summarizeBy: none
+		isDataTypeInferred
+		sortByColumn: 'Invoice Year'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Invoice Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 89965bff-4079-4313-b1f1-5ef15341e453
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: customer_invoice_status[Start of Day]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Rollback_Customer = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS (
+				    DISTINCT ( 'customer_invoice_status'[Start of Day] ),
+				    "Invoice Month", FORMAT ( [Start of Day], "MMM" ),
+				    "Invoice Year", YEAR ( [Start of Day]),
+				    "Month", MONTH ( [Start of Day] ),
+				    "Year Text", FORMAT ( [Start of Day], "YYYY" )
+				)
+
+	annotation PBI_Id = 26d116fdf10f44ef88ed710b48957c64
+

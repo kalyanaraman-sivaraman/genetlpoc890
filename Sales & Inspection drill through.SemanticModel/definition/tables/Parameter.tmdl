@@ -1,0 +1,54 @@
+table Parameter
+	lineageTag: 54f09e5c-2474-48ad-b0f9-651d993eeebc
+
+	column Parameter
+		dataType: string
+		lineageTag: cff6ee48-82e7-49fb-92a7-5cb105808d55
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Fields'
+		dataType: string
+		isHidden
+		lineageTag: 1c434126-a06f-44a7-92db-20071a6e4b2e
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Order'
+		dataType: int64
+		isHidden
+		formatString: #,0.00
+		lineageTag: 7d2ce02a-1be2-42df-a6f8-28df78a1090f
+		summarizeBy: sum
+		isDataTypeInferred
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Parameter = calculated
+		mode: import
+		source =
+				{
+				    ("Product_State", NAMEOF('factinspection'[Product_State]), 0),
+				    ("sales_territory", NAMEOF('Customer_Activity_Aging'[sales_territory]), 1)
+				}
+
+	annotation PBI_Id = 0878a8a52bf8483b9ab6a93604e11f41
+

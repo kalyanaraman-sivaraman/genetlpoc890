@@ -1,0 +1,139 @@
+table Calendar_Table
+	lineageTag: 1af49bb7-c12b-48d9-85b3-cbf27d18e004
+
+	column Date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: b684de8a-7279-4c40-bed2-ad9d21dd8aa3
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthName
+		dataType: string
+		lineageTag: 3d7c9b6e-c934-4b73-b712-0aff0baa93a2
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [MonthName]
+		sortByColumn: MonthNum
+
+		annotation SummarizationSetBy = Automatic
+
+	column WeekName
+		dataType: string
+		lineageTag: a7867da6-de73-4493-ac3d-c683af72ad3f
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [WeekName]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: string
+		lineageTag: 35b5f3a1-2b3b-4971-a9b8-7e9db1261892
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: string
+		lineageTag: a85ff99e-32ef-4e48-8481-511b81f3c669
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: c5602e18-dbd7-4bd5-bc47-21d5058a7dd6
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNum
+		dataType: int64
+		formatString: 0
+		lineageTag: 1b166022-a0b6-4c0d-b300-3e86d0ed3755
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [MonthNum]
+
+		annotation SummarizationSetBy = Automatic
+
+	column WeekNo
+		dataType: int64
+		formatString: 0
+		lineageTag: 10d579fe-f155-443f-b2cd-08354ae20a85
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [WeekNo]
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayNo
+		dataType: int64
+		formatString: 0
+		lineageTag: 639ea77c-cc8b-4b68-8878-2256fd172c4a
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [DayNo]
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayName
+		dataType: string
+		lineageTag: f9dde7f6-4d7b-4018-851e-35b25d95844a
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [DayName]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Is Weekday'
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: dd2d2850-b0e5-4086-800d-49cbc10c9fa2
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Is Weekday]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Calendar_Table = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS (
+				CALENDAR (MIN('FactSales'[Invoice_Date]),(MAX('FactSales'[Invoice_Date]))),
+				"MonthName", FORMAT ( [Date], "MMM" ),
+				"MonthNum", Month([Date]),
+				"WeekName","W" & FORMAT([Date],"WW"),
+				"Month", FORMAT ( [Date], "MM" ),
+				"Quarter", "Q" & FORMAT ( [Date], "Q" ),
+				"Year", YEAR ( [Date] ),
+				"WeekNo", WEEKNUM([Date]),
+				"DayNo", WEEKDAY([Date],2),
+				"DayName", FORMAT([Date], "dddd"),
+				"Is Weekday", IF(WEEKDAY([Date],2) < 6, TRUE, FALSE))
+
+	annotation PBI_Id = 0c5ace625f4f448d890c04b33361c94d
+

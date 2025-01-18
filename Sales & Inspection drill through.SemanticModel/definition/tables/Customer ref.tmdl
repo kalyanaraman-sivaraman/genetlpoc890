@@ -1,0 +1,458 @@
+table 'Customer ref'
+	lineageTag: c786a680-e265-49c2-b73f-28643c650ec0
+
+	column CustomerID
+		dataType: int64
+		formatString: 0
+		lineageTag: 5510ba30-829d-4c7b-b040-c2cb9fec4dd1
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Start_DateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5945a183-b8ce-403c-ad6e-bff21e3eb017
+		summarizeBy: none
+		sourceColumn: Start_DateTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column End_DateTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4e7ad6d7-e4b5-4dc9-8e3f-db14afc696f0
+		summarizeBy: none
+		sourceColumn: End_DateTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_FirstName
+		dataType: string
+		lineageTag: 56dd1682-0c85-43c0-bccd-26679b7ff026
+		summarizeBy: none
+		sourceColumn: Customer_FirstName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_MiddleName
+		dataType: string
+		lineageTag: 7c9959e5-87ab-49d9-bddf-548be1ffbeab
+		summarizeBy: none
+		sourceColumn: Customer_MiddleName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_LastName
+		dataType: string
+		lineageTag: 0aaf0180-ae05-4f6d-b22e-80ed3cac6e09
+		summarizeBy: none
+		sourceColumn: Customer_LastName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_DisplayName
+		dataType: string
+		lineageTag: 6530a039-11dc-4244-9b49-dc3c0d545e7d
+		summarizeBy: none
+		sourceColumn: Customer_DisplayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Company_Name
+		dataType: string
+		lineageTag: 5905ce13-28f7-477b-9d3b-fe24be106036
+		summarizeBy: none
+		sourceColumn: Customer_Company_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Parent_Name
+		dataType: string
+		lineageTag: 7725c1b2-0427-4817-b137-78356cbb1d24
+		summarizeBy: none
+		sourceColumn: Customer_Parent_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Email_Address
+		dataType: string
+		lineageTag: f6529576-23a8-4448-a580-8a586210f2eb
+		summarizeBy: none
+		sourceColumn: Customer_Email_Address
+
+		annotation SummarizationSetBy = Automatic
+
+	column Primary_PhoneNumber
+		dataType: string
+		lineageTag: 56929f08-07d2-4be5-bf62-f0ba0155ef3c
+		summarizeBy: none
+		sourceColumn: Primary_PhoneNumber
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mobile_Number
+		dataType: string
+		lineageTag: fed2186a-fad0-4c72-9659-970b72f686f8
+		summarizeBy: none
+		sourceColumn: Mobile_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fax_Number
+		dataType: string
+		lineageTag: 46962d6f-8cbb-4c05-840e-d46463aea60c
+		summarizeBy: none
+		sourceColumn: Fax_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Web_URL
+		dataType: string
+		lineageTag: 44574059-5aed-43cc-859e-b3f7ca11c3e4
+		summarizeBy: none
+		sourceColumn: Customer_Web_URL
+
+		annotation SummarizationSetBy = Automatic
+
+	column Print_OnCheck_Name
+		dataType: string
+		lineageTag: a6f289e9-25aa-4b6a-b62e-b9cb6650a946
+		summarizeBy: none
+		sourceColumn: Print_OnCheck_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Bill_Address_Line1
+		dataType: string
+		lineageTag: 09ce5c01-3d6c-4fb1-9178-643a411d8fb3
+		summarizeBy: none
+		sourceColumn: Bill_Address_Line1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Bill_Address_Line2
+		dataType: string
+		lineageTag: c54a0349-cc58-4edc-8155-2632a6b3ed9b
+		summarizeBy: none
+		sourceColumn: Bill_Address_Line2
+
+		annotation SummarizationSetBy = Automatic
+
+	column Bill_Address_Line3
+		dataType: string
+		lineageTag: 6b7d3abc-d845-4c2f-97a2-de95957a0828
+		summarizeBy: none
+		sourceColumn: Bill_Address_Line3
+
+		annotation SummarizationSetBy = Automatic
+
+	column Bill_Address_City
+		dataType: string
+		lineageTag: cdcd20bb-b20f-417c-90c8-696a728cd657
+		summarizeBy: none
+		sourceColumn: Bill_Address_City
+
+		annotation SummarizationSetBy = Automatic
+
+	column Bill_Address_Country
+		dataType: string
+		lineageTag: 3280e37f-a13c-495c-aa18-b830026b5120
+		summarizeBy: none
+		sourceColumn: Bill_Address_Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Bill_Address_State
+		dataType: string
+		lineageTag: b2742602-6e09-47b5-9481-ae0d938d53ab
+		summarizeBy: none
+		sourceColumn: Bill_Address_State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Bill_Address_Postal_Code
+		dataType: string
+		lineageTag: b45011f2-5148-4f7d-bf21-10d515f820dd
+		summarizeBy: none
+		sourceColumn: Bill_Address_Postal_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ship_Address_Line1
+		dataType: string
+		lineageTag: b46d230c-3f00-4d9d-94a5-5d0f541622f9
+		summarizeBy: none
+		sourceColumn: Ship_Address_Line1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ship_Address_Line2
+		dataType: string
+		lineageTag: 53d033f1-5a14-409f-a695-c4667d55229c
+		summarizeBy: none
+		sourceColumn: Ship_Address_Line2
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ship_Address_Line3
+		dataType: string
+		lineageTag: ea859e62-d830-4f83-9706-835db62150ef
+		summarizeBy: none
+		sourceColumn: Ship_Address_Line3
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Location
+		dataType: string
+		lineageTag: 4ca4ba18-62af-484d-9c6f-ccbc699cd8db
+		summarizeBy: none
+		sourceColumn: Customer_Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ship_Address_City
+		dataType: string
+		lineageTag: b8657723-613a-4b0b-babe-6accae7b52ee
+		summarizeBy: none
+		sourceColumn: Ship_Address_City
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ship_Address_Country
+		dataType: string
+		lineageTag: e3170248-eb3c-453a-8747-d4ed2678ca95
+		summarizeBy: none
+		sourceColumn: Ship_Address_Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ship_Address_State
+		dataType: string
+		lineageTag: fc609753-66dc-4859-9f55-824a4469e0a2
+		summarizeBy: none
+		sourceColumn: Ship_Address_State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ship_Address_Postal_Code
+		dataType: string
+		lineageTag: 2561ca32-8630-4231-b481-57129b3e7aef
+		summarizeBy: none
+		sourceColumn: Ship_Address_Postal_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column KA_Type
+		dataType: string
+		lineageTag: be4d32ea-9879-4c84-a4bc-31142a29ecdb
+		summarizeBy: none
+		sourceColumn: KA_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column KAM
+		dataType: string
+		lineageTag: 27ab38e0-c029-4ff3-8bba-68bb45c5d521
+		summarizeBy: none
+		sourceColumn: KAM
+
+		annotation SummarizationSetBy = Automatic
+
+	column Notes
+		dataType: string
+		lineageTag: 34e3ed84-f85f-424a-9c27-9d8823d38915
+		summarizeBy: none
+		sourceColumn: Notes
+
+		annotation SummarizationSetBy = Automatic
+
+	column Payment_Method
+		dataType: string
+		lineageTag: 1f69a922-569d-470a-a349-109effc40ad8
+		summarizeBy: none
+		sourceColumn: Payment_Method
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency_Name
+		dataType: string
+		lineageTag: 51b5b44f-023a-408b-a440-6721b74e6d18
+		summarizeBy: none
+		sourceColumn: Currency_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Preferred_Delivery_Method
+		dataType: string
+		lineageTag: 4eda88d1-17ac-4278-aa79-cd21632f3ac0
+		summarizeBy: none
+		sourceColumn: Preferred_Delivery_Method
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_CreatedTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b2b8cf3d-5183-4ead-8ce3-85325548d065
+		summarizeBy: none
+		sourceColumn: Customer_CreatedTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_ModifiedTime
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: fa68bc55-1ebd-461e-9395-06e733e930d4
+		summarizeBy: none
+		sourceColumn: Customer_ModifiedTime
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceDelete
+		dataType: int64
+		formatString: 0
+		lineageTag: 52295c05-a42f-4848-87e9-6e2624d0e83f
+		summarizeBy: sum
+		sourceColumn: SourceDelete
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hashkey
+		dataType: string
+		lineageTag: dc5c1fe2-b79e-4d53-8f6a-b5be144af5ee
+		summarizeBy: none
+		sourceColumn: Hashkey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Created_by
+		dataType: string
+		lineageTag: 43c8ee4e-a474-481c-b41c-c6028bcb32aa
+		summarizeBy: none
+		sourceColumn: ETL_Created_by
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Created_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 64f3c2fe-a837-4e07-a6d2-3fa12de5d9eb
+		summarizeBy: none
+		sourceColumn: ETL_Created_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Modified_by
+		dataType: string
+		lineageTag: fff52bdc-ffdf-4044-acb4-9a6729059b17
+		summarizeBy: none
+		sourceColumn: ETL_Modified_by
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Modified_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 251fd93a-e712-416c-b83a-f00a570ab553
+		summarizeBy: none
+		sourceColumn: ETL_Modified_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_status
+		dataType: string
+		lineageTag: 5622b5ad-b9e0-48ad-85e2-481f4c735602
+		summarizeBy: none
+		sourceColumn: customer_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_category
+		dataType: string
+		lineageTag: a1147422-3e27-4909-835b-6c85c94a5d9b
+		summarizeBy: none
+		sourceColumn: customer_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column rank
+		dataType: int64
+		formatString: 0
+		lineageTag: 120b8f2c-2074-462c-a625-3f40832fb7b9
+		summarizeBy: sum
+		sourceColumn: rank
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 94126f7f-150e-4d32-bcf2-540c19c7afdd
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 95f060ff-592b-4792-bb19-9041d9716648
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cust_Location
+		dataType: string
+		lineageTag: 5d7d957e-d2df-4183-868b-3fa4197860c5
+		summarizeBy: none
+		sourceColumn: Cust_Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column Location_Customer
+		dataType: string
+		lineageTag: 1274c2a5-91c7-47b5-a510-1faaf6d9bf05
+		summarizeBy: none
+		sourceColumn: Location_Customer
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Name
+		dataType: string
+		lineageTag: fe523eaf-fa85-4141-be24-a1b1cd402364
+		summarizeBy: none
+		sourceColumn: Customer_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Customer ref' = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(Databricks.Catalogs("adb-4870947154782637.17.azuredatabricks.net", "/sql/1.0/warehouses/645bfc221bc957b5", [Catalog="Dev_Catalog", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="Dev_Catalog",Kind="Database"]}[Data], "select *#(lf)from (select * , row_number() over (partition by CustomerID order by Start_DateTime desc) as rank from dw.dimcustomer)#(lf)where rank = 1", null, [EnableFolding=true]),
+				    #"Added Conditional Column" = Table.AddColumn(Source, "Custom", each if [Ship_Address_State] = null then "Unknown" else [Ship_Address_State]),
+				    #"Renamed Columns" = Table.RenameColumns(#"Added Conditional Column",{{"Custom", "State"}}),
+				    #"Added Conditional Column1" = Table.AddColumn(#"Renamed Columns", "Custom", each if [Ship_Address_City] = null then "Unknown" else [Ship_Address_City]),
+				    #"Renamed Columns1" = Table.RenameColumns(#"Added Conditional Column1",{{"Custom", "City"}}),
+				    #"Inserted Merged Column" = Table.AddColumn(#"Renamed Columns1", "Location", each Text.Combine({[City], ", ", [State]}), type text),
+				    #"Renamed Columns2" = Table.RenameColumns(#"Inserted Merged Column",{{"Location", "Cust_Location"}}),
+				    #"Added Conditional Column2" = Table.AddColumn(#"Renamed Columns2", "Location_Customer", each if [Customer_Location] = "Unknown, Unknown" then "Unknown" else [Customer_Location]),
+				    #"Added Custom" = Table.AddColumn(#"Added Conditional Column2", "Custom", each if [Ship_Address_City] = null and [Ship_Address_State]= null then "unknown"
+				    else if [Ship_Address_City] = null then "unknown"
+				    else if [Ship_Address_State] = null then "unknown"
+				    else [Cust_Location]),
+				    #"Removed Columns" = Table.RemoveColumns(#"Added Custom",{"Location_Customer"}),
+				    #"Renamed Columns3" = Table.RenameColumns(#"Removed Columns",{{"Custom", "Location_Customer"}}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Renamed Columns3", "Customer_DisplayName", "Customer_DisplayName - Copy"),
+				    #"Split Column by Delimiter" = Table.SplitColumn(#"Duplicated Column", "Customer_DisplayName - Copy", Splitter.SplitTextByEachDelimiter({"-"}, QuoteStyle.Csv, false), {"Customer_DisplayName - Copy.1", "Customer_DisplayName - Copy.2"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"Customer_DisplayName - Copy.1", type text}, {"Customer_DisplayName - Copy.2", type text}}),
+				    #"Renamed Columns4" = Table.RenameColumns(#"Changed Type",{{"Customer_DisplayName - Copy.1", "Customer_Name"}}),
+				    #"Removed Columns1" = Table.RemoveColumns(#"Renamed Columns4",{"Customer_DisplayName - Copy.2"})
+				in
+				    #"Removed Columns1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,144 @@
+table Customer_Activity_Aging
+	lineageTag: e5c07aee-3302-4d71-8d42-9621a2b25e8a
+
+	measure Measure = COUNT(Customer_Activity_Aging[sales_territory])
+		formatString: #,0.00%;-#,0.00%;#,0.00%
+		lineageTag: f718cd6d-768f-4fe7-9676-cd2f8b02601a
+
+	column Months_since_last_invoice
+		dataType: int64
+		formatString: 0
+		lineageTag: dad97aed-f8a7-42f0-8db9-c1c433ec46f6
+		summarizeBy: none
+		sourceColumn: Months_since_last_invoice
+
+		annotation SummarizationSetBy = User
+
+	column KA_Type
+		dataType: string
+		lineageTag: c3ff4436-6e95-4d1e-b108-2a3442ca4491
+		summarizeBy: none
+		sourceColumn: KA_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Aging_Scale
+		dataType: string
+		lineageTag: 50573e5f-e363-47aa-a786-06299385411c
+		summarizeBy: none
+		sourceColumn: Aging_Scale
+		sortByColumn: Aging_Scale_Sort
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column KA/NON-KA = IF(ISBLANK(Customer_Activity_Aging[KA_Type]),"NON-KA",Customer_Activity_Aging[KA_Type])
+		dataType: string
+		lineageTag: 6c955112-1068-4131-ab96-4af04818acdd
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerID
+		dataType: int64
+		lineageTag: d7b93f6b-f7ff-47fd-b312-54ce827a65b8
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column key_Account
+		dataType: string
+		lineageTag: 625a2964-384d-489a-bbc6-1b98a5935c0b
+		summarizeBy: none
+		sourceColumn: key_Account
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Name_Location
+		dataType: string
+		lineageTag: c2090c32-cdb2-47d0-8c7c-d816c74ae666
+		summarizeBy: none
+		sourceColumn: Customer_Name_Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Parent_Name
+		dataType: string
+		lineageTag: 5f2f3e21-7fa9-4273-bd10-ef76e77b82c8
+		summarizeBy: none
+		sourceColumn: Customer_Parent_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column sales_territory
+		dataType: string
+		lineageTag: 7f29d900-4e8c-46ae-9025-0a7b3535c47d
+		summarizeBy: none
+		sourceColumn: sales_territory
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastInvoiceDate
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: 03df9938-d766-43d4-bb55-0986938ff26a
+		summarizeBy: none
+		sourceColumn: LastInvoiceDate
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column LastInvoiceMonth
+		dataType: int64
+		formatString: 0
+		lineageTag: 426e19a2-0868-4868-af4d-592a58a91102
+		summarizeBy: sum
+		sourceColumn: LastInvoiceMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	column Last_Invoice_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f9732702-922d-4b99-816b-7b5fea59833a
+		summarizeBy: none
+		sourceColumn: Last_Invoice_Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Last_Invoice_Amount
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 3aed80be-3c07-4382-8a4d-f4131c3badd1
+		summarizeBy: sum
+		sourceColumn: Last_Invoice_Amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column Aging_Scale_Sort
+		dataType: int64
+		formatString: 0
+		lineageTag: cbf06496-1983-4059-8513-d0fb62dd8fe4
+		summarizeBy: sum
+		sourceColumn: Aging_Scale_Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Customer_Activity_Aging = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(Databricks.Catalogs("adb-4870947154782637.17.azuredatabricks.net", "/sql/1.0/warehouses/645bfc221bc957b5", [Catalog="Dev_Catalog", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="Dev_Catalog",Kind="Database"]}[Data], "SELECT#(lf)    dc.CustomerID,#(lf)    dc.KA_Type,#(lf)    CASE#(lf)        WHEN dc.KA_Type = 'KA' THEN 'Yes'#(lf)        ELSE 'No'#(lf)    END AS key_Account,#(lf)    fs.Customer_Name_Location,#(lf)    fs.Customer_Parent_Name,#(lf)    fs.region AS sales_territory,#(lf)    MAX(fs.Invoice_Date) AS LastInvoiceDate,#(lf)    MONTH(MAX(fs.Invoice_Date))AS LastInvoiceMonth,#(lf)    li.Invoice_Date AS Last_Invoice_Date,#(lf)    DATEDIFF(MONTH, MAX(fs.Invoice_Date), GETDATE()) AS Months_since_last_invoice,#(lf)    li.Last_Invoice_Amount,#(lf)    CASE#(lf)        WHEN DATEDIFF(MONTH, MAX(fs.Invoice_Date), GETDATE()) >= 0  AND DATEDIFF(MONTH, MAX(fs.Invoice_Date), GETDATE()) <= 12 THEN '0-12'#(lf)        WHEN DATEDIFF(MONTH, MAX(fs.Invoice_Date), GETDATE()) >= 13 AND DATEDIFF(MONTH, MAX(fs.Invoice_Date), GETDATE()) <= 23 THEN '13-23'#(lf)        WHEN DATEDIFF(MONTH, MAX(fs.Invoice_Date), GETDATE()) >= 24 AND DATEDIFF(MONTH, MAX(fs.Invoice_Date), GETDATE()) <= 36 THEN '24-36'#(lf)        WHEN DATEDIFF(MONTH, MAX(fs.Invoice_Date), GETDATE()) >= 37 AND DATEDIFF(MONTH, MAX(fs.Invoice_Date), GETDATE()) <= 48 THEN '37-48'#(lf)        WHEN DATEDIFF(MONTH, MAX(fs.Invoice_Date), GETDATE()) >= 49 AND DATEDIFF(MONTH, MAX(fs.Invoice_Date), GETDATE()) <= 60 THEN '49-60'#(lf)        WHEN DATEDIFF(MONTH, MAX(fs.Invoice_Date), GETDATE()) > 60 THEN '> 60'#(lf)        ELSE 'Other'#(lf)    END AS Aging_Scale,#(lf)    CASE#(lf)        WHEN DATEDIFF(MONTH, MAX(fs.Invoice_Date), GETDATE()) >= 0 AND DATEDIFF(MONTH, MAX(fs.Invoice_Date), GETDATE()) <= 12 THEN 1#(lf)        WHEN DATEDIFF(MONTH, MAX(fs.Invoice_Date), GETDATE()) >= 13 AND DATEDIFF(MONTH, MAX(fs.Invoice_Date), GETDATE()) <= 23 THEN 2#(lf)        WHEN DATEDIFF(MONTH, MAX(fs.Invoice_Date), GETDATE()) >= 24 AND DATEDIFF(MONTH, MAX(fs.Invoice_Date), GETDATE()) <= 36 THEN 3#(lf)        WHEN DATEDIFF(MONTH, MAX(fs.Invoice_Date), GETDATE()) >= 37 AND DATEDIFF(MONTH, MAX(fs.Invoice_Date), GETDATE()) <= 48 THEN 4#(lf)        WHEN DATEDIFF(MONTH, MAX(fs.Invoice_Date), GETDATE()) >= 49 AND DATEDIFF(MONTH, MAX(fs.Invoice_Date), GETDATE()) <= 60 THEN 5#(lf)        WHEN DATEDIFF(MONTH, MAX(fs.Invoice_Date), GETDATE()) > 60 THEN 6#(lf)        ELSE 7#(lf)    END AS Aging_Scale_Sort#(lf)FROM#(lf)    dw.dimcustomer dc#(lf)JOIN#(lf)    dw.factsales fs#(lf)ON dc.CustomerID = fs.CustomerID#(lf)left JOIN (#(lf)    SELECT#(lf)        CustomerID,#(lf)        Invoice_Date,#(lf)        SUM(Invoice_Line_Amount) AS Last_Invoice_Amount#(lf)    FROM#(lf)        dw.factsales#(lf)    WHERE#(lf)        Invoice_Date = (#(lf)            SELECT MAX(Invoice_Date)#(lf)            FROM dw.factsales AS A#(lf)            WHERE A.CustomerID = dw.factsales.CustomerID#(lf)        )#(lf)    GROUP BY#(lf)        CustomerID,#(lf)        Invoice_Date#(lf)) li ON fs.CustomerID = li.CustomerID#(lf)GROUP BY all#(lf)ORDER BY#(lf)    dc.CustomerID", null, [EnableFolding=true])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

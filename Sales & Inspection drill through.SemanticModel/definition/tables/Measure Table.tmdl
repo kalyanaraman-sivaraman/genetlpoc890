@@ -1,0 +1,2593 @@
+table 'Measure Table'
+	lineageTag: e81533d2-d2df-4777-a417-8e0f97c44864
+
+	measure 'Total Sales Amount' =
+			
+			Var Sales_Amount = CALCULATE(SUM('FactSales'[Invoice_Line_Amount]))
+			Return Sales_Amount + 0
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: Sales Measure
+		lineageTag: a2735a58-cbf6-4108-bdb5-75109a5f4dca
+
+	measure 'Total Parents Count' =
+			
+			Var Parentcount = DISTINCTCOUNTNOBLANK('factsales'[Parent_Name])
+			return Parentcount +0
+		formatString: 0
+		displayFolder: Sales Measure
+		lineageTag: dacdbfc8-9c54-4a06-ac0d-e6984b26a50a
+
+	measure 'Total Customer Count' =
+			
+			Var a = DISTINCTCOUNT('factsales'[Total_Customer_Count])
+			return A +0
+		formatString: 0
+		displayFolder: Sales Measure
+		lineageTag: bacb3040-b496-4e4e-b506-4e4a2195b30c
+
+	measure 'Rejection Rate %' =
+			
+			Var A = Sum(factinspection[Pack_Cnt])
+			Var B =  Sum(factinspection[Pass_Cnt])
+			Var C = A-B
+			Var D = Divide(C,A)
+			Return D+0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Inspection Measure
+		lineageTag: cbbb6421-3fd0-412a-8dd7-0564f632225b
+
+	measure 'Avg.Price Per UOM' =
+			
+			Var A = AVERAGE('factinspection'[Price_Per_UOM])
+			Return A+0
+		formatString: #,0
+		displayFolder: Sales Measure
+		lineageTag: 536ac102-20ca-4beb-9c0c-a7eba13126ff
+
+	measure 'Total Sales Amount %' =
+			var a = DIVIDE(
+			    SUM('FactSales'[Invoice_Line_Amount]),
+			    CALCULATE(SUM('FactSales'[Invoice_Line_Amount]),All (factsales)),
+			    0
+			)
+			Return IF(a=BLANK(),0,a)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Sales Measure
+		lineageTag: 0cca0c5d-6265-450a-9c16-7651e854c4ab
+
+	measure 'Total Sales Amount Region' =
+			
+			Var A = CALCULATE(SUM('FactSales'[Invoice_Line_Amount]))
+			Return A
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Sales Measure
+		lineageTag: 6dcc443a-6885-4ab4-89f4-8f6d623d00d8
+
+	measure 'Total Sales Product Type' =
+			
+			Var A = CALCULATE(SUM('FactSales'[Invoice_Line_Amount]))
+			Return A
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Sales Measure
+		lineageTag: 67dd7d69-02d0-4ea2-aa82-ac41e12f4059
+
+	measure 'Total Service Type' =
+			
+			Var A = CALCULATE(SUM('FactSales'[Invoice_Line_Amount]))
+			Return A
+		formatString: \$#,0;(\$#,0);\$#,0
+		displayFolder: Sales Measure
+		lineageTag: 641dbbda-f26a-4c20-8a08-3081b5725569
+
+	measure 'Total Sales Qty' =
+			
+			Var A = CALCULATE(SUM('factsales'[Invoice_Line_Qty]))
+			Return A + 0
+		formatString: #,##0;(#,##0);0
+		displayFolder: Sales Measure
+		lineageTag: 608342d9-fb2f-4dc9-adb7-d3bfb05492a7
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Total Sales Inspection' =
+			
+			Var A = Calculate (Sum(FactInspection[Inspection_Sales]))
+			Return A+0
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Inspection Measure
+		lineageTag: feb2614c-8f43-49fa-a990-1ffe08db1a78
+
+	measure 'Total Insp Ctns' =
+			
+			Var A = Calculate(Sum(factinspection[Pack_Cnt]))
+			Return A+0
+		formatString: 0
+		displayFolder: Inspection Measure
+		lineageTag: f8f68090-12db-4b55-8725-5ec79b741e37
+
+	measure 'Insp Rejected' =
+			
+			Var A = Calculate(Sum(factinspection[Pack_Cnt]))
+			Var B = Calculate(Sum(factinspection[Pass_Cnt]))
+			Var C = A-B
+			Return C+0
+		formatString: 0
+		displayFolder: Inspection Measure
+		lineageTag: 78d23309-f95c-4e78-8aaa-2c9e8fd7b8ac
+
+	measure Cs/Hr =
+			
+			VAR PltTime = CALCULATE(AVERAGE(factinspection[Pallet_time]))
+			VAR XrayLines = CALCULATE(SUM(factinspection[Xray_Line_Count]))
+			VAR Cases_ = CALCULATE(SUM(factinspection[Case_Cnt]))
+			Var Final_RS= DIVIDE(60, PltTime * XrayLines) * Cases_
+			RETURN Final_RS
+		formatString: #,0
+		displayFolder: Inspection Measure
+		lineageTag: f2ee046b-eb54-4c31-9b75-9699a4f06c15
+
+	measure Price/Cs =
+			
+			VAR A = Calculate(SUM('factinspection'[Inspection_Sales]))
+			VAR B = Calculate(SUM('Factinspection'[Case_Cnt]))
+			VAR C = DIVIDE(A, B, 0)
+			RETURN C + 0
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Inspection Measure
+		lineageTag: baebdc54-d7d6-402c-86da-8534c0099a63
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure Price/Lbs =
+			
+			VAR A = Calculate(SUM('factinspection'[Inspection_Sales]))
+			VAR B = Calculate(SUM('Factinspection'[Total_Lbs]))
+			VAR C = DIVIDE(A, B, 0)
+			RETURN C + 0
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Inspection Measure
+		lineageTag: 110da0ab-08cb-446f-84e0-7edcce59c083
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure Lab/Lbs =
+			
+			VAR A = Calculate(SUM('Factinspection'[Labor_Dollars]))
+			VAR B = Calculate(SUM('Factinspection'[Total_Lbs]))
+			VAR C = DIVIDE(A, B, 0)
+			RETURN C + 0
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: Inspection Measure
+		lineageTag: 232ca292-757d-4c19-9421-21ae54baf531
+
+	measure Lab/Ctn =
+			
+			VAR A = Calculate(SUM('Factinspection'[Labor_Dollars]))
+			VAR B = Calculate(SUM('factinspection'[Pack_Cnt]))
+			VAR C = DIVIDE(A, B, 0)
+			RETURN C + 0
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Inspection Measure
+		lineageTag: cc2e8bea-cf9a-4d76-a8d5-6e8bb5d8e6e6
+
+	measure Ctn =
+			
+			Var A = Calculate(Sum(factinspection[Pack_Cnt]))
+			Return A+0
+		formatString: #,0
+		displayFolder: Inspection Measure
+		lineageTag: 0629411b-612e-4758-bc8e-61b03264a091
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Lbs =
+			
+			Var A = Calculate(Sum(Factinspection[Total_Lbs]))
+			Return a+0
+		formatString: #,0
+		displayFolder: Inspection Measure
+		lineageTag: 18240d06-787c-4db0-8752-731faacd49dc
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure Mgn% =
+			
+			Var A = Calculate(Sum(Factinspection[Inspection_Sales]))
+			Var B = Calculate(Sum(Factinspection[Labor_Dollars]))
+			Var C = A-B
+			Var D = Divide(C,A,0)
+			Return D+0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Inspection Measure
+		lineageTag: 0fa3195e-022d-4099-ac8d-77621bb7d37f
+
+	measure 'Month Since Last Sale' = ```
+			
+			Var A=
+			DATEDIFF(
+			    MAX('factsales'[Last_Sold_Date]), 
+			    MAX('factsales'[Invoice_Date]),MONTH)
+			Return A
+			```
+		formatString: 0
+		displayFolder: Sales Measure
+		lineageTag: 80169dc5-f09b-4f78-8651-7282e4f13f46
+
+	measure 'Return 0 or 1' = IF([Avg.Price Per UOM]=0 && [Total Sales Inspection] = 0 && [Total Insp Ctns]  = 0 &&  [Insp Rejected] = 0 &&  [Rejection Rate %] = 0,0,1)
+		formatString: 0
+		displayFolder: Zero return Measure
+		lineageTag: b9bb8715-c868-403a-9355-2c26a7bd3d49
+
+	measure 'Total Palletes' =
+			
+			Var A =  DISTINCTCOUNT('factinspection'[PalletKey])
+			Return A+0
+		formatString: #,0
+		displayFolder: Inspection Measure
+		lineageTag: 5a3eba02-93e0-4b0e-b130-3ef0b59af92b
+
+	measure 'Avg.Comm Rate TSM' = ```
+			
+			Var A = 
+			CALCULATE(AVERAGE(factsales[Commission_TSM]))
+			Return A+0
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Sales Measure
+		lineageTag: d4b92000-304d-49dc-bb9d-fe262912b0fb
+
+	measure 'Total Commission TSM' =
+			
+			Var A = CALCULATE(Sum(Factsales[Commission_TSM]))
+			Return A+0
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Sales Measure
+		lineageTag: 31a4b6f3-2325-49a1-af38-d679beee207b
+
+	measure 'Avg Comm Rate RSM' =
+			
+			Var CommRateRSM = CALCULATE(AVERAGE(factsales[Commission_RSM]))
+			Return CommRateRSM+0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Sales Measure
+		lineageTag: d5c7dd46-9f39-4c24-b7e9-7c56d02d535a
+
+	measure Service_Count =
+			
+			Var a = CALCULATE(DISTINCTCOUNT('factinspection'[Service]),ALL('factinspection'[Service]))
+			Return a
+		formatString: 0
+		displayFolder: Inspection Measure
+		lineageTag: 90d66bc7-a905-4ff5-a47d-763e9908236f
+
+	measure 'Total Commission RSM' =
+			
+			Var A = CALCULATE(Sum(Factsales[Commission_RSM]))
+			Return A+0
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Sales Measure
+		lineageTag: ba991c42-0b54-40aa-9a11-147d02a30ab8
+
+	measure 'Return 0 or 1 Inspection Sales' =
+			
+			IF(
+			    [Cs/Hr]=0 &&
+			    [Price/Cs] = 0 &&
+			    [Price/Lbs]=0 &&
+			    [Lab/Lbs]= 0 &&
+			    [Lab/Ctn] =0 &&
+			    [Total Sales Inspection] =0 &&
+			    [Ctn] = 0 &&
+			    [Lbs] =0 &&
+			     [Mgn%]=0,0,1)
+		formatString: 0
+		displayFolder: Zero return Measure
+		lineageTag: d03f4d50-b16d-430a-b44d-c40cc94e8d02
+
+	measure 'Return 0 or 1 sales Summary' =
+			
+			IF(
+			    [Total Sales Qty]=0 &&
+			    [Total Sales Amount] = 0,0,1)
+		formatString: 0
+		displayFolder: Zero return Measure
+		lineageTag: 9eca2fc7-8d0e-4283-9ca0-d8091a1f0de6
+
+	measure 'Return 0 or 1 Current sales' = IF([Total Palletes] = 0 && [Total Sales Inspection] = 0, 0,1)
+		formatString: 0
+		displayFolder: Zero return Measure
+		lineageTag: 3ec27d47-49cb-4fff-bbdb-aa32ce98cfd1
+
+	measure 'Return 0 or 1 TSM' = IF([Avg.Comm Rate TSM]=0 && [Month Since Last Sale] =0 && [Total Commission TSM] =0 && [Total Sales Amount]= 0,0,1)
+		formatString: 0
+		displayFolder: Zero return Measure
+		lineageTag: 218d9113-ac02-4fbb-9686-4f1f9ac9d342
+
+	measure 'Return 0 or 1 RSM' = IF([Avg Comm Rate RSM]=0 && [Month Since Last Sale] =0 && [Total Commission RSM] =0 && [Total Sales Amount]= 0,0,1)
+		formatString: 0
+		displayFolder: Zero return Measure
+		lineageTag: 45e06919-ebc2-4f1c-b718-359994a14640
+
+	measure 'Return 0 or 1 SAles by parent' = IF([Total Sales Amount]=0 && [RemoveFilters] = 0,0,1)
+		formatString: 0
+		displayFolder: Zero return Measure
+		lineageTag: 735fda90-7795-4834-b8fe-88979cfe95e4
+
+	measure 'Total Sales Amount Tessssst' =
+			
+			Var A = CALCULATE(SUM('FactSales'[Invoice_Line_Amount]),ALLSELECTED(factsales),ALLSELECTED(factinspection))
+			Return A + 0
+		displayFolder: Sales Measure
+		lineageTag: 0f0cdd8f-76ac-4348-8540-e2a5c69063c0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure RemoveFilters = ```
+			
+			 Var TotalSalesAmount = [Total Sales Amount]
+			 Var TotalSalesAmountTessssst = [Total Sales Amount Tessssst]
+			 Var Divideee = DIVIDE(TotalSalesAmount,TotalSalesAmountTessssst)
+			 Return Divideee+0
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Inspection Measure
+		lineageTag: f1d92c32-aec7-481b-afa4-bfe45f2fa6d8
+
+	measure 'Total Location Count' =
+			
+			Var LocationCount = DISTINCTCOUNTNOBLANK('dimcustomer'[Location_Customer])
+			return LocationCount +0
+		formatString: #,0
+		displayFolder: Inspection Measure
+		lineageTag: ab8876a1-877a-4689-9055-27058153d9de
+
+	measure 'Recovery Rate %' = ```
+			
+			 Var Rcvd_Damaged_Cnt = CALCULATE(Sum(factinspection[Pass_Cnt]))
+			 Var Pack_Cnt = CALCULATE(Sum(factinspection[Pack_Cnt]))
+			 Var Divideee = DIVIDE(Rcvd_Damaged_Cnt,Pack_Cnt)
+			 Return Divideee+0
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Inspection Measure
+		lineageTag: d1af37ea-1277-45d3-ba9e-21d3bde30347
+
+	measure '# Products' =
+			
+			Var Products = CALCULATE(DISTINCTCOUNT(factinspection[Product_Nbr]))
+			Return Products+0
+		formatString: #,0
+		displayFolder: Inspection Measure
+		lineageTag: 9e0b8946-be9e-410a-a7e6-da3b7d0dd8bb
+
+	measure '# Cases' =
+			
+			Var Casess = CALCULATE(Sum(factinspection[Case_Cnt]))
+			Return Casess +0
+		formatString: #,0
+		displayFolder: Inspection Measure
+		lineageTag: 399a26b2-5a34-4796-aad5-d05b839a1f6d
+
+	measure 'Total Lbs' =
+			
+			Var Lbs = CALCULATE(Sum(factinspection[Total_Lbs]))
+			Return Lbs+0
+		formatString: 0.00
+		displayFolder: Inspection Measure
+		lineageTag: 88acaaf4-b207-45d0-a773-683c253cdaf0
+
+	measure 'Return 0 or 1 Spend by parent' =
+			
+			IF([Total Sales Amount]=0 && [RemoveFilters] = 0,0,1)
+		formatString: 0
+		displayFolder: Zero return Measure
+		lineageTag: dc785765-d743-45f5-9015-e9f1210974ee
+
+	measure 'Return 0 or 1 customer Summary' = ```
+			
+			 IF([Recovery Rate %] = 0 && [Total Sales Amount] = 0 && [# Cases] = 0 && [Total Lbs] =0,0,1)
+			```
+		formatString: 0
+		displayFolder: Zero return Measure
+		lineageTag: 5c714646-07ac-428a-b5ef-45573c6aa260
+
+	measure 'Total Qty' =
+			
+			Var Sales_Qty = CALCULATE(SUM('factsales'[Invoice_Line_Qty]))
+			Return Sales_Qty + 0
+		formatString: #,##0;(#,##0);0
+		displayFolder: Sales Measure
+		lineageTag: 0b2ddb87-b426-4eb0-b8ab-72074e5628df
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Return 0 or 1 sales Trend' =
+			
+			IF(
+			    [Total Qty]=0 &&
+			    [Total Sales Amount] = 0,0,1)
+		formatString: 0
+		displayFolder: Zero return Measure
+		lineageTag: c7a27b6c-8186-40b7-be29-2a7e4383bf9b
+
+	measure Zero = If([Total Sales Amount] = 0,0,1)
+		formatString: 0
+		displayFolder: Zero return Measure
+		lineageTag: 65d9689d-9336-46f4-9e82-e5a52572282b
+
+	measure Lab/Cs =
+			
+			VAR A = Calculate(SUM('Factinspection'[Labor_Dollars]))
+			VAR B = Calculate(SUM('factinspection'[Case_Cnt]))
+			VAR C = DIVIDE(A, B, 0)
+			RETURN C + 0
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Inspection Measure
+		lineageTag: 7d2de94d-bdff-4f5e-ae02-862aa7ed3e3a
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure Price/Ctn =
+			
+			VAR A = Calculate(SUM('factinspection'[Inspection_Sales]))
+			VAR B = Calculate(SUM('factinspection'[Pack_Cnt]))
+			VAR C = DIVIDE(A, B, 0)
+			RETURN C + 0
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Inspection Measure
+		lineageTag: 03f084b6-d93d-4901-8a9c-d677fc1541aa
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Xray Lines' =
+			
+			Var A = Calculate(AVERAGE(factinspection[Xray_Line_Count]))
+			Return A+0
+		formatString: 0
+		displayFolder: Inspection Measure
+		lineageTag: 77846f84-5d2b-45b5-9d9e-5508f925a0bc
+
+	measure Current_Month = MAX(commission[Comm_Month]) = FORMAT(TODAY(),"mmm")
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: Commission Measure
+		lineageTag: 2a35c69a-83f7-415e-9d7c-95a4f49046d9
+
+	measure Current_Year = Max('commission'[Comm_Year])= YEAR(TODAY())
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: Commission Measure
+		lineageTag: 178c95eb-551c-4e68-8f67-22b8d0e74168
+
+	measure 'Default Selection' = ```
+			
+			
+			VAR CurrentValue = SELECTEDVALUE(commission[Sales Manager], "Default")
+			
+			RETURN
+			
+			IF(
+			
+			    ISFILTERED(commission[Sales Manager]),
+			
+			    CurrentValue,
+			
+			    "Default"
+			
+			)
+			
+			```
+		displayFolder: Commission Measure
+		lineageTag: 79084120-b5c2-4fa0-b3e5-97d00f0adb85
+
+	measure 'Avg Xray Lines Cnt' =
+			
+			Var A = Calculate(AVERAGE(factinspection[Xray_Line_Count]))
+			Return A+0
+		formatString: 0
+		displayFolder: Inspection Measure
+		lineageTag: d49fc1b2-ef75-4369-872d-bd415bd8d48b
+
+	measure 'Contaminant %' =
+			
+			VAR A = Calculate(SUM('factinspection'[Contaminated_Cnt]))
+			VAR B = Calculate(SUM('factinspection'[Pack_Cnt]))
+			VAR C = DIVIDE(A, B, 0)
+			RETURN C + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Inspection Measure
+		lineageTag: 35ed7a1f-5e39-4432-8c66-e0eed158d200
+
+	measure 'Damaged %' =
+			
+			VAR A = Calculate(SUM('factinspection'[Rcvd_Damaged_Cnt]))
+			VAR B = Calculate(SUM('factinspection'[Pack_Cnt]))
+			VAR C = DIVIDE(A, B, 0)
+			RETURN C + 0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Inspection Measure
+		lineageTag: 702e70ab-c420-46fd-82d6-abe7de3f2f1d
+
+	measure '# Cases NCS' =
+			
+			Var Casess = CALCULATE(Sum(factinspection[Case_Cnt]))
+			Return Casess +0
+		formatString: #,0
+		displayFolder: New Commission Report
+		lineageTag: 1b889ec6-b3ac-4a48-9abd-e4d3db76e4e2
+
+	measure '# Lbs NCS' =
+			
+			Var Lbs = CALCULATE(Sum(factinspection[Total_Lbs]))
+			Return Lbs+0
+		formatString: #,0.00
+		displayFolder: New Commission Report
+		lineageTag: c172d41c-b4d0-4b07-b076-213b3a985541
+
+	measure '# Loads NCS' =
+			
+			Var Loads = CALCULATE(DISTINCTCOUNT(factinspection[Load_Nbr]))
+			Return Loads + 0
+		formatString: #,0
+		displayFolder: New Commission Report
+		lineageTag: 47b4f518-71b8-49b7-ac8a-56c6fa269da8
+
+	measure '# Palletes NCS' =
+			
+			Var A =  DISTINCTCOUNT('factinspection'[PalletKey])
+			Return A+0
+		formatString: #,0
+		displayFolder: New Commission Report
+		lineageTag: a9fdb2b2-1203-466c-8995-9bf8b55e9bb2
+
+	measure '# Products NCS' =
+			
+			Var Products = CALCULATE(DISTINCTCOUNTNOBLANK(factinspection[Product_Nbr]))
+			Return Products+0
+		formatString: #,0
+		displayFolder: New Commission Report
+		lineageTag: 0a7585cd-9032-4fc7-b4f3-7ea14d230cbc
+
+	measure '# Projects NCS' =
+			
+			Var Projects = CALCULATE(DISTINCTCOUNTNOBLANK(factsales[So_Nbr]))
+			Return Projects+0
+		formatString: #,0
+		displayFolder: New Commission Report
+		lineageTag: 7e625ee9-11fa-44a5-80ea-c52dd56ddfc2
+
+	measure RemoveFilters_Cases = ```
+			
+			 Var TotalCases = [# Cases]
+			 Var TotalSalesAmountCasesss = [Total Cases NCS]
+			 Var Divideee = DIVIDE(TotalCases,TotalSalesAmountCasesss)
+			 Return Divideee+0
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: New Commission Report
+		lineageTag: 8fe271a3-ecd2-46c0-ba5c-ee8b764922fb
+
+	measure RemoveFilters_Lbs = ```
+			
+			 Var TotalSalesAmount = [# Lbs NCS]
+			 Var TotalSalesAmountTessssst = [Total Lbs NCS]
+			 Var Divideee = DIVIDE(TotalSalesAmount,TotalSalesAmountTessssst)
+			 Return Divideee+0
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: New Commission Report
+		lineageTag: 7aa6e8ad-e7d4-4357-a254-850b81646a1f
+
+	measure RemoveFilters_Load = ```
+			
+			 Var TotalSalesAmount = [# Loads NCS]
+			 Var TotalSalesAmountTessssst = [Total Load NCS]
+			 Var Divideee = DIVIDE(TotalSalesAmount,TotalSalesAmountTessssst)
+			 Return Divideee+0
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: New Commission Report
+		lineageTag: 52801b0b-d08a-4ab6-af85-2639f32ca6db
+
+	measure RemoveFilters_Pallets = ```
+			
+			 Var TotalSalesAmount = [# Palletes NCS]
+			 Var TotalSalesAmountTessssst = [Total Pallets NCS]
+			 Var Divideee = DIVIDE(TotalSalesAmount,TotalSalesAmountTessssst)
+			 Return Divideee+0
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: New Commission Report
+		lineageTag: fa1d73e8-c2a8-445e-91c7-6b2ada86f070
+
+	measure RemoveFilters_Products = ```
+			
+			 Var TotalSalesAmount = [# Products NCS]
+			 Var TotalSalesAmountTessssst = [Total Products NCS]
+			 Var Divideee = DIVIDE(TotalSalesAmount,TotalSalesAmountTessssst)
+			 Return Divideee+0
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: New Commission Report
+		lineageTag: b88f9994-c67d-429c-ad84-b498d16f2881
+
+	measure RemoveFilters_Projects = ```
+			
+			 Var TotalSalesAmount = [# Projects NCS]
+			 Var TotalSalesAmountTessssst = [Total Projects NCS]
+			 Var Divideee = DIVIDE(TotalSalesAmount,TotalSalesAmountTessssst)
+			 Return Divideee+0
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: New Commission Report
+		lineageTag: 7c31d483-ee03-41f3-a493-d54947292190
+
+	measure 'Total Cases NCS' =
+			
+			Var A = CALCULATE(SUM('factinspection'[Case_Cnt]),ALLSELECTED(factsales),ALLSELECTED(factinspection))
+			Return A + 0
+		formatString: 0
+		displayFolder: New Commission Report
+		lineageTag: cefb01e9-8a4f-4ed9-b3c2-59a25e5ae346
+
+	measure 'Total Lbs NCS' =
+			
+			Var A = CALCULATE(SUM('factinspection'[Total_Lbs]),ALLSELECTED(factsales),ALLSELECTED(factinspection))
+			Return A + 0
+		displayFolder: New Commission Report
+		lineageTag: 76a1bfe3-566a-4471-8d41-0ac5f8b9c44b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Load NCS' =
+			
+			Var A = CALCULATE(DISTINCTCOUNT('factinspection'[Load_Nbr]),ALLSELECTED(factsales),ALLSELECTED(factinspection))
+			Return A + 0
+		formatString: 0
+		displayFolder: New Commission Report
+		lineageTag: 2f0694d1-7168-40aa-8b33-2c525c8c92cc
+
+	measure 'Total Pallets NCS' =
+			
+			Var A = CALCULATE(DISTINCTCOUNT('factinspection'[PalletKey]),ALLSELECTED(factsales),ALLSELECTED(factinspection))
+			Return A + 0
+		formatString: 0
+		displayFolder: New Commission Report
+		lineageTag: 1bf6aaad-9811-47d5-845e-4caf380b8a91
+
+	measure 'Total Products NCS' =
+			
+			Var A = CALCULATE(DISTINCTCOUNT('factinspection'[Product Nbr]),ALLSELECTED(factsales),ALLSELECTED(factinspection))
+			Return A + 0
+		formatString: 0
+		displayFolder: New Commission Report
+		lineageTag: 061228d3-3739-4261-accd-21f60c8cbc5b
+
+	measure 'Total Projects NCS' =
+			
+			Var A = CALCULATE(DISTINCTCOUNT('factsales'[So_Nbr]),ALLSELECTED(factsales),ALLSELECTED(factinspection))
+			Return A + 0
+		formatString: 0
+		displayFolder: New Commission Report
+		lineageTag: 2a0d0834-f65b-4529-b961-102383daa915
+
+	measure Contaminated =
+			
+			Var Contam = Calculate(sum(factinspection[Contaminated_Cnt]))
+			Return Contam+0
+		formatString: #,0
+		displayFolder: Inspection Measure
+		lineageTag: 570b84db-2cec-4dfb-aa6c-f076beae2b87
+
+	measure Damaged =
+			
+			Var Damaged_Cnt = Calculate(sum(factinspection[Rcvd_Damaged_Cnt]))
+			Return Damaged_Cnt+0
+		formatString: #,0
+		displayFolder: Inspection Measure
+		lineageTag: 2dd6daef-2072-4fcf-917d-783654d4a2a3
+
+	measure 'Received Short' =
+			
+			Var Rcvd_Shot = Calculate(sum(factinspection[Rcvd_Short_Cnt]))
+			Return Rcvd_Shot+0
+		formatString: #,0
+		displayFolder: Inspection Measure
+		lineageTag: cc6f7a5a-5e6f-4652-b412-2903769c1d96
+
+	measure Trashed =
+			
+			Var Trashed_Cnt = Calculate(Sum(factinspection[Trash_Cnt]))
+			RETURN Trashed_Cnt+0
+		formatString: #,0
+		displayFolder: Inspection Measure
+		lineageTag: 162315fb-7798-4bd3-95f0-827c45f60a95
+
+	measure 'Units Failed' =
+			
+			Var Contaimated = CALCULATE(Sum(factinspection[Contaminated_Cnt]))
+			Var Damaged = CALCULATE(Sum(factinspection[Rcvd_Damaged_Cnt]))
+			Var Trashed = CALCULATE(Sum(factinspection[Trash_Cnt]))
+			Var Shorted = CALCULATE(Sum(factinspection[Rcvd_Short_Cnt]))
+			Var Total_Fail = (Contaimated+Damaged+Trashed+Shorted)
+			Return Total_Fail+0
+		formatString: #,0
+		displayFolder: Inspection Measure
+		lineageTag: ed322233-58aa-446f-9630-1ca438f75dcb
+
+	measure 'Units Passed' =
+			
+			Var Total_Units = CALCULATE(Sum(factinspection[Pack_Cnt]))
+			Var Total_Fail = (Total_Units-[Units Failed])
+			Return Total_Fail+0
+		formatString: #,0
+		displayFolder: Inspection Measure
+		lineageTag: b50ea21f-6930-4117-9c22-954a77203645
+
+	measure Contaminated_ =
+			
+			Var Contam = Calculate(sum(factinspection[Contaminated_Cnt]))
+			Return Contam
+		formatString: #,0
+		displayFolder: Customer Inspection Measure
+		lineageTag: fba36df2-2693-4a25-981d-c96834134e0c
+
+	measure Cases =
+			
+			Var Casess = CALCULATE(Sum(factinspection[Case_Cnt]))
+			Return Casess
+		formatString: #,0
+		displayFolder: Customer Inspection Measure
+		lineageTag: c4d9b9a5-a411-4cbb-99df-fa12443863f3
+
+	measure Units =
+			
+			Var A = Calculate(Sum(factinspection[Pack_Cnt]))
+			Return A
+		formatString: #,0
+		displayFolder: Customer Inspection Measure
+		lineageTag: 923e4fe1-2aeb-42f8-bdc2-3426b15ea183
+
+	measure 'Recovery %' = ```
+			
+			 Var Rcvd_Pass_Cnt = CALCULATE(Sum(factinspection[Pass_Cnt]))
+			 Var Pack_Cnt = CALCULATE(Sum(factinspection[Pack_Cnt]))
+			 Var Divideee = DIVIDE(Rcvd_Pass_Cnt,Pack_Cnt)
+			 Return Divideee
+			```
+		formatString: #,0.00%;-#,0.00%;#,0.00%
+		displayFolder: Customer Inspection Measure
+		lineageTag: 26c38407-fb8a-4939-a9b2-3f69edb704b0
+
+	measure 'Units Pass' =
+			
+			Var Total_Units = CALCULATE(Sum(factinspection[Pack_Cnt]))
+			Var Total_Fail = (Total_Units-[Units Fail])
+			Return Total_Fail
+		formatString: #,0
+		displayFolder: Customer Inspection Measure
+		lineageTag: 644d6b5f-0a70-4489-872f-00b650a4e830
+
+	measure Damaged_ =
+			
+			Var Damaged_Cnt = Calculate(sum(factinspection[Rcvd_Damaged_Cnt]))
+			Return Damaged_Cnt
+		formatString: #,0
+		displayFolder: Customer Inspection Measure
+		lineageTag: 524ed0ec-9e2b-488b-bd31-159123205422
+
+	measure 'Units Fail' =
+			
+			Var Contaimated = CALCULATE(Sum(factinspection[Contaminated_Cnt]))
+			Var Damaged = CALCULATE(Sum(factinspection[Rcvd_Damaged_Cnt]))
+			Var Trashed = CALCULATE(Sum(factinspection[Trash_Cnt]))
+			Var Shorted = CALCULATE(Sum(factinspection[Rcvd_Short_Cnt]))
+			Var Total_Fail = (Contaimated+Damaged+Trashed+Shorted)
+			Return Total_Fail
+		formatString: #,0
+		displayFolder: Customer Inspection Measure
+		lineageTag: b0ac48d6-8954-4258-9b8f-2c33c336c336
+
+	measure Trash =
+			
+			Var Trashed_Cnt = Calculate(Sum(factinspection[Trash_Cnt]))
+			RETURN Trashed_Cnt
+		formatString: #,0
+		displayFolder: Customer Inspection Measure
+		lineageTag: 5c033a1c-4b60-4784-9a25-ef82f6e916ce
+
+	measure Pallets =
+			
+			Var A =  DISTINCTCOUNT('factinspection'[PalletKey])
+			Return A
+		formatString: #,0
+		displayFolder: Customer Inspection Measure
+		lineageTag: 938d24bf-45b6-4e49-b228-8d3217263542
+
+	measure Short =
+			
+			Var Rcvd_Shot = Calculate(sum(factinspection[Rcvd_Short_Cnt]))
+			Return Rcvd_Shot
+		formatString: #,0
+		displayFolder: Customer Inspection Measure
+		lineageTag: ec7d9761-dd58-419f-8765-cc96e23876a5
+
+	measure Comm_Rate% = AVERAGE(commission[Comm_Rate.])*100
+		displayFolder: Remaining Commission Report
+		lineageTag: ebe12042-70ed-428f-b7d8-83d236ab1fab
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Mode of Cases' =
+			
+			VAR ModeTable =
+			    ADDCOLUMNS (
+			        SUMMARIZE (
+			            factinspection,
+			            factinspection[Load_Nbr],
+			            factinspection[Case_Cnt],
+			            "CaseCount", COUNT ( factinspection[Case_Cnt] )
+			        ),
+			        "Rank", RANKX (
+			            FILTER (
+			                ALL( factinspection[Case_Cnt], factinspection[Load_Nbr] ),
+			                factinspection[Load_Nbr] = EARLIER ( factinspection[Load_Nbr] )
+			            ),
+			            [CaseCount], , DESC, Dense
+			        )
+			    )
+			RETURN
+			    MAXX (
+			        FILTER (
+			            ModeTable,
+			            [Rank] = 1
+			        ),
+			        factinspection[Case_Cnt]
+			    )
+		formatString: 0
+		displayFolder: Inspection Measure
+		lineageTag: 7f01b18c-e338-46e7-890e-df478162a1be
+
+	measure MostFrequentCaseCnt =
+			
+			CALCULATE(
+			    MAXX(
+			        FILTER(
+			            ADDCOLUMNS(
+			                SUMMARIZE(
+			                    factinspection,
+			                    factinspection[Load_Nbr],
+			                    factinspection[Case_Cnt],
+			                    "CaseCount", COUNTROWS(factinspection)
+			                ),
+			                "Rank", RANKX(
+			                    FILTER(
+			                        SUMMARIZE(
+			                            factinspection,
+			                            factinspection[Load_Nbr],
+			                            factinspection[Case_Cnt],
+			                            "CaseCount", COUNTROWS(factinspection)
+			                        ),
+			                        [Load_Nbr] = EARLIER([Load_Nbr])
+			                    ),
+			                    [CaseCount],
+			                    ,
+			                    DESC,
+			                    DENSE
+			                )
+			            ),
+			            [Rank] = 1
+			        ),
+			        [Case_Cnt]
+			    ))
+		formatString: #,0
+		displayFolder: Inspection Measure
+		lineageTag: 39b13c90-45e9-4aec-b99b-1a4059bf401a
+
+	measure 'Distinct Invoiced_Issue_Amount' =
+			
+			SumX(
+			    SUMMARIZE(FILTER(remaining_commission, NOT(ISBLANK(remaining_commission[Invoice_Issue_Amount]))),
+			        remaining_commission[Sales_Person_Name],
+			        (remaining_commission[Invoice_ID]),
+			        "Unique_Issue_Amount", DISTINCT(remaining_commission[Invoice_Issue_Amount])
+			    ),
+			    [Unique_Issue_Amount]
+			)
+		displayFolder: Remaining Commission Report
+		lineageTag: 35b74151-98af-49b0-9a44-336a287fc05c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Remaining Opportunity_Amount' =
+			
+			Var a = [Distinct SO_Amount]
+			Var b = [Distinct Invoiced_Issue_Amount]
+			Var c = a-b
+			return c+0
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Remaining Commission Report
+		lineageTag: af8145fe-92ec-4fa9-bdc7-2c68f2853f81
+
+	measure 'Distinct Invoiced_Comm_Amount' =
+			
+			SumX(
+			    SUMMARIZE(
+			        remaining_commission,
+			        (remaining_commission[Invoice Nbr]),
+			        remaining_commission[Sales_Person_Name],
+			        remaining_commission[Invoiced_Comm_Amount],
+			        "Unique_Opportunity_Amount", remaining_commission[Invoiced_Comm_Amount]
+			    ),
+			    [Unique_Opportunity_Amount]
+			)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Remaining Commission Report
+		lineageTag: 1d0849b3-bd38-4955-b7b0-32e9fa789d88
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Distinct of Invoiced_Paid_Amount' =
+			
+			Var a = CALCULATE(SUM(remaining_commission[Invoice_Paid_Amount]))
+			Return a+0
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Remaining Commission Report
+		lineageTag: 46f1077e-4b3e-4e65-9b2b-28ad09caeafb
+
+	measure 'Distinct of Invoiced_Paid_Comm_Amount' =
+			
+			SumX(
+			    SUMMARIZE(
+			        remaining_commission,
+			        (remaining_commission[Invoice Nbr]),
+			        remaining_commission[Paid_Comm_Amount],
+			        remaining_commission[Sales_Person_Name],
+			        "Unique_Opportunity_Amount", remaining_commission[Paid_Comm_Amount]
+			    ),
+			    [Unique_Opportunity_Amount]+0
+			)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Remaining Commission Report
+		lineageTag: cfba7813-7740-462f-9e25-1f3096b6c3f2
+
+	measure 'Distinct of Unpaid_Invoiced_Amount' = ```
+			
+			Var a = [Distinct Invoiced_Issue_Amount]
+			Var b = [Distinct of Invoiced_Paid_Amount]
+			Var c = a-b 
+			return c+0
+			```
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Remaining Commission Report
+		lineageTag: 650bdfb2-6060-470e-92b8-7d9deedbf466
+
+	measure 'Distinct of Unpaid_Invoiced_Comm_Amount' =
+			
+			Var a = [Distinct Invoiced_Comm_Amount]
+			Var b = [Distinct of Invoiced_Paid_Comm_Amount]
+			Var c = a-b
+			return c+0
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Remaining Commission Report
+		lineageTag: 8c29d8b2-35ae-4892-bff7-b586b59a1ec6
+
+	measure 'Distinct SO_Amount' =
+			
+			SumX(
+			    SUMMARIZE(
+			        remaining_commission,
+			        (remaining_commission[SO Nbr]),
+			        remaining_commission[Sales_Person_Name],
+			        "Unique_Opportunity_Amount", Distinct(remaining_commission[Opportunity_Amount])
+			    ),
+			    [Unique_Opportunity_Amount]+0
+			)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Remaining Commission Report
+		lineageTag: f081e0e8-123f-47a6-b5ee-79b0467f3f5d
+
+	measure 'Distinct SO_Amount_Comm' =
+			
+			SumX(
+			    SUMMARIZE(
+			        remaining_commission,
+			        remaining_commission[SO Nbr],
+			        remaining_commission[Sales_Person_Name],
+			        "Unique_Opportunity_Amount", Distinct(remaining_commission[SO_Comm_Potential])
+			    ),
+			    [Unique_Opportunity_Amount]+0
+			)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Remaining Commission Report
+		lineageTag: 012e5ee8-cf61-4b4b-8044-81b800cca2ff
+
+	measure 'Remaining Opportunity_Comm_Amount' =
+			
+			Var a = [Distinct SO_Amount_Comm]
+			Var b = [Distinct Invoiced_Comm_Amount]
+			Var c = (a-b)
+			return c+0
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Remaining Commission Report
+		lineageTag: 7ca92d39-80a9-457e-8bfd-61b735888edd
+
+	measure Distinct =
+			
+			SumX(
+			    SUMMARIZE(
+			        remaining_commission,
+			        (remaining_commission[SO Nbr]),
+			        "Unique_Opportunity_Amount", Distinct(remaining_commission[SO_Comm_Potential])
+			    ),
+			    [Unique_Opportunity_Amount]
+			)
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: d85243a8-0a48-44fe-a707-2b5bc82fd637
+
+	measure 'Distinct Invoiced_Comm_Amount SM' =
+			
+			SumX(
+			    SUMMARIZE(
+			        remaining_commission,
+			        (remaining_commission[Invoice Nbr]),
+			        remaining_commission[Sales_Manager_Name],
+			        remaining_commission[Invoiced_Comm_Amount],
+			        "Unique_Opportunity_Amount", remaining_commission[Invoiced_Comm_Amount]
+			    ),
+			    [Unique_Opportunity_Amount]
+			)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Remaining Commission Report
+		lineageTag: f89b3ed2-0c38-44c3-9ae1-e81123f19c14
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Distinct Invoiced_Issue_Amount SM' =
+			
+			SumX(
+			    SUMMARIZE(FILTER(remaining_commission, NOT(ISBLANK(remaining_commission[Invoice_Issue_Amount]))),
+			        remaining_commission[Sales_Manager_Name],
+			        (remaining_commission[Invoice_ID]),
+			        "Unique_Issue_Amount", DISTINCT(remaining_commission[Invoice_Issue_Amount])
+			    ),
+			    [Unique_Issue_Amount]
+			)
+		displayFolder: Remaining Commission Report
+		lineageTag: 4a2ad94b-2e4b-4b81-8d81-b7f207150309
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Distinct of Invoiced_Paid_Comm_Amount SM' =
+			
+			SumX(
+			    SUMMARIZE(
+			        remaining_commission,
+			        (remaining_commission[Invoice Nbr]),
+			        remaining_commission[Paid_Comm_Amount],
+			        remaining_commission[Sales_Manager_Name],
+			        "Unique_Opportunity_Amount", remaining_commission[Paid_Comm_Amount]
+			    ),
+			    [Unique_Opportunity_Amount]+0
+			)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Remaining Commission Report
+		lineageTag: a0affe5e-47f2-4a41-9074-dd556cd49aef
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Distinct of Unpaid_Invoiced_Amount SM' = ```
+			
+			Var a = [Distinct Invoiced_Issue_Amount SM]
+			Var b = [Distinct of Invoiced_Paid_Amount]
+			Var c = a-b 
+			return c+0
+			```
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Remaining Commission Report
+		lineageTag: 2574be44-0020-4389-8941-2849631e5c57
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Distinct of Unpaid_Invoiced_Comm_Amount SM' =
+			
+			Var a = [Distinct Invoiced_Comm_Amount SM]
+			Var b = [Distinct of Invoiced_Paid_Comm_Amount SM]
+			Var c = a-b
+			return c+0
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Remaining Commission Report
+		lineageTag: 6d01a772-a8e1-4c0b-8880-e335e47c7259
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Distinct SO_Amount SM' =
+			
+			SumX(
+			    SUMMARIZE(
+			        remaining_commission,
+			        (remaining_commission[SO Nbr]),
+			        remaining_commission[Sales_Manager_Name],
+			        "Unique_Opportunity_Amount", Distinct(remaining_commission[Opportunity_Amount])
+			    ),
+			    [Unique_Opportunity_Amount]+0
+			)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Remaining Commission Report
+		lineageTag: f541ab94-0616-408a-a1bc-c2d670f75ae9
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Distinct SO_Amount_Comm SM' =
+			
+			SumX(
+			    SUMMARIZE(
+			        remaining_commission,
+			        remaining_commission[SO Nbr],
+			        remaining_commission[Sales_Manager_Name],
+			        "Unique_Opportunity_Amount", Distinct(remaining_commission[SO_Comm_Potential])
+			    ),
+			    [Unique_Opportunity_Amount]+0
+			)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Remaining Commission Report
+		lineageTag: e5945e91-d5db-458f-81ca-3c9928234828
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Remaining Opportunity_Amount SM' =
+			
+			Var a = [Distinct SO_Amount SM]
+			Var b = [Distinct Invoiced_Issue_Amount SM]
+			Var c = a-b
+			return c+0
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Remaining Commission Report
+		lineageTag: 09fe4aef-4ec9-493e-9247-e4a54c4079b4
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Remaining Opportunity_Comm_Amount SM' =
+			
+			Var a = [Distinct SO_Amount_Comm SM]
+			Var b = [Distinct Invoiced_Comm_Amount SM]
+			Var c = (a-b)
+			return c+0
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Remaining Commission Report
+		lineageTag: 3db52570-4b12-4ae7-a835-771259f13769
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Distinct Nbr of So''s SM' =
+			
+			CountX(
+			    SUMMARIZE(
+			        remaining_commission,
+			        remaining_commission[SO_Nbr],
+			        remaining_commission[Sales_Manager_Name],
+			        "Unique_Opportunity_Amount", Distinct(remaining_commission[SO_Nbr])
+			    ),
+			    [Unique_Opportunity_Amount])
+		formatString: #,0
+		displayFolder: Remaining Commission Report
+		lineageTag: 13a48eb2-9746-466d-89c6-c9d1fbac5740
+
+	measure 'Distinct Nbr of So''s' =
+			
+			CountX(
+			    SUMMARIZE(
+			        remaining_commission,
+			        remaining_commission[SO_Nbr],
+			        remaining_commission[Sales_Person_Name],
+			        "Unique_Opportunity_Amount", Distinct(remaining_commission[SO_Nbr])
+			    ),
+			    [Unique_Opportunity_Amount])
+		formatString: #,0
+		displayFolder: Remaining Commission Report
+		lineageTag: 957261ba-41a6-4132-a8b6-318d8cb35af4
+
+	measure 'Distinct Nbr of Inovices' =
+			
+			CountX(
+			    SUMMARIZE(
+			        remaining_commission,
+			        remaining_commission[Invoice_ID],
+			        remaining_commission[Sales_Person_Name],
+			        "Unique_Opportunity_Amount", Distinct(remaining_commission[Invoice_ID])
+			    ),
+			    [Unique_Opportunity_Amount])
+		formatString: #,0
+		displayFolder: Remaining Commission Report
+		lineageTag: 291a706f-fdd2-41a6-be34-906333f4b0ed
+
+	measure 'Distinct Nbr of Inovices SM' =
+			
+			CountX(
+			    SUMMARIZE(
+			        remaining_commission,
+			        remaining_commission[Invoice_ID],
+			        remaining_commission[Sales_Manager_Name],
+			        "Unique_Opportunity_Amount", Distinct(remaining_commission[Invoice_ID])
+			    ),
+			    [Unique_Opportunity_Amount])
+		formatString: #,0
+		displayFolder: Remaining Commission Report
+		lineageTag: 36c34808-b382-4f4e-97a2-3ec0e50f6258
+
+	measure 'Mtd Revenue' =
+			
+			VAR Current_Date =
+			    MAX('Rollback_Calendar'[Invoice Date])
+			VAR Previous_Date = Maxx(Rollback_Calendar,STARTOFMONTH(Rollback_Calendar[Invoice Date]))
+			VAR Result =
+			    CALCULATE(
+			        SUM(factsales[Invoice_Line_Amount]),
+			        FILTER(
+			            factsales,
+			            factsales[Invoice_Date] >= Previous_Date
+			            && factsales[Invoice_Date] <= Current_Date
+			        ),
+			        FILTER(
+			            New_Customer_Status,
+			            New_Customer_Status[StartDate] >= Previous_Date
+			            && New_Customer_Status[StartDate] <= Current_Date
+			        )
+			    )
+			RETURN Result
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Finance Measure
+		lineageTag: 160224d2-ad1b-4dde-8a72-705fbe33d694
+
+	measure '13 Month''s Revenue Avg' = ```
+			
+			VAR Current_Date =
+			    MAX('Rollback_Calendar'[Invoice Date])
+			VAR Previous_Date =
+			    DATE(YEAR(Current_Date), MONTH(Current_Date) - 13, DAY(Current_Date))
+			VAR Result =
+			    CALCULATE(
+			        AVERAGE(factsales[Invoice_Line_Amount]),
+			        FILTER(
+			            factsales,
+			            factsales[Invoice_Date] >= Previous_Date
+			            && factsales[Invoice_Date] <= Current_Date && 
+			            NOT(WEEKDAY(FactSales[Invoice_Date], 2) IN {6,7})
+			        )
+			    )
+			RETURN
+			    Result
+			```
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Finance Measure
+		lineageTag: a3a3ab31-0f43-469e-a4a9-374881a14743
+
+	measure '13 Month''s Revenue Avg PY' = ```
+			
+			VAR CurrentYear = MAX('Calendar_Table'[Year])
+			VAR CurrentMonth = MAX('Calendar_Table'[Month])
+			VAR SalesAverage_PreviousYear = 
+			    CALCULATE(
+			        AVERAGE('factsales'[Invoice_Line_Amount]),
+			        'Calendar_Table'[Year] = CurrentYear - 1,
+			        'Calendar_Table'[Month] = CurrentMonth,
+			            NOT(WEEKDAY(FactSales[Invoice_Date], 2) IN {6,7})
+			    )
+			RETURN
+			    IF(
+			        ISBLANK(SalesAverage_PreviousYear),
+			        BLANK(),
+			        SalesAverage_PreviousYear
+			    )
+			```
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Finance Measure
+		lineageTag: dd07d82a-4a4d-4e5c-9f28-1aa926444c06
+
+	measure '13 Month''s Truckload Avg' = ```
+			
+			VAR Current_Date =
+			    MAX('Rollback_Calendar'[Invoice Date])
+			VAR Previous_Date =
+			    DATE(YEAR(Current_Date), MONTH(Current_Date) - 13, DAY(Current_Date))
+			VAR LoadNbrCountTable =
+			    SUMMARIZE(
+			        FILTER(
+			            factsales,
+			            factsales[Invoice_Date] >= Previous_Date
+			            && factsales[Invoice_Date] <= Current_Date && 
+			            NOT(WEEKDAY(FactSales[Invoice_Date], 2) IN {6,7})
+			        ),
+			        factsales[Invoice_Date],
+			        "LoadNbrCount", DISTINCTCOUNTNOBLANK(factsales[Load_Nbr])
+			    )
+			VAR Result =
+			    AVERAGEX(
+			        LoadNbrCountTable,
+			        [LoadNbrCount]
+			    )
+			RETURN
+			    Result
+			```
+		formatString: #,0.00
+		displayFolder: Finance Measure
+		lineageTag: ede0c561-7eae-45ca-9f76-800aca5b006b
+
+	measure '13 Month''s Truckload Avg PY' = ```
+			
+			VAR CurrentYear = MAX('Calendar_Table'[Year])
+			VAR CurrentMonth = MAX('Calendar_Table'[Month])
+			-- Calculate TruckLoad Average for the Previous Year and Same Month
+			VAR TruckLoadAverage_PreviousYear = 
+			    CALCULATE(
+			        [TruckLoad Average],
+			        'Calendar_Table'[Year] = CurrentYear - 1,
+			        'Calendar_Table'[Month] = CurrentMonth,
+			        NOT(WEEKDAY(FactSales[Invoice_Date], 2) IN {6,7})
+			    )
+			RETURN
+			    IF(
+			        ISBLANK(TruckLoadAverage_PreviousYear),
+			        BLANK(),
+			        TruckLoadAverage_PreviousYear
+			    )
+			```
+		formatString: #,0.00
+		displayFolder: Finance Measure
+		lineageTag: bf4733c9-b25f-428b-ad0f-8d89791c8df1
+
+	measure 'TruckLoad Average' =
+			
+			VAR LoadNbrCountTable =
+			    SUMMARIZE(factsales,
+			        factsales[Invoice_Date],
+			        "LoadNbrCount", DISTINCTCOUNTNOBLANK(factsales[Load_Nbr])
+			    )
+			VAR Result =
+			    AVERAGEX(
+			        LoadNbrCountTable,
+			        [LoadNbrCount]
+			    )
+			RETURN Result
+		formatString: #,0.00
+		displayFolder: Finance Measure
+		lineageTag: 2bf70ab7-a6bc-487e-97d9-191a79ae9138
+
+	measure '3M Rolling Revenue Avg' =
+			
+			VAR Result = CALCULATE(
+			    AVERAGE('factsales'[Invoice_Line_Amount]),
+			    DATESINPERIOD('Calendar_Table'[Date], MAX('Calendar_Table'[Date]), -3, MONTH),
+			            NOT(WEEKDAY(FactSales[Invoice_Date], 2) IN {6,7}))
+			RETURN Result
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Finance Measure
+		lineageTag: 118a4096-0f58-4a61-9cf7-c024f375b324
+
+	measure '3M Rolling TruckLoad Avg' =
+			
+			VAR Result = CALCULATE(
+			    [TruckLoad Average],
+			    DATESINPERIOD('Calendar_Table'[Date], MAX('Calendar_Table'[Date]), -3, MONTH),
+			            NOT(WEEKDAY(FactSales[Invoice_Date], 2) IN {6,7}))
+			RETURN Result
+		formatString: #,0.00
+		displayFolder: Finance Measure
+		lineageTag: d0b580f2-f991-4a83-a179-d3b6da1f562f
+
+	measure 'Active Customers Count' =
+			
+			VAR Current_Date =
+			    MAX('Rollback_Customer'[Invoice Date])
+			VAR Previous_Date =
+			     EDATE(Current_Date, -24)
+			var Active_Customers = CALCULATE(DISTINCTCOUNTNOBLANK('customer_invoice_status'[CustomerID]),'customer_invoice_status'[Customer_Status]="Active",SUMMARIZE('customer_invoice_status','customer_invoice_status'[Customer_Status]),FILTER(
+			            Customer_Calendar_Table,
+			            Customer_Calendar_Table[Invoice_Date] >= Previous_Date
+			            && Customer_Calendar_Table[Invoice_Date] <= Current_Date
+			        ))
+			RETURN    IF(ISBLANK(Active_Customers), 0, Active_Customers)
+		formatString: 0
+		displayFolder: Finance Measure
+		lineageTag: b5098084-1697-46c9-b240-b345c8ffefcb
+
+	measure 'Active Customers Trend' =
+			
+			Var Active_Customer = CALCULATE(
+			    DISTINCTCOUNTNOBLANK('customer_invoice_status'[CustomerID]),
+			    DATESINPERIOD(
+			        'Customer_Calendar_Table'[Invoice_Date],
+			        MAX('Customer_Calendar_Table'[Invoice_Date]),
+			        -24,
+			        MONTH
+			    ))
+			RETURN Active_Customer
+		formatString: #,0
+		displayFolder: Finance Measure
+		lineageTag: 4de61e04-dd52-4f1f-8a3d-016b9d55a8ba
+
+	measure 'Churned customer Count' =
+			
+			VAR Current_Date =
+			    MAX('Rollback_Customer'[Invoice Date])
+			VAR Previous_Date =
+			    Maxx(Rollback_Customer,STARTOFMONTH(Rollback_Customer[Invoice Date]))
+			Var Churn = CALCULATE(DISTINCTCOUNTNOBLANK('Customer_Status'[CustomerID]),'Customer_Status'[Customer_Category]= "Churned",SUMMARIZE('Customer_Status','Customer_Status'[Customer_Category]),
+			FILTER(
+			            Customer_Status,
+			            Customer_Status[StartDate] >= Previous_Date
+			            && Customer_Status[StartDate] <= Current_Date
+			        )
+			    )
+			RETURN (Churn)
+		formatString: #,0
+		displayFolder: Finance Measure
+		lineageTag: 1e0c8924-7f1c-4707-817b-6e25e1c0dd99
+
+	measure 'Churned Customers Agign Count' =
+			
+			Var Churned_Customers = CALCULATE(DISTINCTCOUNTNOBLANK(Customer_Activity_Aging[customerID]))
+			RETURN Churned_Customers+0
+		formatString: #,0
+		displayFolder: Finance Measure
+		lineageTag: 2d359a23-3937-4805-9579-125f24220361
+
+	measure 'Logo expansion Customer Count' =
+			
+			VAR Current_Date =
+			    MAXX(Rollback_Customer,('Rollback_Customer'[Invoice Date]))
+			VAR Previous_Date =
+			    Maxx(Rollback_Customer,STARTOFMONTH((Rollback_Customer[Invoice Date])))
+			var Logo_expansion = CALCULATE(DISTINCTCOUNTNOBLANK('Customer_Status'[CustomerID]),'Customer_Status'[Customer_Category]="Logo Expansion",SUMMARIZE('Customer_Status','Customer_Status'[Customer_Category]),FILTER(
+			            Customer_Status,
+			            (Customer_Status[StartDate]) >= Previous_Date
+			            && (Customer_Status[StartDate]) <= Current_Date
+			        ))
+			RETURN if(ISBLANK(Logo_expansion),0,Logo_expansion)
+		formatString: #,0
+		displayFolder: Finance Measure
+		lineageTag: 3cf78efc-3e97-4c35-afe8-c588db40d7b7
+
+	measure 'M/M Customer Base Count Change by Category' =
+			
+			VAR Current_Date =
+			    MAX('Rollback_Customer'[Invoice Date])
+			VAR Previous_Date =
+			      EDATE(Current_Date, -24)
+			var Logo_expansion = CALCULATE(DISTINCTCOUNTNOBLANK('customer_status'[CustomerID]),'Customer_Status'[Customer_Category]="Logo Expansion",SUMMARIZE('customer_status','customer_status'[Customer_Category]),FILTER(
+			            customer_status,
+			            customer_status[StartDate] >= Previous_Date
+			            && customer_status[StartDate] <= Current_Date
+			        ))
+			var New_Logo = CALCULATE(DISTINCTCOUNTNOBLANK('customer_status'[CustomerID]),'customer_status'[Customer_Category]="New Logo",SUMMARIZE('customer_status','customer_status'[Customer_Category]),FILTER(
+			            customer_status,
+			            customer_status[StartDate] >= Previous_Date
+			            && customer_status[StartDate] <= Current_Date
+			        ))
+			var recove = CALCULATE(DISTINCTCOUNTNOBLANK('customer_status'[CustomerID]),'customer_status'[Customer_Category]="recovered",SUMMARIZE('customer_status','customer_status'[Customer_Category]),FILTER(
+			            customer_status,
+			            customer_status[StartDate]>= Previous_Date
+			            && customer_status[StartDate] <= Current_Date
+			        ))
+			Var Churn = CALCULATE(DISTINCTCOUNTNOBLANK('customer_status'[CustomerID]),'customer_status'[Customer_Category]= "churned",SUMMARIZE('customer_status','customer_status'[Customer_Category]),FILTER(
+			            customer_status,
+			            customer_status[StartDate] >= Previous_Date
+			            && customer_status[StartDate] <= Current_Date
+			        ))
+			VAR Result = (New_Logo+recove+Logo_expansion+(-Churn))
+			RETURN Result
+		formatString: 0
+		displayFolder: Finance Measure
+		lineageTag: 9335fbfa-fdce-4e29-8a22-977801926424
+
+	measure 'Mapped Sales Average' = ```
+			
+			VAR CurrentYear = MAX('Calendar_Table'[Year])
+			VAR CurrentMonth = MAX('Calendar_Table'[Month])
+			VAR SalesAverage_CurrentYear = 
+			    CALCULATE(
+			        AVERAGE('factsales'[Invoice_Line_Amount]),
+			        'Calendar_Table'[Year] = CurrentYear,
+			        'Calendar_Table'[Month] = CurrentMonth
+			    )
+			
+			VAR SalesAverage_PreviousYear = 
+			    CALCULATE(
+			        AVERAGE('factsales'[Invoice_Line_Amount]),
+			        'Calendar_Table'[Year] = CurrentYear - 1,
+			        'Calendar_Table'[Month] = CurrentMonth
+			    )
+			
+			RETURN
+			    IF(
+			        ISBLANK(SalesAverage_PreviousYear),
+			        BLANK(),
+			        SalesAverage_PreviousYear
+			    )
+			```
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Finance Measure
+		lineageTag: 79677c30-c122-4e2d-889c-a2ddc12925a2
+
+	measure 'Mapped TruckLoad Average' = ```
+			
+			VAR CurrentYear = MAX('Calendar_Table'[Year])
+			VAR CurrentMonth = MAX('Calendar_Table'[Month])
+			
+			-- Calculate TruckLoad Average for the Current Year and Month
+			VAR TruckLoadAverage_CurrentYear = 
+			    CALCULATE(
+			        [TruckLoad Average],
+			        'Calendar_Table'[Year] = CurrentYear,
+			        'Calendar_Table'[Month] = CurrentMonth
+			    )
+			
+			-- Calculate TruckLoad Average for the Previous Year and Same Month
+			VAR TruckLoadAverage_PreviousYear = 
+			    CALCULATE(
+			        [TruckLoad Average],
+			        'Calendar_Table'[Year] = CurrentYear - 1,
+			        'Calendar_Table'[Month] = CurrentMonth
+			    )
+			
+			RETURN
+			    IF(
+			        ISBLANK(TruckLoadAverage_PreviousYear),
+			        TruckLoadAverage_CurrentYear,
+			        TruckLoadAverage_PreviousYear
+			    )
+			 
+			```
+		formatString: #,0.00
+		displayFolder: Finance Measure
+		lineageTag: 1351c982-ae51-41e1-ba82-a840a77b44e4
+
+	measure 'Month Revenue Trend' =
+			
+			VAR Current_Date =
+			    MAX('Rollback_Calendar'[Invoice Date])
+			VAR Previous_Date =
+			    DATE(YEAR(Current_Date), MONTH(Current_Date) - 24, 1)
+			VAR Previous_Year = Year(Max(Rollback_Calendar[Invoice Date]))-2
+			VAR Result =
+			    CALCULATE(
+			        SUM(Sales_Inspection[Revenue]),
+			        FILTER(
+			            Sales_Inspection,
+			            Sales_Inspection[Date] >= Previous_Date
+			            && Sales_Inspection[Date] <= Current_Date
+			        )
+			    )
+			RETURN Result
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Finance Measure
+		lineageTag: b0cd27e2-f3ab-4a1a-980a-7226d13aa0fa
+
+	measure 'Mtd Customers Colour Indicator' = ```
+			
+			VAR Color =
+			    SWITCH(TRUE(),
+			        [Mtd Customers Count] > [Mtd Customers Count PY], "#008A5F",  // Green if current count is higher
+			        [Mtd Customers Count] < [Mtd Customers Count PY], "#FF0000",  // Red if current count is lower
+			        "#0472BA"  // Default color if neither condition is met (Blue)
+			    )
+			RETURN
+			    Color
+			
+			```
+		displayFolder: Finance Measure
+		lineageTag: 7ee906af-870f-4413-b310-a04e4fc1bd4a
+
+	measure 'Mtd Customers Comparison' = ([Mtd Customers Count]-[Mtd Customers Count PY])
+		formatString: #,##0;(#,##0);0
+		displayFolder: Finance Measure
+		lineageTag: 6bb0e14e-7ebd-4476-9aa7-8b639a21b674
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Mtd Customers Count' =
+			
+			VAR Current_Date =
+			    MAX('Rollback_Calendar'[Invoice Date])
+			VAR Previous_Date = Maxx(Rollback_Calendar,STARTOFMONTH(Rollback_Calendar[Invoice Date]))
+			VAR Result =
+			    CALCULATE(
+			        DISTINCTCOUNTNOBLANK('New_Customer_Status'[CustomerID]),
+			        FILTER(
+			            factsales,
+			            factsales[Invoice_Date] >= Previous_Date
+			            && factsales[Invoice_Date] <= Current_Date
+			       ),
+			        FILTER(
+			            New_Customer_Status,
+			            New_Customer_Status[StartDate] >= Previous_Date
+			            && New_Customer_Status[StartDate] <= Current_Date
+			        )
+			    )
+			RETURN Result
+		formatString: #,##0;(#,##0);0
+		displayFolder: Finance Measure
+		lineageTag: 6cf11827-20a5-44a3-8980-3256115ebf50
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Mtd Customers Count PY' =
+			
+			VAR Current_Date =
+			    MAXX(Rollback_Calendar,SAMEPERIODLASTYEAR('Rollback_Calendar'[Invoice Date]))
+			VAR Previous_Date = Maxx(Rollback_Calendar,STARTOFMONTH(SAMEPERIODLASTYEAR(Rollback_Calendar[Invoice Date])))
+			VAR Result =
+			    CALCULATE(
+			        DISTINCTCOUNTNOBLANK('New_Customer_Status'[CustomerID]),
+			        FILTER(
+			            factsales,
+			            factsales[Invoice_Date] >= Previous_Date
+			            && factsales[Invoice_Date] <= Current_Date
+			       ),
+			        FILTER(
+			            New_Customer_Status,
+			            New_Customer_Status[StartDate] >= Previous_Date
+			            && New_Customer_Status[StartDate] <= Current_Date
+			        )
+			    )
+			RETURN Result
+		formatString: #,##0;(#,##0);0
+		displayFolder: Finance Measure
+		lineageTag: f280e76f-8824-4a63-992e-7d5de220e72f
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Mtd Revenue Avg' =
+			
+			VAR Current_Date =
+			    MAX('Rollback_Calendar'[Invoice Date])
+			VAR Previous_Date = Maxx(Rollback_Calendar,STARTOFMONTH(Rollback_Calendar[Invoice Date]))
+			VAR Result =
+			    CALCULATE(
+			        AVERAGE(factsales[Invoice_Line_Amount]),
+			        FILTER(
+			            factsales,
+			            factsales[Invoice_Date] >= Previous_Date
+			            && factsales[Invoice_Date] <= Current_Date
+			        ))
+			RETURN
+			    Result
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Finance Measure
+		lineageTag: 266e0c8b-847d-475b-8e0a-fe3df23ccd04
+
+	measure 'Mtd Revenue by Branchs' =
+			
+			VAR Current_Date =
+			    MAX('Rollback_Calendar'[Invoice Date])
+			VAR Previous_Date = Maxx(Rollback_Calendar,STARTOFMONTH(Rollback_Calendar[Invoice Date]))
+			VAR Result =
+			    CALCULATE(
+			        SUM(factsales[Invoice_Line_Amount]),SUMMARIZE(factsales,factsales[Branch]),
+			        FILTER(
+			            factsales,
+			            factsales[Invoice_Date] >= Previous_Date
+			            && factsales[Invoice_Date] <= Current_Date
+			        )
+			    )
+			RETURN
+			    Result
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Finance Measure
+		lineageTag: 7d72e2c5-4329-4b0b-8f83-fae058b4132d
+
+	measure 'Mtd Revenue Colour Indicator' =
+			
+			VAR Color =
+			    SWITCH(TRUE(),
+			        [Mtd Revenue] > [Mtd Revenue PY], "#008A5F",  // Green for increase
+			        [Mtd Revenue] < [Mtd Revenue PY], "#FF0000",  // Red for decrease
+			        "#0472BA"  // Default color (blue) if neither condition is met
+			    )
+			RETURN
+			    Color
+		displayFolder: Finance Measure
+		lineageTag: 2091b22e-2dde-445e-835b-4db3139efef6
+
+	measure 'Mtd Revenue Comparison' = ([Mtd Revenue]-[Mtd Revenue PY])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Finance Measure
+		lineageTag: 0555392d-2932-49b5-a507-7ce02410e799
+
+	measure 'Mtd Revenue Indicator' =
+			
+			SWITCH(TRUE(),
+			    [Mtd Revenue] > [Mtd Revenue PY], UNICHAR(9650),  // Upward triangle
+			    [Mtd Revenue] < [Mtd Revenue PY], UNICHAR(9660),  // Downward triangle
+			    UNICHAR(9644)  // Horizontal dash
+			)
+		displayFolder: Finance Measure
+		lineageTag: eb26f9d5-12ea-452d-b65e-9b1fef381c69
+
+	measure 'Mtd Revenue PY' =
+			
+			VAR Current_Date =
+			    MAXX(Rollback_Calendar,SAMEPERIODLASTYEAR('Rollback_Calendar'[Invoice Date]))
+			VAR Previous_Date = Maxx(Rollback_Calendar,STARTOFMONTH(SAMEPERIODLASTYEAR(Rollback_Calendar[Invoice Date])))
+			VAR Result =
+			    CALCULATE(
+			        SUM(factsales[Invoice_Line_Amount]),
+			        FILTER(
+			            factsales,
+			            factsales[Invoice_Date] >= Previous_Date
+			            && factsales[Invoice_Date] <= Current_Date
+			       ),
+			        FILTER(
+			            New_Customer_Status,
+			            New_Customer_Status[StartDate] >= Previous_Date
+			            && New_Customer_Status[StartDate] <= Current_Date
+			        )
+			    )
+			RETURN Result
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Finance Measure
+		lineageTag: 10c2f989-3977-4aaf-877f-6ed72b0a1659
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Mtd Revenue PY by Branchs' =
+			
+			VAR Current_Date =
+			    MAXX(Rollback_Calendar,SAMEPERIODLASTYEAR('Rollback_Calendar'[Invoice Date]))
+			VAR Previous_Date = Maxx(Rollback_Calendar,STARTOFMONTH(SAMEPERIODLASTYEAR(Rollback_Calendar[Invoice Date])))
+			VAR Result =
+			    CALCULATE(
+			        SUM(factsales[Invoice_Line_Amount]),SUMMARIZE(factinspection,factinspection[Plant_Location]),
+			        FILTER(
+			            factsales,
+			            factsales[Invoice_Date] >= Previous_Date
+			            && factsales[Invoice_Date] <= Current_Date
+			        )
+			    )
+			RETURN
+			    Result
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Finance Measure
+		lineageTag: edaad3d4-8da6-4c00-9e41-788dcdc2ccae
+
+	measure 'Mtd TruckLoad' =
+			
+			VAR Current_Date =
+			    MAX('Rollback_Calendar'[Invoice Date])
+			VAR Previous_Date = Maxx(Rollback_Calendar,STARTOFMONTH(Rollback_Calendar[Invoice Date]))
+			VAR Result =
+			    CALCULATE(
+			        DISTINCTCOUNTNOBLANK(factsales[Load_Nbr]),
+			        FILTER(
+			            factsales,
+			            factsales[Invoice_Date] >= Previous_Date
+			            && factsales[Invoice_Date] <= Current_Date
+			        ),
+			        FILTER(
+			            customer_invoice_status,
+			            customer_invoice_status[Invoice_Date] >= Previous_Date
+			            && customer_invoice_status[Invoice_Date] <= Current_Date
+			        )
+			    )
+			RETURN Result
+		formatString: 0
+		displayFolder: Finance Measure
+		lineageTag: dd2418b4-9fb3-4130-9862-90ff79571c1f
+
+	measure 'Mtd TruckLoad Avg' =
+			
+			VAR Current_Date =
+			    MAX('Rollback_Calendar'[Invoice Date])
+			VAR Previous_Date = Maxx(Rollback_Calendar,STARTOFMONTH(Rollback_Calendar[Invoice Date]))
+			VAR LoadNbrCountTable =
+			    SUMMARIZE(
+			        FILTER(
+			            factsales,
+			            factsales[Invoice_Date] >= Previous_Date
+			            && factsales[Invoice_Date] <= Current_Date
+			        ),
+			        factsales[Invoice_Date],
+			        "LoadNbrCount", DISTINCTCOUNTNOBLANK(factsales[Load_Nbr])
+			    )
+			VAR Result =
+			    AVERAGEX(
+			        LoadNbrCountTable,
+			        [LoadNbrCount]
+			    )
+			RETURN
+			    Result
+		formatString: 0.00
+		displayFolder: Finance Measure
+		lineageTag: 16f2b18a-8c74-4866-886d-4b66116fe599
+
+	measure 'Mtd TruckLoad by Branchs' =
+			
+			VAR Current_Date =
+			    MAX('Rollback_Calendar'[Invoice Date])
+			VAR Previous_Date = Maxx(Rollback_Calendar,STARTOFMONTH(Rollback_Calendar[Invoice Date]))
+			VAR Result =
+			    CALCULATE(
+			       DISTINCTCOUNTNOBLANK(factsales[Load_Nbr]),SUMMARIZE(factinspection,factinspection[Plant_Location]),
+			        FILTER(
+			            factsales,
+			            factsales[Invoice_Date] >= Previous_Date
+			            && factsales[Invoice_Date] <= Current_Date
+			        )
+			    )
+			RETURN
+			    Result
+		formatString: #,0
+		displayFolder: Finance Measure
+		lineageTag: 5f7e4c8a-5ee1-4b21-9893-ce0088bb2c32
+
+	measure 'Mtd Truckload PY' =
+			
+			VAR Current_Date =
+			    MAXX(Rollback_Calendar,SAMEPERIODLASTYEAR('Rollback_Calendar'[Invoice Date]))
+			VAR Previous_Date = Maxx(Rollback_Calendar,STARTOFMONTH(SAMEPERIODLASTYEAR(Rollback_Calendar[Invoice Date])))
+			VAR Result =
+			    CALCULATE(
+			        DISTINCTCOUNTNOBLANK(factsales[Load_Nbr]),
+			        FILTER(
+			            factsales,
+			            factsales[Invoice_Date] >= Previous_Date
+			            && factsales[Invoice_Date] <= Current_Date
+			        )
+			    )
+			RETURN
+			    Result
+		formatString: #,0
+		displayFolder: Finance Measure
+		lineageTag: 71316a74-5b20-4d09-a041-4fc141ac18c7
+
+	measure 'Mtd Truckload PY by Branchs' =
+			
+			VAR Current_Date =
+			    MAXX(Rollback_Calendar,SAMEPERIODLASTYEAR('Rollback_Calendar'[Invoice Date]))
+			VAR Previous_Date = Maxx(Rollback_Calendar,STARTOFMONTH(SAMEPERIODLASTYEAR(Rollback_Calendar[Invoice Date])))
+			VAR Result =
+			    CALCULATE(
+			        DISTINCTCOUNTNOBLANK(factsales[Load_Nbr]),SUMMARIZE(factinspection,factinspection[Plant_Location]),
+			        FILTER(
+			            factsales,
+			            factsales[Invoice_Date] >= Previous_Date
+			            && factsales[Invoice_Date] <= Current_Date
+			        )
+			    )
+			RETURN
+			    Result
+		formatString: #,0
+		displayFolder: Finance Measure
+		lineageTag: 5a95654c-000b-49ee-be76-aa0db7f35548
+
+	measure 'New Logo Customer count' =
+			
+			VAR Current_Date =
+			    MAX('Rollback_Customer'[Invoice Date])
+			VAR Previous_Date =
+			    Maxx(Rollback_Customer,STARTOFMONTH(Rollback_Customer[Invoice Date]))
+			VAR New_Logo = CALCULATE(DISTINCTCOUNTNOBLANK('Customer_Status'[CustomerID]),'Customer_Status'[Customer_Category]="New Logo",SUMMARIZE('Customer_Status','Customer_Status'[Customer_Category]),FILTER(
+			            Customer_Status,
+			            Customer_Status[StartDate] >= Previous_Date
+			            && Customer_Status[StartDate] <= Current_Date
+			        ))
+			RETURN (New_Logo)
+		formatString: #,0
+		displayFolder: Finance Measure
+		lineageTag: 35bb0aaf-a5dd-46c0-b034-1e26dc0c90fc
+
+	measure PROF/LOSS = UNICHAR(11044)  // This represents a black large circle
+		displayFolder: Finance Measure
+		lineageTag: 56e19e62-d96b-4dd2-9e76-424996d35f33
+
+	measure 'Recovered Customers' =
+			
+			VAR Current_Date =
+			    MAX('Rollback_Customer'[Invoice Date])
+			VAR Previous_Date =
+			    Maxx(Rollback_Customer,STARTOFMONTH(Rollback_Customer[Invoice Date]))
+			var recove = CALCULATE(DISTINCTCOUNTNOBLANK('Customer_Status'[CustomerID]),'Customer_Status'[Customer_Category]="Recovered",SUMMARIZE('Customer_Status','Customer_Status'[Customer_Category]),FILTER(
+			            Customer_Status,
+			            Customer_Status[StartDate] >= Previous_Date
+			            && Customer_Status[StartDate] <= Current_Date
+			        )
+			    )
+			RETURN (recove)
+		formatString: #,0
+		displayFolder: Finance Measure
+		lineageTag: cad66522-e3b2-4119-85d2-787cf3cb2117
+
+	measure 'YTD Sales Amount' =
+			
+			VAR Current_Date =
+			    MAX('Rollback_Calendar'[Invoice Date])
+			VAR Previous_Date = Maxx(Rollback_Calendar,STARTOFYEAR(Rollback_Calendar[Invoice Date]))
+			VAR Result =
+			    CALCULATE(
+			        SUM(factsales[Invoice_Line_Amount]),
+			        FILTER(
+			            factsales,
+			            factsales[Invoice_Date] >= Previous_Date
+			            && factsales[Invoice_Date] <= Current_Date
+			        )
+			    )
+			RETURN
+			    Result
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Finance Measure
+		lineageTag: b100b94f-1610-42e4-8a4f-dae5348f8e5d
+
+	measure 'YTD TruckLoad' =
+			
+			VAR Current_Date =
+			    MAX('Rollback_Calendar'[Invoice Date])
+			VAR Previous_Date = Maxx(Rollback_Calendar,STARTOFYEAR(Rollback_Calendar[Invoice Date]))
+			VAR Result =
+			    CALCULATE(
+			       DISTINCTCOUNTNOBLANK(factsales[Load_Nbr]),
+			        FILTER(
+			            factsales,
+			            factsales[Invoice_Date] >= Previous_Date
+			            && factsales[Invoice_Date] <= Current_Date
+			        ),
+			        FILTER(
+			            customer_invoice_status,
+			            customer_invoice_status[Invoice_Date] >= Previous_Date
+			            && customer_invoice_status[Invoice_Date] <= Current_Date
+			        )
+			    )
+			RETURN Result
+		formatString: #,0
+		displayFolder: Finance Measure
+		lineageTag: 2fba5219-2cb4-44d4-9851-1e6f169d7611
+
+	measure 'YTD Revenue PY' =
+			
+			VAR Current_Date =
+			    MAXX(Rollback_Calendar,SAMEPERIODLASTYEAR('Rollback_Calendar'[Invoice Date]))
+			VAR Previous_Date = MAXX(Rollback_Calendar,STARTOFYEAR(SAMEPERIODLASTYEAR(Rollback_Calendar[Invoice Date])))
+			VAR Result =
+			    CALCULATE(
+			        SUM(factsales[Invoice_Line_Amount]),
+			        FILTER(
+			            factsales,
+			            factsales[Invoice_Date] >= Previous_Date
+			            && factsales[Invoice_Date] <= Current_Date
+			       ),
+			        FILTER(
+			            New_Customer_Status,
+			            New_Customer_Status[StartDate] >= Previous_Date
+			            && New_Customer_Status[StartDate] <= Current_Date
+			        )
+			    )
+			RETURN Result
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Finance Measure
+		lineageTag: b7566c72-83fc-473e-81bf-c13f8d1c5444
+
+	measure 'YTD Revenue' =
+			
+			VAR Current_Date =
+			    MAX('Rollback_Calendar'[Invoice Date])
+			VAR Previous_Date = Maxx(Rollback_Calendar,STARTOFYEAR(Rollback_Calendar[Invoice Date]))
+			VAR Result =
+			    CALCULATE(
+			        SUM(factsales[Invoice_Line_Amount]),
+			        FILTER(
+			            factsales,
+			            factsales[Invoice_Date] >= Previous_Date
+			            && factsales[Invoice_Date] <= Current_Date
+			        ),
+			        FILTER(
+			            New_Customer_Status,
+			            New_Customer_Status[StartDate] >= Previous_Date
+			            && New_Customer_Status[StartDate] <= Current_Date
+			        )
+			    )
+			RETURN Result
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Finance Measure
+		lineageTag: 8053b303-011e-42e6-ac3f-6e4a42a7d6ce
+
+	measure 'YTD Customers Count' =
+			
+			VAR Current_Date =
+			    MAX('Rollback_Calendar'[Invoice Date])
+			VAR Previous_Date = Maxx(Rollback_Calendar,STARTOFYEAR(Rollback_Calendar[Invoice Date]))
+			VAR Result =
+			    CALCULATE(
+			        DISTINCTCOUNTNOBLANK('New_Customer_Status'[CustomerID]),
+			        FILTER(
+			            factsales,
+			            factsales[Invoice_Date] >= Previous_Date
+			            && factsales[Invoice_Date] <= Current_Date
+			       ),
+			        FILTER(
+			            New_Customer_Status,
+			            New_Customer_Status[StartDate] >= Previous_Date
+			            && New_Customer_Status[StartDate] <= Current_Date
+			        )
+			    )
+			RETURN Result
+		formatString: #,##0;(#,##0);0
+		displayFolder: Finance Measure
+		lineageTag: 4c03b083-bfad-4fa9-be09-c562c0321bee
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'YTD Customers Count PY' =
+			
+			VAR Current_Date =
+			    MAXX(Rollback_Calendar,SAMEPERIODLASTYEAR('Rollback_Calendar'[Invoice Date]))
+			VAR Previous_Date = Maxx(Rollback_Calendar,STARTOFYEAR(SAMEPERIODLASTYEAR(Rollback_Calendar[Invoice Date])))
+			VAR Result =
+			    CALCULATE(
+			        DISTINCTCOUNTNOBLANK('New_Customer_Status'[CustomerID]),
+			        FILTER(
+			            factsales,
+			            factsales[Invoice_Date] >= Previous_Date
+			            && factsales[Invoice_Date] <= Current_Date
+			       ),
+			        FILTER(
+			            New_Customer_Status,
+			            New_Customer_Status[StartDate] >= Previous_Date
+			            && New_Customer_Status[StartDate] <= Current_Date
+			        )
+			    )
+			RETURN Result
+		formatString: #,##0;(#,##0);0
+		displayFolder: Finance Measure
+		lineageTag: 2a8e63d3-8b8d-48a1-94b6-42c0f3b40d34
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'YTD Customers Colour Indicator' =
+			
+			VAR Color =
+			    SWITCH(TRUE(),
+			        [YTD Customers Count] > [YTD Customers Count PY], "#008A5F",  -- Green color if YTD count is greater than previous year
+			        [YTD Customers Count] < [YTD Customers Count PY], "#FF0000",  -- Red color if YTD count is less than previous year
+			        "#0472BA"  -- Blue color as default if neither condition is met
+			    )
+			RETURN
+			    Color
+		displayFolder: Finance Measure
+		lineageTag: a9472037-6386-4a40-afc2-a7f31a5c8235
+
+	measure 'YTD Customers Comparison' = ([YTD Customers Count]-[YTD Customers Count PY])
+		formatString: #,##0;(#,##0);0
+		displayFolder: Finance Measure
+		lineageTag: 0f01be99-ca72-46f9-9ad4-4e504b834f8b
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'YTD Customers Indicator' =
+			
+			SWITCH(TRUE(),
+			    [YTD Customers Count] > [YTD Customers Count PY], UNICHAR(9650),  -- Up-pointing triangle if YTD Customers Count is greater than YTD Customers Count PY
+			    [YTD Customers Count] < [YTD Customers Count PY], UNICHAR(9660),  -- Down-pointing triangle if YTD Customers Count is less than YTD Customers Count PY
+			    UNICHAR(9644)  -- Horizontal bar if neither condition is met
+			)
+		displayFolder: Finance Measure
+		lineageTag: 179f5fef-b96b-4d0b-bd60-8f512654c5d1
+
+	measure 'YTD Revenue by Branchs' =
+			
+			VAR Current_Date =
+			    MAX('Rollback_Calendar'[Invoice Date])
+			VAR Previous_Date = Maxx(Rollback_Calendar,STARTOFYEAR(Rollback_Calendar[Invoice Date]))
+			VAR Result =
+			    CALCULATE(
+			        SUM(factsales[Invoice_Line_Amount]),SUMMARIZE(factsales,factsales[Branch]),
+			        FILTER(
+			            factsales,
+			            factsales[Invoice_Date] >= Previous_Date
+			            && factsales[Invoice_Date] <= Current_Date
+			        )
+			    )
+			RETURN
+			    Result
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Finance Measure
+		lineageTag: 8a92f9d4-cd1a-430c-8bb3-c7b8a5207b1e
+
+	measure 'YTD Revenue Colour Indicator' =
+			
+			VAR Color =
+			    SWITCH(TRUE(),
+			        [YTD Revenue] > [YTD Revenue PY], "#008A5F",  // Green color if YTD Revenue is greater than YTD Revenue PY
+			        [YTD Revenue] < [YTD Revenue PY], "#FF0000",  // Red color if YTD Revenue is less than YTD Revenue PY
+			        "#0472BA"  // Default Blue color if neither condition is met
+			    )
+			RETURN
+			    Color
+		displayFolder: Finance Measure
+		lineageTag: 9742af55-7384-4b43-bc79-24338fc2afcb
+
+	measure 'YTD Revenue Comparison' = ([YTD Revenue]-[YTD Revenue PY])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Finance Measure
+		lineageTag: ba560760-8913-4e0b-bc4b-7c0afdce6157
+
+	measure 'YTD Revenue Indicator' = ```
+			
+			SWITCH(TRUE(),
+			    [YTD Revenue] > [YTD Revenue PY], UNICHAR(9650),  // Up arrow
+			    [YTD Revenue] < [YTD Revenue PY], UNICHAR(9660),  // Down arrow
+			    UNICHAR(9644)  // Horizontal bar if equal
+			)
+			
+			```
+		displayFolder: Finance Measure
+		lineageTag: 5c79411e-940d-4293-b081-5b96cebc5188
+
+	measure 'Revenue per Pallet' =
+			
+			VAR Current_Date =
+			    MAX('Rollback_Calendar'[Invoice Date])
+			VAR Previous_Date =
+			    DATE(YEAR(Current_Date), MONTH(Current_Date) - 24, DAY(Current_Date))
+			VAR Result =
+			    CALCULATE(
+			        Sum(factsales[Invoice_Line_Amount])/DISTINCTCOUNT(factinspection[Palletkey]),
+			        FILTER(
+			            factsales,
+			            factsales[Invoice_Date] >= Previous_Date
+			            && factsales[Invoice_Date] <= Current_Date
+			        )
+			    )
+			RETURN
+			    Result
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Finance Measure
+		lineageTag: 790560a0-78b1-4495-a5fc-0b5de2f87907
+
+	measure 'Revenue per Truckload' =
+			
+			VAR Current_Date =
+			    MAX('Rollback_Calendar'[Invoice Date])
+			VAR Previous_Date =
+			    DATE(YEAR(Current_Date), MONTH(Current_Date) - 24, DAY(Current_Date))
+			VAR Result =
+			    CALCULATE(
+			        Sum(factsales[Invoice_Line_Amount])/DISTINCTCOUNTNOBLANK(factsales[Load_Nbr]),
+			        FILTER(
+			            factsales,
+			            factsales[Invoice_Date] >= Previous_Date
+			            && factsales[Invoice_Date] <= Current_Date
+			        )
+			    )
+			RETURN
+			    Result
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Finance Measure
+		lineageTag: a1cdbd33-5536-4f7a-b8c8-ea171a872e14
+
+	measure 'Revenue Var_Pct' =
+			
+			Var CY_R = [Mtd Revenue by Branchs]
+			Var PY_R =[Mtd Revenue PY by Branchs]
+			Var Result = DIVIDE(CY_R,PY_R,0)
+			Return Result
+		formatString: #,0.00%;-#,0.00%;#,0.00%
+		displayFolder: Finance Measure
+		lineageTag: 8a93fd3e-8a06-4fc4-a9a0-af6108149ea0
+
+	measure 'Revenue_Per TL' =
+			
+			Var a = CALCULATE(DISTINCTCOUNTNOBLANK(factsales[Load_Nbr]))
+			Var b = CALCULATE(SUM(factsales[Invoice_Line_Amount]))
+			Var c = b/a
+			RETURN c
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Finance Measure
+		lineageTag: 5b50a82b-864e-4cb4-95d4-9f908469a603
+
+	measure Revenue_Per_Pallet =
+			
+			VAR a = [Total Palletes]  -- Calculate the Total Palletes measure
+			VAR b = [Total Sales Amount]  -- Calculate the Total Sales Amount measure
+			VAR c = DIVIDE(b, a, 0)  -- Safely divide Total Sales Amount by Total Palletes, handle division by zero with 0 as fallback
+			RETURN
+			    c
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Finance Measure
+		lineageTag: be50943c-b05b-4cce-b4a4-0fa410be7b3d
+
+	measure Revenue_Per_TL =
+			
+			VAR a = [Truckload]  -- Calculate the Truckload measure
+			VAR b = [Total Sales Amount]  -- Calculate the Total Sales Amount measure
+			VAR c = DIVIDE(b, a, 0)  -- Safely divide Total Sales Amount by Truckload, handle division by zero with 0 as fallback
+			RETURN
+			    c
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Finance Measure
+		lineageTag: c6c94af3-5b7b-4ab8-a811-588ee224d182
+
+	measure 'Rolling Average revenu' = ```
+			
+			VAR Current_Date =
+			    MAX('Rollback_Calendar'[Invoice Date])
+			VAR Previous_Date =
+			    DATE(YEAR(Current_Date), MONTH(Current_Date), DAY(Current_Date)-365)
+			VAR Result =
+			    CALCULATE(
+			        AVERAGE(factsales[Invoice_Line_Amount]),
+			        FILTER(
+			            factsales,
+			            factsales[Invoice_Date] >= Previous_Date
+			            && factsales[Invoice_Date] <= Current_Date && 
+			            NOT(WEEKDAY(FactSales[Invoice_Date], 2) IN {6,7})
+			        )
+			    )
+			RETURN
+			    Result
+			```
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Finance Measure
+		lineageTag: 77b70225-9338-49c7-9d32-e9b8fc0c6d0a
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Rolling Average Truckload' = ```
+			
+			VAR Current_Date =
+			    MAX('Rollback_Calendar'[Invoice Date])
+			VAR Previous_Date =
+			    DATE(YEAR(Current_Date), MONTH(Current_Date), DAY(Current_Date)-365)
+			VAR LoadNbrCountTable =
+			    SUMMARIZE(
+			        FILTER(
+			            factsales,
+			            factsales[Invoice_Date] >= Previous_Date
+			            && factsales[Invoice_Date] <= Current_Date && 
+			            NOT(WEEKDAY(FactSales[Invoice_Date], 2) IN {6,7})
+			        ),
+			        factsales[Invoice_Date],
+			        "LoadNbrCount", DISTINCTCOUNTNOBLANK(factsales[Load_Nbr])
+			    )
+			VAR Result =
+			    AVERAGEX(
+			        LoadNbrCountTable,
+			        [LoadNbrCount]
+			    )
+			RETURN
+			    Result
+			```
+		formatString: 0.00
+		displayFolder: Finance Measure
+		lineageTag: 9f1614d0-f070-48e9-8f46-24a34e5ee993
+
+	measure 'Revenue per TL' =
+			
+			VAR Current_Date =
+			    MAX('Rollback_Calendar'[Invoice Date])
+			VAR Previous_Date =
+			    DATE(YEAR(Current_Date), MONTH(Current_Date) - 24, 1)
+			VAR Previous_Year = Year(Max(Rollback_Calendar[Invoice Date]))-2
+			VAR Result =
+			    CALCULATE(
+			        SUM(Sales_Inspection[Revenue])/SUM(Sales_Inspection[Load_Count]),
+			        FILTER(
+			            Sales_Inspection,
+			            Sales_Inspection[Date] >= Previous_Date
+			            && Sales_Inspection[Date] <= Current_Date
+			        )
+			    )
+			RETURN Result
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Finance Measure
+		lineageTag: 077afc4b-9a2f-4ed8-9e54-1a3cd83c8d17
+
+	measure Truckload =
+			
+			Var A = CALCULATE(DISTINCTCOUNTNOBLANK('factsales'[Load_Nbr]),Not ISBLANK('factsales'[Load_Nbr]))
+			Return A + 0
+		formatString: #,0
+		displayFolder: Finance Measure
+		lineageTag: a30a5a3c-5d12-49ea-b8c4-9ba1459eb222
+
+	measure 'Truckload Var_Pct' =
+			
+			Var CY_R = [Mtd TruckLoad by Branchs]
+			Var PY_R =[Mtd Truckload PY by Branchs]
+			Var Result = DIVIDE(CY_R,PY_R,0)
+			Return Result
+		formatString: #,0.00%;-#,0.00%;#,0.00%
+		displayFolder: Finance Measure
+		lineageTag: 6e146fdb-c259-4b0e-9357-bf74b750711f
+
+	measure 'Truckload volume' =
+			
+			VAR Current_Date =
+			    MAX('Rollback_Calendar'[Invoice Date])
+			VAR Previous_Date =
+			    DATE(YEAR(Current_Date), MONTH(Current_Date) - 24, 1)
+			VAR Previous_Year = Year(Max(Rollback_Calendar[Invoice Date]))-2
+			VAR Result =
+			    CALCULATE(
+			        SUM(Sales_Inspection[Load_Count]),
+			        FILTER(
+			            Sales_Inspection,
+			            Sales_Inspection[Date] >= Previous_Date
+			            && Sales_Inspection[Date] <= Current_Date
+			        )
+			    )
+			RETURN Result
+		formatString: #,0
+		displayFolder: Finance Measure
+		lineageTag: 3927750a-ea0a-4592-8a0c-8ce9e59fa88c
+
+	measure 'Mtd Customers Indicator' =
+			
+			SWITCH(TRUE(),
+			    [Mtd Customers Count] > [Mtd Customers Count PY], UNICHAR(9650),  // Up arrow
+			    [Mtd Customers Count] < [Mtd Customers Count PY], UNICHAR(9660),  // Down arrow
+			    UNICHAR(9644)  // Horizontal bar if equal
+			)
+		displayFolder: Finance Measure
+		lineageTag: 20238c13-20b4-46b7-9bed-2f8114f9bf44
+
+	measure Total_truck_load =
+			
+			Var a = CALCULATE(DISTINCTCOUNTNOBLANK(factsales[Load_Nbr]))
+			RETURN A+0
+		formatString: #,0
+		displayFolder: Finance Measure
+		lineageTag: c1fdb4a1-8bb4-4431-ba0f-7272f9c4ca33
+
+	measure 'Existing Customers Count' =
+			
+			VAR Current_Date =
+			    MAX('Rollback_Customer'[Invoice Date])
+			VAR Previous_Date =
+			    Maxx(Rollback_Customer,STARTOFMONTH(Rollback_Customer[Invoice Date]))
+			var Existing_Customers = CALCULATE(DISTINCTCOUNTNOBLANK('Customer_Status'[CustomerID]),'Customer_Status'[Customer_Category]="Existing",SUMMARIZE('Customer_Status','Customer_Status'[Customer_Category]),FILTER(
+			            Customer_Status,
+			            Customer_Status[StartDate] >= Previous_Date
+			            && Customer_Status[StartDate] <= Current_Date
+			        ))
+			RETURN Existing_Customers
+		formatString: 0
+		displayFolder: Finance Measure
+		lineageTag: fe578aa8-d59c-43c9-a0f0-a88bbe9f3e76
+
+	measure 'Inactive Customers Count' =
+			
+			VAR Current_Date =
+			    MAX('Rollback_Customer'[Invoice Date])
+			VAR Previous_Date =
+			    Maxx(Rollback_Customer,STARTOFMONTH(Rollback_Customer[Invoice Date]))
+			var Inactive_Customers = CALCULATE(DISTINCTCOUNTNOBLANK('Customer_Status'[CustomerID]),'Customer_Status'[Customer_Category]="Inactive",SUMMARIZE('Customer_Status','Customer_Status'[Customer_Category]),FILTER(
+			            Customer_Status,
+			            Customer_Status[StartDate] >= Previous_Date
+			            && Customer_Status[StartDate] <= Current_Date
+			        ))
+			RETURN Inactive_Customers
+		formatString: 0
+		displayFolder: Finance Measure
+		lineageTag: eccac67a-bca5-4fed-a41e-41598ef04854
+
+	measure 'CS/Hr % Diff' = ```
+			
+			 SWITCH(
+			        TRUE(),
+			        AVERAGE(factinspection[Cs_Per_Hour_Pct_Diff]) > 0, "Red",
+			         AVERAGE(factinspection[Cs_Per_Hour_Pct_Diff])<= 0, "Green",
+			        "Blue"  // Optional: You can specify a default color or condition
+			    )
+			```
+		displayFolder: Inspection Measure
+		lineageTag: ab8c663d-bbeb-438a-84d2-f5877b701cfa
+
+	measure 'Load Count' =
+			
+			Var Loads = CALCULATE(DISTINCTCOUNTNOBLANK(factsales[Load_Nbr]))
+			Return Loads + 0
+		formatString: #,0
+		displayFolder: Sales Measure
+		lineageTag: 4aa2dcb0-ff39-4b2a-af3f-849abc6c2a45
+
+	measure 'Revenue MTD' =
+			
+			VAR Current_Date =
+			    MAX('Rollback_Calendar'[Invoice Date])
+			VAR Previous_Date = Maxx(Rollback_Calendar,STARTOFMONTH(Rollback_Calendar[Invoice Date]))
+			VAR Result =
+			    CALCULATE(
+			        SUM(factsales[Invoice_Line_Amount]),
+			        FILTER(
+			            factsales,
+			            factsales[Invoice_Date] >= Previous_Date
+			            && factsales[Invoice_Date] <= Current_Date
+			        ),
+			        FILTER(
+			            customer_invoice_status,
+			            customer_invoice_status[Invoice_Date] >= Previous_Date
+			            && customer_invoice_status[Invoice_Date] <= Current_Date
+			        )
+			    )
+			RETURN Result
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Finance Measure
+		lineageTag: 592193af-bb20-4b0c-bcdc-c1af0c3dcc11
+
+	measure 'Revenue YTD' =
+			
+			VAR Current_Date =
+			    MAX('Rollback_Calendar'[Invoice Date])
+			VAR Previous_Date = Maxx(Rollback_Calendar,STARTOFYEAR(Rollback_Calendar[Invoice Date]))
+			VAR Result =
+			    CALCULATE(
+			        SUM(factsales[Invoice_Line_Amount]),
+			        FILTER(
+			            factsales,
+			            factsales[Invoice_Date] >= Previous_Date
+			            && factsales[Invoice_Date] <= Current_Date
+			        ),
+			        FILTER(
+			            customer_invoice_status,
+			            customer_invoice_status[Invoice_Date] >= Previous_Date
+			            && customer_invoice_status[Invoice_Date] <= Current_Date
+			        )
+			    )
+			RETURN Result
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Finance Measure
+		lineageTag: 96c3aef7-4010-4af5-a4d9-c919b4429a93
+
+	measure 'Revenue Per PLT' =
+			
+			VAR Current_Date =
+			    MAX('Rollback_Calendar'[Invoice Date])
+			VAR Previous_Date =
+			    DATE(YEAR(Current_Date), MONTH(Current_Date) - 24, 1)
+			VAR Previous_Year = Year(Max(Rollback_Calendar[Invoice Date]))-2
+			VAR Result =
+			    CALCULATE(
+			        SUM(Sales_Inspection[Revenue])/SUM(Sales_Inspection[Pallet_Count]),
+			        FILTER(
+			            Sales_Inspection,
+			            Sales_Inspection[Date] >= Previous_Date
+			            && Sales_Inspection[Date] <= Current_Date
+			        )
+			    )
+			RETURN Result
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Finance Measure
+		lineageTag: 2acd6d76-7def-4faf-bf39-4d1411b812a3
+
+	measure Last_14days_Load_count =
+			
+			VAR Current_Date =
+			    MAX('Inspection_Rollback_Calendar'[Date_Inspected])
+			VAR Previous_Date = Current_Date -15
+			VAR Result =
+			    CALCULATE(
+			       DISTINCTCOUNTNOBLANK(factinspection[Load_Nbr]),
+			        FILTER(
+			            factinspection,
+			            factinspection[Date_Inspected] >= Previous_Date
+			            && factinspection[Date_Inspected] <= Current_Date
+			        )
+			    )
+			RETURN
+			    Result
+		formatString: 0
+		displayFolder: Run and contamination measures
+		lineageTag: 027f4682-d2ec-4880-a05e-f8b4a8ec34a9
+
+	measure Cnt_Load_Pct =
+			
+			VAR TotalLoads =
+			    CALCULATE(
+			        DISTINCTCOUNTNOBLANK(factinspection[Load_Nbr]),
+			        REMOVEFILTERS(factinspection[Contamination Scale],factinspection[Contamination_Flag])
+			    )
+			VAR ContaminatedLoads =
+			    CALCULATE(
+			        DISTINCTCOUNTNOBLANK(factinspection[Load_Nbr])
+			    )
+			RETURN DIVIDE(ContaminatedLoads,TotalLoads,0)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Run and contamination measures
+		lineageTag: dd1eb0e5-4439-4e19-a1b6-bc006e3cd7dd
+
+	measure Cs/Hr_Diff_Load_Pct =
+			
+			VAR TotalLoads =
+			    CALCULATE(
+			        DISTINCTCOUNTNOBLANK(factinspection[Load_Nbr]),
+			        REMOVEFILTERS(factinspection[Cs/Hr % Diff Scale],factinspection[Cs_Per_Hour_Pct_Flag])
+			    )
+			VAR ContaminatedLoads =
+			    CALCULATE(
+			        DISTINCTCOUNTNOBLANK(factinspection[Load_Nbr])
+			    )
+			RETURN DIVIDE(ContaminatedLoads,TotalLoads,0)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Run and contamination measures
+		lineageTag: 6b2ca795-da6e-4cf0-bed2-a2cb434c34ff
+
+	measure 'Total Load Count' = ```
+			
+			VAR A = 
+			    CALCULATE(
+			        DISTINCTCOUNTNOBLANK('Project_details'[Load_Nbr])        
+			    )
+			RETURN
+			    A + 0
+			```
+		formatString: 0
+		lineageTag: d4d24f02-99f6-46fc-a5cc-3765bb243c83
+
+	measure 'Price to Bill' =
+			
+			VAR A = SUM('Project_details'[Total_Price])
+			RETURN
+			    A + 0
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: Sales Measure
+		lineageTag: f3f339dd-6496-4ec8-8a78-023eff25321c
+
+	measure 'Customer to Bill' = ```
+			
+			VAR A = 
+			    CALCULATE(
+			        DISTINCTCOUNTNOBLANK('Project_Details'[Customer_Id])
+			    )
+			RETURN
+			    A + 0
+			```
+		formatString: 0
+		displayFolder: Sales Measure
+		lineageTag: fa5c2882-0b0a-48e5-9f96-674ac9175e2d
+
+	measure 'YoY Revenue Diff' = ```
+			
+			SUM(Customer_Latest_Invoice[Last_Invoice_Year_Revenue]) - 
+			SUM(Customer_Latest_Invoice[Prior_Year_Revenue])
+			```
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 93eeaf2f-de2f-45bd-a587-ab3d752d4ae7
+
+	measure 'Pallets Volume' = ```
+			
+			VAR Current_Date =
+			    MAX('Rollback_Calendar'[Invoice Date])
+			VAR Previous_Date =
+			    DATE(YEAR(Current_Date), MONTH(Current_Date) - 24, 1)
+			VAR Previous_Year = Year(Max(Rollback_Calendar[Invoice Date]))-2
+			VAR Result =
+			    CALCULATE(
+			        SUM(Sales_Inspection[Pallet_Count]),
+			        FILTER(
+			            Sales_Inspection,
+			            Sales_Inspection[Date] >= Previous_Date
+			            && Sales_Inspection[Date] <= Current_Date
+			        )
+			    )
+			RETURN Result
+			 
+			```
+		formatString: 0
+		displayFolder: Finance Measure
+		lineageTag: fae34b84-5604-44a9-9054-335a7fd94818
+
+	column Column
+		dataType: double
+		formatString: #,0.00%;-#,0.00%;#,0.00%
+		lineageTag: b06e547d-ae89-48ef-9101-a36ed60310f6
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = User
+
+	partition 'Measure Table' = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 35e43472b79c47efb9bf240e6d624b06
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

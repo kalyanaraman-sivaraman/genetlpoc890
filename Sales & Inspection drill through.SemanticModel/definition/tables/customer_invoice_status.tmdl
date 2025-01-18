@@ -1,0 +1,256 @@
+table customer_invoice_status
+	lineageTag: 6c3c3875-b4a7-4799-9f0e-4c2f366030de
+
+	column Invoice_Nbr
+		dataType: string
+		lineageTag: c2a2e894-812a-468a-8cb1-b2db7761f8b1
+		summarizeBy: none
+		sourceColumn: Invoice_Nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column Invoice_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f621b0f4-3e83-443e-9f91-269d25035413
+		summarizeBy: none
+		sourceColumn: Invoice_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_DisplayName
+		dataType: string
+		lineageTag: 931a9fbb-be93-4e44-ae63-c1e6a16df2eb
+		summarizeBy: none
+		sourceColumn: Customer_DisplayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Enddate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ca9945ab-8f35-4d8c-8b9f-23215afb16ae
+		summarizeBy: none
+		sourceColumn: Enddate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Category
+		dataType: string
+		lineageTag: 4aa61dc2-d3aa-4081-a5cb-0941766abee6
+		summarizeBy: none
+		sourceColumn: Customer_Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Name_Location
+		dataType: string
+		lineageTag: 779312bf-6312-46eb-810a-05ec28e95b08
+		summarizeBy: none
+		sourceColumn: Customer_Name_Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column Print_OnCheck_Name
+		dataType: string
+		lineageTag: 525b826b-db2c-4c35-8715-7792dc2134ed
+		summarizeBy: none
+		sourceColumn: Print_OnCheck_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Location
+		dataType: string
+		lineageTag: 74c599ec-4387-4e07-a5fe-2376be5cad98
+		summarizeBy: none
+		sourceColumn: Customer_Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 7d230d9a-4787-4934-991d-b8ed76ad6c29
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 655d80d1-8d73-4de8-9e67-f7672e301b08
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column KA_Type
+		dataType: string
+		lineageTag: 679d1065-6bcb-4b64-b328-912f2b829479
+		summarizeBy: none
+		sourceColumn: KA_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column KAM
+		dataType: string
+		lineageTag: e406311b-9082-4640-b6f9-9f45143ed012
+		summarizeBy: none
+		sourceColumn: KAM
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Parent_Name
+		dataType: string
+		lineageTag: 62e4dcc1-069c-48c5-bc75-437a3a399d89
+		summarizeBy: none
+		sourceColumn: Customer_Parent_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: f55fc5fe-2d82-4e21-a22e-560467a7de66
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column Invoice_Year
+		dataType: int64
+		formatString: 0
+		lineageTag: dcc374aa-a818-428c-beae-2efef9d646fa
+		summarizeBy: sum
+		sourceColumn: Invoice_Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Invoice_Month_Num
+		dataType: int64
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: f9ec5174-0f73-4942-b4c4-6619c943dc6f
+		summarizeBy: sum
+		sourceColumn: Invoice_Month_Num
+
+		annotation SummarizationSetBy = Automatic
+
+	column Invoice_Month
+		dataType: string
+		lineageTag: 46dd34a9-28ef-4c9b-a195-e9d007af0e8b
+		summarizeBy: none
+		sourceColumn: Invoice_Month
+		sortByColumn: Invoice_Month_Num
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Invoice_Quarter
+		dataType: string
+		lineageTag: b3e00fac-1641-40f6-9d5a-2fd1d5e462a0
+		summarizeBy: none
+		sourceColumn: Invoice_Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column Join_key
+		dataType: string
+		lineageTag: 977624a0-dad6-42ac-ab63-a5262206769c
+		summarizeBy: none
+		sourceColumn: Join_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Status' = customer_invoice_status[Customer_Category]
+		dataType: string
+		lineageTag: 7fc3492d-0210-4f1f-9b69-526a07f13fcb
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column KA/NON-KA = IF(ISBLANK(customer_invoice_status[KA_Type]),"NON-KA",customer_invoice_status[KA_Type])
+		dataType: string
+		lineageTag: bb4de79e-d539-46a3-b1f0-f6e1b094cb6b
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Territory' = IF(ISBLANK(customer_invoice_status[Region]),"Unknown",customer_invoice_status[Region])
+		dataType: string
+		lineageTag: 299631fd-49e1-41c7-a08a-0db4dbc4f66d
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer  Status' = customer_invoice_status[Customer_Category]
+		dataType: string
+		lineageTag: f10dd563-59d1-4dc6-87ae-8593c00ce89e
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start of Day'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4f32c6b5-d44f-4657-ae00-2a4782900b2b
+		summarizeBy: none
+		sourceColumn: Start of Day
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customerid
+		dataType: int64
+		formatString: 0
+		lineageTag: 3eeb4fc2-9cfa-4346-9971-e27a651a3e29
+		summarizeBy: none
+		sourceColumn: Customerid
+
+		annotation SummarizationSetBy = Automatic
+
+	column Startdate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6e64f4f7-a857-43a1-8e2f-bef107c1704b
+		summarizeBy: none
+		sourceColumn: Startdate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_status
+		dataType: string
+		lineageTag: 8f5335a4-5e9b-4001-b870-23f1ea08263b
+		summarizeBy: none
+		sourceColumn: Customer_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column type
+		dataType: string
+		lineageTag: e5d827f8-3407-43d9-86ad-6a63840a8816
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = Automatic
+
+	column HashKey
+		dataType: string
+		lineageTag: 71a7a2df-319e-45c5-bdc2-52a89d5a29da
+		summarizeBy: none
+		sourceColumn: HashKey
+
+		annotation SummarizationSetBy = Automatic
+
+	partition customer_invoice_status = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(Databricks.Catalogs("adb-4870947154782637.17.azuredatabricks.net", "/sql/1.0/warehouses/645bfc221bc957b5", [Catalog="Dev_Catalog", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="Dev_Catalog",Kind="Database"]}[Data], "SELECT *#(lf)FROM dw.Customer_invoice_Status_View T1#(lf)where Year(T1.Invoice_Date) >= year(current_timestamp) - 4", null, [EnableFolding=true]),
+				    #"Inserted Start of Day" = Table.AddColumn(Source, "Start of Day", each Date.StartOfDay([Invoice_Date]), type datetime)
+				in
+				    #"Inserted Start of Day"
+
+	annotation PBI_ResultType = Table
+

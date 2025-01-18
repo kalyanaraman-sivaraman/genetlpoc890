@@ -1,0 +1,718 @@
+table account
+	lineageTag: 6439f162-9c8f-4586-970c-40bbac1b343b
+
+	column Account_Id
+		dataType: string
+		lineageTag: 8f39929e-31ff-4633-b238-1d9ad05fd416
+		summarizeBy: none
+		sourceColumn: Account_Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Is_Deleted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 8936d308-83cb-434a-8b13-d7a3f1ba1c52
+		summarizeBy: none
+		sourceColumn: Is_Deleted
+
+		annotation SummarizationSetBy = Automatic
+
+	column Master_Record_Id
+		dataType: string
+		lineageTag: 1fd97252-7ac9-44b9-8744-dc311f8bc85e
+		summarizeBy: none
+		sourceColumn: Master_Record_Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: a07a84a8-ea20-4d77-b327-d2a219abf72b
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: 5d2a1396-0153-4dc8-b51b-38056484e370
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Record_Type_Id
+		dataType: string
+		lineageTag: c589b0e4-dd0c-44a7-95a3-5a036dd7cc51
+		summarizeBy: none
+		sourceColumn: Record_Type_Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Parent_Id
+		dataType: string
+		lineageTag: 123dc9d9-ccb9-4678-bf05-5630aaaa55b6
+		summarizeBy: none
+		sourceColumn: Parent_Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Billing_Street
+		dataType: string
+		lineageTag: efd898f2-8d94-4398-9995-6411532411bc
+		summarizeBy: none
+		sourceColumn: Billing_Street
+
+		annotation SummarizationSetBy = Automatic
+
+	column Billing_City
+		dataType: string
+		lineageTag: aab91c35-a6b6-48e7-97d9-4bc0cab96262
+		summarizeBy: none
+		sourceColumn: Billing_City
+
+		annotation SummarizationSetBy = Automatic
+
+	column Billing_State
+		dataType: string
+		lineageTag: 4e5cfbef-ca1c-447b-8a27-458294fa511b
+		summarizeBy: none
+		sourceColumn: Billing_State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Billing_Postal_Code
+		dataType: string
+		lineageTag: 24617014-b4b6-475e-94d5-92d31a4d2f8a
+		summarizeBy: none
+		sourceColumn: Billing_Postal_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Billing_Country
+		dataType: string
+		lineageTag: 9cba4260-ab26-4e13-9c29-4f4f69e4123a
+		summarizeBy: none
+		sourceColumn: Billing_Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Billing_Latitude
+		dataType: double
+		lineageTag: 48f25839-f25f-4db5-b818-ce12df5856d7
+		summarizeBy: sum
+		sourceColumn: Billing_Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Billing_Longitude
+		dataType: double
+		lineageTag: 6dcd5b06-ad93-45f8-a753-4982bd6d9ea1
+		summarizeBy: sum
+		sourceColumn: Billing_Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Billing_Geocode_Accuracy
+		dataType: string
+		lineageTag: 0397b8bf-7990-4afc-ae86-dd2df1554bf0
+		summarizeBy: none
+		sourceColumn: Billing_Geocode_Accuracy
+
+		annotation SummarizationSetBy = Automatic
+
+	column Shipping_Street
+		dataType: string
+		lineageTag: d2664593-a0d6-470d-a533-708af7a720ec
+		summarizeBy: none
+		sourceColumn: Shipping_Street
+
+		annotation SummarizationSetBy = Automatic
+
+	column Shipping_City
+		dataType: string
+		lineageTag: 709aac1c-18fe-4a54-b5d1-091e9cbbe747
+		summarizeBy: none
+		sourceColumn: Shipping_City
+
+		annotation SummarizationSetBy = Automatic
+
+	column Shipping_State
+		dataType: string
+		lineageTag: d9ee88e5-6dd4-403c-9d4b-b6b130d1f914
+		summarizeBy: none
+		sourceColumn: Shipping_State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Shipping_Postal_Code
+		dataType: string
+		lineageTag: fc50c857-562b-416e-b05c-46f6196e4e69
+		summarizeBy: none
+		sourceColumn: Shipping_Postal_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Shipping_Country
+		dataType: string
+		lineageTag: c68f2bb5-06e0-4e3c-8aad-089f70eb57db
+		summarizeBy: none
+		sourceColumn: Shipping_Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Shipping_Latitude
+		dataType: double
+		lineageTag: 4227fbaf-bf10-4cde-a26b-e0c9c5733bec
+		summarizeBy: sum
+		sourceColumn: Shipping_Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Shipping_Longitude
+		dataType: double
+		lineageTag: d2253d74-d697-4a55-b94f-aa37e1c8e018
+		summarizeBy: sum
+		sourceColumn: Shipping_Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Shipping_Geocode_Accuracy
+		dataType: string
+		lineageTag: ff990c87-732d-4f0c-9a6e-e5f9a588c8b6
+		summarizeBy: none
+		sourceColumn: Shipping_Geocode_Accuracy
+
+		annotation SummarizationSetBy = Automatic
+
+	column Phone
+		dataType: string
+		lineageTag: f66a9392-8838-4ff8-9714-650be96e01b2
+		summarizeBy: none
+		sourceColumn: Phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column Account_Number
+		dataType: string
+		lineageTag: 784ffb49-f94d-4ecd-bcb4-91bbaacdcecb
+		summarizeBy: none
+		sourceColumn: Account_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Website
+		dataType: string
+		lineageTag: f3e91af8-56f4-4558-ae02-3e9d87b1116d
+		summarizeBy: none
+		sourceColumn: Website
+
+		annotation SummarizationSetBy = Automatic
+
+	column Photo_Url
+		dataType: string
+		lineageTag: 4c6e83c6-d82b-444d-bcf7-0c2723942c96
+		summarizeBy: none
+		sourceColumn: Photo_Url
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sic
+		dataType: string
+		lineageTag: aac8611b-a1a8-4e8e-aec7-ab14dd8cf1fa
+		summarizeBy: none
+		sourceColumn: Sic
+
+		annotation SummarizationSetBy = Automatic
+
+	column Industry
+		dataType: string
+		lineageTag: d14efec5-a134-48c7-b069-77c917ad6a28
+		summarizeBy: none
+		sourceColumn: Industry
+
+		annotation SummarizationSetBy = Automatic
+
+	column Annual_Revenue
+		dataType: double
+		formatString: 0.00
+		lineageTag: d6bed2a6-fdce-44c0-bc53-4be10a4ceb30
+		summarizeBy: sum
+		sourceColumn: Annual_Revenue
+
+		annotation SummarizationSetBy = Automatic
+
+	column Number_Of_Employees
+		dataType: int64
+		formatString: 0
+		lineageTag: ff61d5ae-b570-4fa8-84f8-276ebbb16e9c
+		summarizeBy: sum
+		sourceColumn: Number_Of_Employees
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ownership
+		dataType: string
+		lineageTag: bb1f657d-512a-4b3d-b795-97358fd97810
+		summarizeBy: none
+		sourceColumn: Ownership
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ticker_Symbol
+		dataType: string
+		lineageTag: 2f529925-95be-4072-a730-f4b8dc921b15
+		summarizeBy: none
+		sourceColumn: Ticker_Symbol
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: cf24ac32-b70c-4743-b760-ef5f7924e6f0
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rating
+		dataType: string
+		lineageTag: 44e3e632-52c7-454e-8643-1656104ac961
+		summarizeBy: none
+		sourceColumn: Rating
+
+		annotation SummarizationSetBy = Automatic
+
+	column Site
+		dataType: string
+		lineageTag: 721f6d80-192d-4db9-a0dc-26812f2f8a3a
+		summarizeBy: none
+		sourceColumn: Site
+
+		annotation SummarizationSetBy = Automatic
+
+	column Owner_Id
+		dataType: string
+		lineageTag: 5ff609c0-4e78-47b2-98b0-1e23da3c6456
+		summarizeBy: none
+		sourceColumn: Owner_Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Created_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: dc7846ff-3a7f-435e-b7bf-30353810ba08
+		summarizeBy: none
+		sourceColumn: Created_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Created_By_Id
+		dataType: string
+		lineageTag: 95fe037d-adcd-479e-b1b4-bc0038e2e12d
+		summarizeBy: none
+		sourceColumn: Created_By_Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Last_Modified_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0523a651-f233-4de8-89be-85546a68014c
+		summarizeBy: none
+		sourceColumn: Last_Modified_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Last_Modified_By_Id
+		dataType: string
+		lineageTag: 0b812353-2f33-473f-875e-ee02cf8f0823
+		summarizeBy: none
+		sourceColumn: Last_Modified_By_Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column System_Modstamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 572b3943-9f8a-4f5b-98ed-381d6ad89e35
+		summarizeBy: none
+		sourceColumn: System_Modstamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column Last_Activity_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 48f02b4e-db61-4df5-be4f-42711ca336e5
+		summarizeBy: none
+		sourceColumn: Last_Activity_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Last_Viewed_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 26250964-681d-4ece-a07f-06874de7a82e
+		summarizeBy: none
+		sourceColumn: Last_Viewed_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Last_Referenced_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3a058086-d2f2-42f9-b851-6d6423686e2a
+		summarizeBy: none
+		sourceColumn: Last_Referenced_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Jigsaw
+		dataType: string
+		lineageTag: 61e39f8d-cef9-4df2-a8bc-484ca475fee5
+		summarizeBy: none
+		sourceColumn: Jigsaw
+
+		annotation SummarizationSetBy = Automatic
+
+	column Jigsaw_Company_Id
+		dataType: string
+		lineageTag: ab514dee-1077-4974-85a8-d2ad1a3ecb67
+		summarizeBy: none
+		sourceColumn: Jigsaw_Company_Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Account_Source
+		dataType: string
+		lineageTag: 06dc5d12-7147-4a12-bc5d-b81dc7c0bbdf
+		summarizeBy: none
+		sourceColumn: Account_Source
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sic_Desc
+		dataType: string
+		lineageTag: 46dfd7bf-c57c-493e-8269-8fa0ff02ef7f
+		summarizeBy: none
+		sourceColumn: Sic_Desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column Activity_Metric_Id
+		dataType: string
+		lineageTag: 039600e0-04c4-418b-80b7-8790824d02ea
+		summarizeBy: none
+		sourceColumn: Activity_Metric_Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Activity_Metric_RollupId
+		dataType: string
+		lineageTag: 56d67d55-432f-4d51-b504-2d881b136dc6
+		summarizeBy: none
+		sourceColumn: Activity_Metric_RollupId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Division
+		dataType: string
+		lineageTag: c86c5013-a443-4c0a-8474-237d98bd706e
+		summarizeBy: none
+		sourceColumn: Division
+
+		annotation SummarizationSetBy = Automatic
+
+	column Account_Id_18
+		dataType: string
+		lineageTag: 3cef58bf-903a-4a21-b57c-d0ae29932531
+		summarizeBy: none
+		sourceColumn: Account_Id_18
+
+		annotation SummarizationSetBy = Automatic
+
+	column Account_Short_Name
+		dataType: string
+		lineageTag: 37cdcdc7-3aab-482d-afeb-88a00a8adf89
+		summarizeBy: none
+		sourceColumn: Account_Short_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Edit
+		dataType: string
+		lineageTag: c77ff733-bc9b-4d46-afe0-ac884b45ba53
+		summarizeBy: none
+		sourceColumn: Edit
+
+		annotation SummarizationSetBy = Automatic
+
+	column Unit_Account
+		dataType: int64
+		formatString: 0
+		lineageTag: 8bbd4a4b-80c2-4428-a01c-895b53ed469c
+		summarizeBy: sum
+		sourceColumn: Unit_Account
+
+		annotation SummarizationSetBy = Automatic
+
+	column Legacy_ID_Account
+		dataType: string
+		lineageTag: d620cac0-29dc-4930-b036-6edf5c472962
+		summarizeBy: none
+		sourceColumn: Legacy_ID_Account
+
+		annotation SummarizationSetBy = Automatic
+
+	column Integration_Key_Account
+		dataType: string
+		lineageTag: ee3b52b2-1211-4e36-9130-1875944e8a30
+		summarizeBy: none
+		sourceColumn: Integration_Key_Account
+
+		annotation SummarizationSetBy = Automatic
+
+	column MSA
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 0446addc-23ce-406f-ba14-7f819e02d712
+		summarizeBy: none
+		sourceColumn: MSA
+
+		annotation SummarizationSetBy = Automatic
+
+	column MSA_Corporate
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f5d92e34-3034-4e9e-93bf-9d3c53805b96
+		summarizeBy: none
+		sourceColumn: MSA_Corporate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Billing_Email
+		dataType: string
+		lineageTag: 42f6280f-41a0-4c49-8a64-5a7fac50d9de
+		summarizeBy: none
+		sourceColumn: Billing_Email
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Status
+		dataType: string
+		lineageTag: 1328b819-dcbe-4045-8e89-73236246ba5a
+		summarizeBy: none
+		sourceColumn: Customer_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartDate_Time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 070d17fc-f7e9-4dca-baac-6b42c64d6a6b
+		summarizeBy: none
+		sourceColumn: StartDate_Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column EndDate_Time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f150e82c-211c-41d7-9f51-fb199913a5ef
+		summarizeBy: none
+		sourceColumn: EndDate_Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column Is_Active
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 4da62f5e-0e78-4dc2-857d-14a6bdcdfe13
+		summarizeBy: none
+		sourceColumn: Is_Active
+
+		annotation SummarizationSetBy = Automatic
+
+	column First_Invoice_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a4025eee-15af-40dd-99e6-ed02b8bcd022
+		summarizeBy: none
+		sourceColumn: First_Invoice_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Last_Invoice_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6b4aca4c-f4c2-4127-92d7-d6b5363a08af
+		summarizeBy: none
+		sourceColumn: Last_Invoice_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Days_Since_Last_Invoice
+		dataType: double
+		lineageTag: 3674cf38-925a-4084-80c6-81ad40f9fabd
+		summarizeBy: sum
+		sourceColumn: Days_Since_Last_Invoice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Account_Hold
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e6e6ee2e-6fad-4a45-9c01-32a6478e3d88
+		summarizeBy: none
+		sourceColumn: Account_Hold
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tier
+		dataType: string
+		lineageTag: a87e392d-b541-4f85-9786-5a5c7ea17d57
+		summarizeBy: none
+		sourceColumn: Tier
+
+		annotation SummarizationSetBy = Automatic
+
+	column Delete_Record
+		dataType: string
+		lineageTag: d8837ca8-dc60-4520-b870-819cf6dddfd7
+		summarizeBy: none
+		sourceColumn: Delete_Record
+
+		annotation SummarizationSetBy = Automatic
+
+	column Duplicate_of
+		dataType: string
+		lineageTag: 3c83741e-0138-45f4-ba96-bdd544ca5d7d
+		summarizeBy: none
+		sourceColumn: Duplicate_of
+
+		annotation SummarizationSetBy = Automatic
+
+	column Delete_Merge_Record
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7668be79-a595-4510-b672-58bf1b2a8020
+		summarizeBy: none
+		sourceColumn: Delete_Merge_Record
+
+		annotation SummarizationSetBy = Automatic
+
+	column testing
+		dataType: string
+		lineageTag: 23bca0a3-e194-42c2-a458-a704130c55c0
+		summarizeBy: none
+		sourceColumn: testing
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ultimate_Parent
+		dataType: string
+		lineageTag: 58c52c39-116d-49df-8056-8ea8704292d2
+		summarizeBy: none
+		sourceColumn: Ultimate_Parent
+
+		annotation SummarizationSetBy = Automatic
+
+	column Billing_Method
+		dataType: string
+		lineageTag: 29da06f1-77a8-4aa0-8a77-8141e3af8216
+		summarizeBy: none
+		sourceColumn: Billing_Method
+
+		annotation SummarizationSetBy = Automatic
+
+	column Billing_Portal
+		dataType: string
+		lineageTag: 989374b7-a39c-4025-a801-38992949050c
+		summarizeBy: none
+		sourceColumn: Billing_Portal
+
+		annotation SummarizationSetBy = Automatic
+
+	column AP_Contact_Name
+		dataType: string
+		lineageTag: 6338425d-91e1-41de-a2f2-c883148b7206
+		summarizeBy: none
+		sourceColumn: AP_Contact_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hashkey
+		dataType: string
+		lineageTag: 6c7b6f5a-0dac-4639-8138-4d0e1666e750
+		summarizeBy: none
+		sourceColumn: Hashkey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceDelete
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 3241b6d7-e80e-4d69-a485-a2e8aa0ff607
+		summarizeBy: none
+		sourceColumn: SourceDelete
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Created_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: cf7a49eb-c94b-49df-a979-b8fbd7baa0ce
+		summarizeBy: none
+		sourceColumn: ETL_Created_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Created_BY
+		dataType: string
+		lineageTag: 8001ccf6-2669-4193-806f-55c511cee085
+		summarizeBy: none
+		sourceColumn: ETL_Created_BY
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Modified_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 54d4bd53-92a5-4211-aa4f-fb1b0d242a59
+		summarizeBy: none
+		sourceColumn: ETL_Modified_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Modified_By
+		dataType: string
+		lineageTag: 4b3e3062-25de-4d27-8671-7b67b4be22e3
+		summarizeBy: none
+		sourceColumn: ETL_Modified_By
+
+		annotation SummarizationSetBy = Automatic
+
+	partition account = m
+		mode: import
+		source =
+				let
+				    Source = Databricks.Catalogs("adb-4870947154782637.17.azuredatabricks.net", "/sql/1.0/warehouses/645bfc221bc957b5", [Catalog=null, Database=null, EnableAutomaticProxyDiscovery=null]),
+				    prod_catalog_Database = Source{[Name="prod_catalog",Kind="Database"]}[Data],
+				    dw_Schema = prod_catalog_Database{[Name="dw",Kind="Schema"]}[Data],
+				    account_Table = dw_Schema{[Name="account",Kind="Table"]}[Data]
+				in
+				    account_Table
+

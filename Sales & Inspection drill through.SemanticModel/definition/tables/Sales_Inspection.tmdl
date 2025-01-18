@@ -1,0 +1,89 @@
+table Sales_Inspection
+	lineageTag: c8aa1ff4-ec27-49db-abb1-da98e1266bbe
+
+	column Invoice_Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 9012e769-5a6b-4ac9-8a46-1599f7d5f429
+		summarizeBy: sum
+		sourceColumn: Invoice_Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Invoice_Month
+		dataType: int64
+		formatString: 0
+		lineageTag: b8c369fb-059d-4044-9c81-a8008c4c0c73
+		summarizeBy: sum
+		sourceColumn: Invoice_Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Revenue
+		dataType: double
+		lineageTag: a1afa47e-20ca-468f-adf6-bed07e806914
+		summarizeBy: sum
+		sourceColumn: Revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Load_Count
+		dataType: int64
+		formatString: 0
+		lineageTag: 1865a8b6-8ed1-4549-b925-be0de9ded4e0
+		summarizeBy: sum
+		sourceColumn: Load_Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pallet_Count
+		dataType: int64
+		formatString: 0
+		lineageTag: 3bd5fa58-eaa9-4f0d-8583-b924b6851e4b
+		summarizeBy: sum
+		sourceColumn: Pallet_Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 21169896-48e5-48be-b0de-3efb56b9d386
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Month Name' = FORMAT(Sales_Inspection[Date],"MMM")
+		dataType: string
+		lineageTag: 1e9eaf0d-ff4f-4edf-bd65-86d85c1268f5
+		summarizeBy: none
+		isDataTypeInferred
+		sortByColumn: Invoice_Month
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Branch
+		dataType: string
+		lineageTag: a4febcbb-e829-40c1-b7c9-02bedc19e21e
+		summarizeBy: none
+		sourceColumn: Branch
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Sales_Inspection = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(Databricks.Catalogs("adb-4870947154782637.17.azuredatabricks.net", "/sql/1.0/warehouses/645bfc221bc957b5", [Catalog="Dev_Catalog", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="Dev_Catalog",Kind="Database"]}[Data], "SELECT Branch,#(lf)    Invoice_Year,#(lf)    Invoice_Month,#(lf)    Revenue, #(lf)    Load_Count,#(lf)    Pallet_Count,#(lf)    CAST(CONCAT(Invoice_Year, '-', Invoice_Month, '-01') AS DATE) AS Date#(lf)FROM #(lf)(#(lf)    SELECT #(lf)        YEAR(Invoice_Date) AS Invoice_Year, #(lf)        MONTH(Invoice_Date) AS Invoice_Month, #(lf)        SUM(A.Invoice_Line_Amount) AS Revenue,#(lf)        CASE#(lf)            WHEN Invoice_Class = '04 NJ' THEN 'NJ'#(lf)            WHEN Invoice_Class = '02 CHI' THEN 'IL'#(lf)            WHEN Invoice_Class = '03 SC' THEN 'SC'#(lf)            WHEN Invoice_Class = '00 TX' THEN 'TX'#(lf)            WHEN Invoice_Class = '01 TQC' THEN 'CT' #(lf)            ELSE 'Unknown' #(lf)        END AS Branch#(lf)    FROM dw.factsales A#(lf)    LEFT JOIN#(lf)    (#(lf)        SELECT CustomerId#(lf)        FROM #(lf)        (#(lf)            SELECT *, ROW_NUMBER() OVER (PARTITION BY CustomerID ORDER BY Start_DateTime DESC) AS rank #(lf)            FROM dw.dimcustomer#(lf)        ) sub#(lf)        WHERE rank = 1#(lf)    ) b ON b.CustomerId = A.CustomerID#(lf)    LEFT JOIN#(lf)    (#(lf)        SELECT DISTINCT join_key#(lf)        FROM dw.factinspection#(lf)    ) Fact ON Fact.join_key = A.join_key#(lf)    WHERE A.Invoice_Type IN ('Invoice', 'Journal Entry', 'Credit Memo')#(lf)    AND YEAR(Invoice_Date) >= YEAR(current_timestamp) - 4#(lf)    GROUP BY YEAR(Invoice_Date), MONTH(Invoice_Date),Invoice_Class#(lf)) AS b#(lf)LEFT JOIN#(lf)(#(lf)    SELECT #(lf)        Year_Inspected AS Invoice_Year_pallet,#(lf)        Month_Num_Inspected AS Invoice_Month_Num_pallet,#(lf)        COUNT(DISTINCT Load_nbr) AS Load_Count, #(lf)        COUNT(DISTINCT PalletKey) AS Pallet_Count, #(lf)        Plant_Location#(lf)    FROM dw.factinspection#(lf)    WHERE YEAR(Date_Inspected) >= YEAR(current_timestamp) - 4#(lf)    GROUP BY Year_Inspected, Month_Num_Inspected, Plant_Location#(lf)) AS c ON b.Invoice_Year = c.Invoice_Year_pallet AND b.Invoice_Month = c.Invoice_Month_Num_pallet and C.Plant_Location = B.Branch", null, [EnableFolding=true])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,106 @@
+table Inspection_Rollback_Calendar
+	lineageTag: e170963c-bd75-4f70-81a9-5f5b5df89618
+
+	column Date_Inspected
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b076b2df-0be3-43b7-a72d-ec0390b67987
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: factinspection[Date_Inspected]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inspected Date'
+		dataType: string
+		lineageTag: 846197c7-71f0-4cbc-a200-0ad60bb5045a
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Inspected Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inspected Month'
+		dataType: string
+		lineageTag: c57f1974-2012-4004-bb52-cbd94b8e9b56
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Inspected Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inspected Year'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7db43cf1-5005-49bb-8f57-25f81c679faa
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Inspected Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: 623e1377-c121-4f29-b29f-389a1c1c5f05
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Text'
+		dataType: string
+		lineageTag: a93234c0-a0f9-42b9-b703-632decbf5043
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Year Text]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Date' = ```
+			
+			var MAX_ValidationDate = Max('Inspection_Rollback_Calendar'[Date_Inspected])
+			Var Current_Year_Date =
+			If(('Inspection_Rollback_Calendar'[Date_Inspected]) = MAX_ValidationDate,"Current Date",'Inspection_Rollback_Calendar'[Inspected Date])
+			return Current_Year_Date
+			 
+			```
+		dataType: string
+		lineageTag: fb845bde-c4fa-45b8-b6be-b08e81b4d744
+		summarizeBy: none
+		isDataTypeInferred
+		sortByColumn: Date_Inspected
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Selected Date' = Inspection_Rollback_Calendar[Current Date]
+		dataType: string
+		lineageTag: 9818d0bb-2eb5-4046-b8c8-51f3b7268cd6
+		summarizeBy: none
+		isDataTypeInferred
+		sortByColumn: Date_Inspected
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Inspection_Rollback_Calendar = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS (
+				    DISTINCT('factinspection'[Date_Inspected]),
+				    "Inspected Date", FORMAT([Date_Inspected],"MM/DD/YYYY"),
+				     "Inspected Month", FORMAT ( [Date_Inspected], "MMM" ),
+				    "Inspected Year", YEAR ( [Date_Inspected] ),
+				    "Month", MONTH ( [Date_Inspected] ),
+				    "Year Text", FORMAT ( [Date_Inspected], "YYYY" )
+				)
+
+	annotation PBI_Id = 568591829f3542b498d3636fa3df7ba8
+

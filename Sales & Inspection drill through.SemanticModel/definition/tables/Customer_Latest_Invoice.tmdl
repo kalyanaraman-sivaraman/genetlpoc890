@@ -1,0 +1,128 @@
+table Customer_Latest_Invoice
+	lineageTag: 15ad3320-f949-4728-a912-78589fcf621d
+
+	column Customerid
+		dataType: int64
+		formatString: 0
+		lineageTag: f1a6f0a8-6f5e-4a7e-8e79-c3d95a906a31
+		summarizeBy: none
+		sourceColumn: Customerid
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_DisplayName
+		dataType: string
+		lineageTag: 292638fd-6963-4827-92df-ecb36eace8e3
+		summarizeBy: none
+		sourceColumn: Customer_DisplayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Parent_Name
+		dataType: string
+		lineageTag: c86f5d06-b520-4934-a2e6-48e336ff3d2a
+		summarizeBy: none
+		sourceColumn: Customer_Parent_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Category
+		dataType: string
+		lineageTag: b407c5f5-8703-4393-8663-ac0cfb7746ed
+		summarizeBy: none
+		sourceColumn: Customer_Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Comm_StartDate
+		dataType: dateTime
+		formatString: mm/dd/yyyy
+		lineageTag: 64518a4d-e054-4add-99c1-af8b8e265a36
+		summarizeBy: none
+		sourceColumn: Comm_StartDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Comm_EndDate
+		dataType: dateTime
+		formatString: mm/dd/yyyy
+		lineageTag: 57e0e1c9-9c30-46c5-9c71-441e20fbfd4e
+		summarizeBy: none
+		sourceColumn: Comm_EndDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Last_Invoice_Year_Revenue
+		dataType: double
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 2e700d21-6bd1-4219-8558-ed4d2d1c7bf9
+		summarizeBy: sum
+		sourceColumn: Last_Invoice_Year_Revenue
+
+		annotation SummarizationSetBy = Automatic
+
+	column Prior_Year_Revenue
+		dataType: double
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: f80eb243-ccbe-41a2-a058-d537be2ca35a
+		summarizeBy: sum
+		sourceColumn: Prior_Year_Revenue
+
+		annotation SummarizationSetBy = Automatic
+
+	column Last_Invoice_Date
+		dataType: dateTime
+		formatString: mm/dd/yyyy
+		lineageTag: 125440f9-7fcc-4315-84bf-fa053a810a00
+		summarizeBy: none
+		sourceColumn: Last_Invoice_Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Bill_Address_State
+		dataType: string
+		lineageTag: a81a19e0-5c2f-498a-b0ea-4cb93c0856d0
+		summarizeBy: none
+		sourceColumn: Bill_Address_State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Account_Owner_Name
+		dataType: string
+		lineageTag: 2f02f9f6-2e4d-476f-bef8-5fdc80ea949d
+		summarizeBy: none
+		sourceColumn: Account_Owner_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column YOY_Revenue_Diff
+		dataType: int64
+		formatString: 0
+		lineageTag: 7f19d68e-01fc-4e6f-849a-f389ee8c0d51
+		summarizeBy: sum
+		sourceColumn: YOY_Revenue_Diff
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Customer_Latest_Invoice = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(Databricks.Catalogs("adb-4870947154782637.17.azuredatabricks.net", "/sql/1.0/warehouses/645bfc221bc957b5", [Catalog="Dev_Catalog", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="Dev_Catalog",Kind="Database"]}[Data], "WITH LastInvoiceYear  AS (#(lf)  SELECT#(lf)    CustomerID,#(lf)    EXTRACT(YEAR FROM MAX(Invoice_Date)) AS Last_Invoice_Year,#(lf)    MAX(Invoice_Date) AS Last_Invoice_Date#(lf)  FROM#(lf)    dev_catalog.curated.factsales#(lf)  WHERE Invoice_Type  in (""Invoice"",""Credit Memo"")#(lf)  GROUP BY#(lf)    CustomerID#(lf))#(lf)SELECT#(lf)  c.Customerid,#(lf)  c.Customer_DisplayName,#(lf)  c.Customer_Parent_Name,#(lf)  c.Customer_Category,#(lf)  c.Comm_StartDate,#(lf)  c.Comm_EndDate,#(lf)  -- f.Invoice_date,#(lf)  li.Last_Invoice_Date,#(lf)   d.Bill_Address_State,#(lf)  y.Account_Owner_Name,#(lf)  --CASE WHEN EXTRACT(YEAR FROM f.Invoice_Date) = li.Last_Invoice_Year THEN f.Invoice_Line_Amount else 0  END#(lf)  -- ,#(lf)  (SUM(CASE WHEN EXTRACT(YEAR FROM f.Invoice_Date) = li.Last_Invoice_Year THEN f.Invoice_Line_Amount else Null END)) AS Last_Invoice_Year_Revenue,#(lf)  (SUM(CASE WHEN EXTRACT(YEAR FROM f.Invoice_Date) = li.Last_Invoice_Year - 1 THEN f.Invoice_Line_Amount ELSE Null END)) AS Prior_Year_Revenue,#(lf)   cast(coalesce(Last_Invoice_Year_Revenue,0)-coalesce(Prior_Year_Revenue,0) as Int) as YOY_Revenue_Diff#(lf)FROM#(lf)  dev_catalog.curated.commissionable_customers c#(lf)JOIN#(lf)  LastInvoiceYear li ON c.Customerid = li.CustomerID  #(lf)LEFT JOIN#(lf)(SELECT * FROM dev_catalog.curated.factsales  WHERE Invoice_Type  in (""Invoice"",""Credit Memo"") ) f ON f.Customerid = c.CustomerID #(lf)left join #(lf)(SELECT * FROM dw.dimcustomer WHERE END_DATETIME IS NULL) d on d.Customerid = c.Customerid#(lf)left join#(lf)(select distinct(a.QBO_Cust_ID__c), a.Ownerid, Trim(u.Name) as Account_Owner_Name#(lf)from raw.account a#(lf)left join raw.user u on a.OwnerId = u.Id#(lf)where a.QBO_Cust_ID__c is not null and a.QBO_Cust_ID__c <> 'xxxx'#(lf)group by all) Y on y.QBO_Cust_ID__c = c.Customerid#(lf)where c.comm_startdate is not null #(lf)Group by#(lf)  c.Customerid,#(lf)  c.Customer_DisplayName,#(lf)  c.Customer_Parent_Name,#(lf)  c.Customer_Category,#(lf)  c.Comm_StartDate,#(lf)  c.Comm_EndDate,#(lf)  -- f.Invoice_date,#(lf)  li.Last_Invoice_Date,#(lf)  d.Bill_Address_State,#(lf)  y.Account_Owner_Name", null, [EnableFolding=true])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

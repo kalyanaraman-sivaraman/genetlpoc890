@@ -1,0 +1,69 @@
+table Customer_Calendar_Table
+	lineageTag: 27eea319-03fc-4ed6-a5d4-230fc416f5ba
+
+	column Invoice_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: fb432333-0aa4-4167-8ccc-44a3597b0421
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthName
+		dataType: string
+		lineageTag: d1e8efa0-1ba5-47de-bd59-5749d073355e
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [MonthName]
+		sortByColumn: MonthNum
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNum
+		dataType: int64
+		formatString: 0
+		lineageTag: 79d7e3f1-4920-428d-8f9f-3d3bb0cd94a5
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [MonthNum]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: string
+		lineageTag: c64e38ed-3e93-433a-a10a-0ff18b48ab49
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 41da235a-46f6-4e5c-8d43-f2513cd0a0ca
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Customer_Calendar_Table = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS (
+				CALENDAR (MIN('customer_invoice_status'[Invoice_Date]),(MAX('customer_invoice_status'[Invoice_Date]))),
+				"MonthName", FORMAT ( [Date], "MMM" ),
+				"MonthNum", Month([Date]),
+				"Quarter", "Q" & FORMAT ( [Date], "Q" ),
+				"Year", YEAR ( [Date] ))
+
+	annotation PBI_Id = ff9850a3a4f74d9799e5e34cc0238c09
+

@@ -1,0 +1,1142 @@
+table factinspection
+	lineageTag: 0617f391-fefb-42ee-b2a2-25fc9847a6fa
+
+	column Date_IR_Received
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: f2f69215-51d1-4d6b-9858-e719ab0fcf74
+		summarizeBy: none
+		sourceColumn: Date_IR_Received
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date_Inspected
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: afb33e37-47c1-4eff-8475-13b0c0d9e7e2
+		summarizeBy: none
+		sourceColumn: Date_Inspected
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Name
+		dataType: string
+		sourceProviderType: nvarchar(100)
+		lineageTag: d30286f5-4124-4a3a-9d49-4f476b7fd269
+		summarizeBy: none
+		sourceColumn: Customer_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Location
+		dataType: string
+		sourceProviderType: nvarchar(100)
+		lineageTag: bf4c6b41-def6-439f-8ee0-72b5d75a476f
+		summarizeBy: none
+		sourceColumn: Customer_Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column Load_Nbr
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: 75b9e3e9-662f-4287-a6cb-ec9f742dc061
+		summarizeBy: none
+		sourceColumn: Load_Nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column InBound_BOL_Nbr
+		dataType: string
+		isHidden
+		sourceProviderType: nvarchar(50)
+		lineageTag: 16e7cd0b-1127-463e-9112-b0a1b8057575
+		summarizeBy: none
+		sourceColumn: InBound_BOL_Nbr
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column So_Nbr
+		dataType: string
+		sourceProviderType: nvarchar(20)
+		lineageTag: 0cbb6f4a-65c6-411e-a758-f05a1914af9e
+		summarizeBy: none
+		sourceColumn: So_Nbr
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Invoice_Class
+		dataType: string
+		sourceProviderType: nvarchar(20)
+		lineageTag: b50a01be-988a-4588-8650-2d155792a67f
+		summarizeBy: none
+		sourceColumn: Invoice_Class
+
+		annotation SummarizationSetBy = Automatic
+
+	column Po_Nbr
+		dataType: string
+		sourceProviderType: nvarchar(100)
+		lineageTag: 0099a430-8117-4fdc-95b2-b92b3e180ee9
+		summarizeBy: none
+		sourceColumn: Po_Nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column Service
+		dataType: string
+		isHidden
+		sourceProviderType: nvarchar(100)
+		lineageTag: 11f4331f-005e-4f51-8c60-a51b251850cc
+		summarizeBy: none
+		sourceColumn: Service
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Batch_Lot
+		dataType: string
+		sourceProviderType: nvarchar(100)
+		lineageTag: 349a76a9-e81a-446b-b5e4-24e6a9f1b52f
+		summarizeBy: none
+		sourceColumn: Batch_Lot
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product_Description
+		dataType: string
+		isHidden
+		sourceProviderType: nvarchar(200)
+		lineageTag: 1d75c854-2827-4804-9d18-9ecfd52accf4
+		summarizeBy: none
+		sourceColumn: Product_Description
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product_Nbr
+		dataType: string
+		sourceProviderType: nvarchar(100)
+		lineageTag: 82c26eb8-dcac-4488-beb1-a6c6d6b64b60
+		summarizeBy: none
+		sourceColumn: Product_Nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column X_RayMachine
+		dataType: string
+		sourceProviderType: nvarchar(20)
+		lineageTag: ebdefd07-af60-46a9-82e5-fd57bd4dbe88
+		summarizeBy: none
+		sourceColumn: X_RayMachine
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pallet_Nbr
+		dataType: string
+		sourceProviderType: nvarchar(100)
+		lineageTag: 8e1592c6-d2a8-443f-9216-53447467cbda
+		summarizeBy: none
+		sourceColumn: Pallet_Nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column Case_Cnt
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: bf849a39-e131-4f5d-9569-d0264d3ec114
+		summarizeBy: sum
+		sourceColumn: Case_Cnt
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pack_Cnt
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 198e914c-2e96-44a4-86a9-39d2e618c9ff
+		summarizeBy: sum
+		sourceColumn: Pack_Cnt
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pass_Cnt
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 8e0d90c9-a390-45ef-bd98-e78102b051a0
+		summarizeBy: sum
+		sourceColumn: Pass_Cnt
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fail_Cnt
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 75df5977-62d9-43b0-a59d-436d1e94e598
+		summarizeBy: sum
+		sourceColumn: Fail_Cnt
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Contaminated_Cnt
+		dataType: int64
+		formatString: #,0
+		sourceProviderType: int
+		lineageTag: 241e342f-a52e-49b6-853a-d912e9bc2ba8
+		summarizeBy: sum
+		sourceColumn: Contaminated_Cnt
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rcvd_Damaged_Cnt
+		dataType: int64
+		formatString: #,0
+		sourceProviderType: int
+		lineageTag: f1774deb-8f9e-42cd-ab01-3ffb64756dbc
+		summarizeBy: sum
+		sourceColumn: Rcvd_Damaged_Cnt
+
+		annotation SummarizationSetBy = Automatic
+
+	column Trash_Cnt
+		dataType: int64
+		formatString: #,0
+		sourceProviderType: int
+		lineageTag: cfb40d40-c713-4609-b86d-5a7c73650889
+		summarizeBy: sum
+		sourceColumn: Trash_Cnt
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rcvd_Short_Cnt
+		dataType: int64
+		formatString: #,0
+		sourceProviderType: int
+		lineageTag: 50333673-9241-4ba6-ada4-75e844c094a5
+		summarizeBy: sum
+		sourceColumn: Rcvd_Short_Cnt
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Start_Time
+		dataType: string
+		sourceProviderType: nvarchar(65535)
+		lineageTag: ab6449e7-e02e-4d3f-873b-eb0df62c4cc4
+		summarizeBy: none
+		sourceColumn: Start_Time
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Finish_Time
+		dataType: string
+		sourceProviderType: nvarchar(65535)
+		lineageTag: d5260a12-3eee-4ccb-a04a-ebb201cf74f2
+		summarizeBy: none
+		sourceColumn: Finish_Time
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Start_Temp
+		dataType: string
+		sourceProviderType: nvarchar(10)
+		lineageTag: ab6e63f6-2d5d-4098-9029-e68f26921e2a
+		summarizeBy: none
+		sourceColumn: Start_Temp
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Finish_Temp
+		dataType: string
+		sourceProviderType: nvarchar(10)
+		lineageTag: 3e45c016-5cd2-4660-8ff2-574daf4932cd
+		summarizeBy: none
+		sourceColumn: Finish_Temp
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Replace_Pallets
+		dataType: string
+		isHidden
+		sourceProviderType: nvarchar(10)
+		lineageTag: 58fd851d-7efc-4a7c-af87-6eeff0e92f30
+		summarizeBy: none
+		sourceColumn: Replace_Pallets
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Package_Per_Case
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 5d740e67-6577-4a93-ada7-e893c881c82a
+		summarizeBy: sum
+		sourceColumn: Package_Per_Case
+
+		annotation SummarizationSetBy = Automatic
+
+	column Lbs_Per_Package
+		dataType: double
+		sourceProviderType: decimal(18, 2)
+		lineageTag: 4c0d6dcf-55c4-4716-aa67-e527d8f9ef97
+		summarizeBy: sum
+		sourceColumn: Lbs_Per_Package
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Product_Type
+		dataType: string
+		sourceProviderType: nvarchar(100)
+		lineageTag: 572a6743-a2e3-48e9-8443-0d292b9ee041
+		summarizeBy: none
+		sourceColumn: Product_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Lbs_Per_Case
+		dataType: double
+		sourceProviderType: decimal(19, 2)
+		lineageTag: f10c625f-8b0c-47db-8777-4c6e55b4e695
+		summarizeBy: sum
+		sourceColumn: Lbs_Per_Case
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Contaminant
+		dataType: string
+		isHidden
+		sourceProviderType: nvarchar(100)
+		lineageTag: 282ecfaf-ae0c-47fa-8243-fd4b6d2eb77a
+		summarizeBy: none
+		sourceColumn: Contaminant
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pricing_UOM
+		dataType: string
+		isHidden
+		sourceProviderType: nvarchar(20)
+		lineageTag: 92d64667-90cf-4a21-ad4b-80681694e31e
+		summarizeBy: none
+		sourceColumn: Pricing_UOM
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Price_Per_UOM
+		dataType: double
+		sourceProviderType: decimal(19, 2)
+		lineageTag: 344b778e-859d-4c3c-a95c-b35ad02f06cf
+		summarizeBy: sum
+		sourceColumn: Price_Per_UOM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Price_Per_Lbs
+		dataType: double
+		isHidden
+		sourceProviderType: decimal(19, 2)
+		lineageTag: 60317d66-2d45-4b52-93bd-2d7bf755156c
+		summarizeBy: sum
+		sourceColumn: Price_Per_Lbs
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Product_State
+		dataType: string
+		isHidden
+		sourceProviderType: nvarchar(20)
+		lineageTag: be77c7e0-3f05-4b53-a391-cdafb9525f17
+		summarizeBy: none
+		sourceColumn: Product_State
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Inspection_Sales
+		dataType: double
+		sourceProviderType: decimal(19, 2)
+		lineageTag: f126b754-9c3a-4da8-b9ce-bffda03bd2f4
+		summarizeBy: sum
+		sourceColumn: Inspection_Sales
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Total_Lbs
+		dataType: double
+		sourceProviderType: decimal(19, 2)
+		lineageTag: 1e56506a-68c0-4897-aec4-9dfc8df5b769
+		summarizeBy: sum
+		sourceColumn: Total_Lbs
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Invoice_Nbr
+		dataType: string
+		sourceProviderType: nvarchar(50)
+		lineageTag: 2e157b79-418b-43dd-a277-5ae5f82bc973
+		summarizeBy: none
+		sourceColumn: Invoice_Nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nbr_Of_Pallets
+		dataType: int64
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: 2dd35a62-7961-46df-92b7-631b65d3b7cd
+		summarizeBy: sum
+		sourceColumn: Nbr_Of_Pallets
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceDelete
+		dataType: int64
+		isHidden
+		formatString: 0
+		sourceProviderType: int
+		lineageTag: d33c1727-d651-4edb-bcce-4120e8e55b7b
+		summarizeBy: sum
+		sourceColumn: SourceDelete
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hashkey
+		dataType: string
+		isHidden
+		sourceProviderType: nvarchar(250)
+		lineageTag: b010b65c-0457-4188-8ed3-a53aae5780c6
+		summarizeBy: none
+		sourceColumn: Hashkey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Created_By
+		dataType: string
+		isHidden
+		sourceProviderType: nvarchar(100)
+		lineageTag: 1baf930f-a311-4510-a7f7-71ec4c108c4a
+		summarizeBy: none
+		sourceColumn: ETL_Created_By
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Created_Date
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: 23990199-23c6-4b16-b356-5a5ca3866fce
+		summarizeBy: none
+		sourceColumn: ETL_Created_Date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Modified_By
+		dataType: string
+		isHidden
+		sourceProviderType: nvarchar(100)
+		lineageTag: 5a50fa20-a593-450b-b3c7-aa11af30d05f
+		summarizeBy: none
+		sourceColumn: ETL_Modified_By
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Modified_Date
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		sourceProviderType: datetime2
+		lineageTag: e1342492-42cf-47ec-a8cd-0263b13769ca
+		summarizeBy: none
+		sourceColumn: ETL_Modified_Date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column IC_OOC
+		dataType: string
+		lineageTag: 637145fa-1891-4b9c-af7f-5c939d797f83
+		summarizeBy: none
+		sourceColumn: IC_OOC
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Labor_Dollars
+		dataType: double
+		lineageTag: 89c010df-3ad0-4b23-875d-2902ae997cb1
+		summarizeBy: sum
+		sourceColumn: Labor_Dollars
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Price_Per_UOM_Custom = IF(ISBLANK('factinspection'[Price_Per_UOM]), 00, 'factinspection'[Price_Per_UOM])
+		dataType: string
+		lineageTag: 7c14fb65-eba3-422a-a7d6-50559972c738
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Nbr' = IF(ISBLANK('factinspection'[Product_Nbr]), "Unknown", 'factinspection'[Product_Nbr])
+		dataType: string
+		lineageTag: ec8820cd-fc02-48e1-b0d2-3a21ac55812d
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Description' = IF(ISBLANK('factinspection'[Product_Description]), "Unknown", 'factinspection'[Product_Description])
+		dataType: string
+		lineageTag: 90743d47-97f1-4047-997d-4d6d64ad2f58
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'IC_OOC.' = IF(ISBLANK('factinspection'[IC_OOC]), "Unknown", 'factinspection'[IC_OOC])
+		dataType: string
+		lineageTag: c75c8bae-74c2-46da-a345-80d76b751e3b
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'WeekEnding Date' = IF(ISBLANK('factinspection'[WeekEnding_Date]), 0/00/000, 'factinspection'[WeekEnding_Date])
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 7d4586f4-371b-4953-961e-02a944e4db66
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Product Type' = ```
+			
+			 Var a = IF('factinspection'[Product_Type] in {"Poultry","Dry","Pork","Protein"},'factinspection'[Product_Type],"Others")
+			                Return a	
+			```
+		dataType: string
+		lineageTag: ff528327-32ab-481d-ab20-471cda831ae2
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product_Type.' = IF(ISBLANK('factinspection'[Product_Type]), "Unknown", 'factinspection'[Product_Type])
+		dataType: string
+		lineageTag: ef95d083-4bff-4f8b-aa02-5fdbdb23ac99
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Service.' = IF(ISBLANK('factinspection'[Service]), "Unknown", ('factinspection'[Service]))
+		dataType: string
+		lineageTag: 8ab4e077-c384-4c29-bb75-bd55058f93b1
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pricing UOM' = IF(ISBLANK('factinspection'[Pricing_UOM]), "Unknown", 'factinspection'[Pricing_UOM])
+		dataType: string
+		lineageTag: b37855b2-ae5d-4855-ad22-a1b22fdec6ac
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contaminants.' = IF(ISBLANK('factinspection'[Contaminant]), "Unknown", 'factinspection'[Contaminant])
+		dataType: string
+		lineageTag: 81a1a4da-ad5a-4f5c-9e5f-568f792c55fe
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceSystem
+		dataType: string
+		lineageTag: fbabefa4-32bd-42f0-b911-f4b2c8b906a7
+		summarizeBy: none
+		sourceColumn: SourceSystem
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year_Inspected
+		dataType: int64
+		formatString: 0
+		lineageTag: 83bd3a44-e053-41f7-9751-97cedd8a1c51
+		summarizeBy: sum
+		sourceColumn: Year_Inspected
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product_Type_Org
+		dataType: string
+		lineageTag: 10537c56-afdd-4b38-9798-0ab14477688e
+		summarizeBy: none
+		sourceColumn: Product_Type_Org
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sub_Product_Types
+		dataType: string
+		lineageTag: 00722fa0-6e4f-43d3-a19d-158707063d7b
+		summarizeBy: none
+		sourceColumn: Sub_Product_Types
+
+		annotation SummarizationSetBy = Automatic
+
+	column Join_key
+		dataType: string
+		lineageTag: 09e6e1c7-6da8-4ba0-af13-b2b5cb225f0c
+		summarizeBy: none
+		sourceColumn: Join_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Xray Machine' = IF(ISBLANK('factinspection'[X_RayMachine]), "Unknown", ('factinspection'[X_RayMachine]))
+		dataType: string
+		lineageTag: 09c7cff3-9e04-4f0a-96f7-e8b2d770a7b6
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Xray_Line_Count
+		dataType: int64
+		formatString: 0
+		lineageTag: 18add900-b1ac-4426-ae95-8cd272870ea7
+		summarizeBy: sum
+		sourceColumn: Xray_Line_Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pallet_time
+		dataType: int64
+		lineageTag: af327168-8909-4df0-87b6-27ac2d4ffce7
+		summarizeBy: average
+		sourceColumn: Pallet_time
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Inspection_Machine_Hrs
+		dataType: double
+		formatString: 0
+		lineageTag: b6ccd235-6b8d-45f0-a0d3-2f17dacd601d
+		summarizeBy: sum
+		sourceColumn: Inspection_Machine_Hrs
+
+		annotation SummarizationSetBy = Automatic
+
+	column Labor_rate
+		dataType: double
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: b6b843b6-812b-4631-ad13-90fbf1f0c297
+		summarizeBy: average
+		sourceColumn: Labor_rate
+
+		annotation SummarizationSetBy = User
+
+	column Plant_Location
+		dataType: string
+		lineageTag: 914f90c1-2f84-4566-93ac-fa2859797afb
+		summarizeBy: none
+		sourceColumn: Plant_Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column Inspection_Labor_Man_Hours
+		dataType: double
+		lineageTag: 8dd78be0-4c36-4d42-b0da-568fd1c2cbba
+		summarizeBy: sum
+		sourceColumn: Inspection_Labor_Man_Hours
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Month_Inspected
+		dataType: string
+		lineageTag: 408e315d-929c-4dcc-bd08-65668c58e89b
+		summarizeBy: none
+		sourceColumn: Month_Inspected
+		sortByColumn: Month_Num_Inspected
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter_Inspected
+		dataType: string
+		lineageTag: 3b8871d0-0dbd-4c76-89ba-b0bed19116d0
+		summarizeBy: none
+		sourceColumn: Quarter_Inspected
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month_Num_Inspected
+		dataType: int64
+		formatString: 0
+		lineageTag: d04f9469-5410-4ba4-92dd-6e955b3c094e
+		summarizeBy: sum
+		sourceColumn: Month_Num_Inspected
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product_Spec_ID
+		dataType: string
+		lineageTag: 6695bce7-f231-4c60-a3ca-1169a4ab6d8f
+		summarizeBy: none
+		sourceColumn: Product_Spec_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quoted_Cases_Per_Hour
+		dataType: int64
+		formatString: #,0
+		lineageTag: 9fcb7679-8e17-4b82-ac0a-6197a26a3f05
+		summarizeBy: average
+		sourceColumn: Quoted_Cases_Per_Hour
+
+		annotation SummarizationSetBy = User
+
+	column Ops_Cases_per_hour
+		dataType: int64
+		formatString: #,0
+		lineageTag: 7f111112-d1d6-4a8f-b5f0-f43ddb3a6f3e
+		summarizeBy: average
+		sourceColumn: Ops_Cases_per_hour
+
+		annotation SummarizationSetBy = User
+
+	column Mgn_Pct
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 73c91a62-02f2-4b31-86c7-2b78bfdf7066
+		summarizeBy: average
+		sourceColumn: Mgn_Pct
+
+		annotation SummarizationSetBy = User
+
+	column Cs_Per_Hour_Pct_Diff
+		dataType: double
+		formatString: 0%;-0%;0%
+		lineageTag: e5a48871-9cee-4158-b698-b133645b1d11
+		summarizeBy: average
+		sourceColumn: Cs_Per_Hour_Pct_Diff
+
+		annotation SummarizationSetBy = User
+
+	column 'SO Nbr' = IF(ISBLANK('factinspection'[So_Nbr]), "Unknown", 'factinspection'[So_Nbr])
+		dataType: string
+		lineageTag: e4fcba8f-9e8f-4458-888f-668666e8b1ca
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Recovery %' = (factinspection[Pass_Cnt]/factinspection[Pack_Cnt])
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 344e56c5-087b-45dd-b68e-fbed91dcbefc
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start Temp' = If(ISBLANK(factinspection[Start_Temp])," ",CONCATENATE(factinspection[Start_Temp],"°F"))
+		dataType: string
+		lineageTag: 67d04ed4-b84c-4906-84d7-96cfe65b5c75
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'End Temp' = If(ISBLANK(factinspection[Finish_Temp])," ",CONCATENATE(factinspection[Finish_Temp],"°F"))
+		dataType: string
+		lineageTag: 0d1a84ae-dfc0-4cc4-8f6b-44704f215d77
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Load_Start_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ec408146-f1ac-436e-b5c7-4d557aae4240
+		summarizeBy: none
+		sourceColumn: Load_Start_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Load_End_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: bd52c912-b2ec-4a79-8adc-839248178bc1
+		summarizeBy: none
+		sourceColumn: Load_End_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Price_Per_Carton
+		dataType: double
+		lineageTag: d5819808-80e2-43a3-84ea-626e642096f0
+		summarizeBy: sum
+		sourceColumn: Price_Per_Carton
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Price_Per_Case
+		dataType: double
+		lineageTag: b9abf994-eaa6-48eb-9b8b-80db3beda397
+		summarizeBy: sum
+		sourceColumn: Price_Per_Case
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Inspection Date' = FORMAT(factinspection[Date_Inspected],"MM/DD/YYYY")
+		dataType: string
+		lineageTag: d3171ea3-c6e9-4f7e-a730-407334eae698
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Name_Location
+		dataType: string
+		lineageTag: 3c13ab4c-eb9c-44a1-8282-8cca2cda17ec
+		summarizeBy: none
+		sourceColumn: Customer_Name_Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column Palletkey
+		dataType: string
+		lineageTag: 112013e1-d87f-431a-a20f-d578fd11f9cb
+		summarizeBy: none
+		sourceColumn: Palletkey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pallet_Unique_ID
+		dataType: string
+		lineageTag: 6cbc267b-6ce3-4a03-8023-2bb6b89d18ba
+		summarizeBy: none
+		sourceColumn: Pallet_Unique_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pallet_Service_Unique_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: cfa075fc-122c-42fa-a0fd-2cb5ab581aad
+		summarizeBy: count
+		sourceColumn: Pallet_Service_Unique_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pallet_Inspection_unique_ID
+		dataType: string
+		lineageTag: eeb15362-cffd-4fc0-82f7-77f2203efb10
+		summarizeBy: none
+		sourceColumn: Pallet_Inspection_unique_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Project_Unique_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: fbb19cad-8619-4e1f-86cd-ddaa362f215f
+		summarizeBy: count
+		sourceColumn: Project_Unique_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column HDR_PO_Nbr
+		dataType: string
+		lineageTag: 440bcb3c-5f23-4d0b-b727-ee6e69e21533
+		summarizeBy: none
+		sourceColumn: HDR_PO_Nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column PO_Service_Unique_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 363be042-791d-40e6-94ab-725a173b58bf
+		summarizeBy: count
+		sourceColumn: PO_Service_Unique_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column WeekEnding_Date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: f6fe0a12-6a21-4109-a5cd-54b66121ec96
+		summarizeBy: none
+		sourceColumn: WeekEnding_Date
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Dim_Customer_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 89b18cb4-9e65-41d4-9146-ce179283b391
+		summarizeBy: count
+		sourceColumn: Dim_Customer_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Parent_Name
+		dataType: string
+		lineageTag: 1d7d6ffc-d257-424e-99ca-b950f477d719
+		summarizeBy: none
+		sourceColumn: Customer_Parent_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parent Name' = ```
+			
+			    IF(
+			        ISBLANK('factinspection'[Customer_Parent_Name]),
+			        "UNKNOWN",
+			        'factinspection'[Customer_Parent_Name]
+			    )
+			```
+		dataType: string
+		lineageTag: d1ec01bf-8313-4db9-a5f8-35475f971904
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column customerid
+		dataType: int64
+		formatString: 0
+		lineageTag: 03a6b5ef-5fb3-4704-bf93-145492b38569
+		summarizeBy: none
+		sourceColumn: customerid
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cs_Per_Hour_Pct_Avg
+		dataType: double
+		lineageTag: 562df627-aa1c-4f8e-a2b3-3b3b5ad15e01
+		summarizeBy: sum
+		sourceColumn: Cs_Per_Hour_Pct_Avg
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Cs_Per_Hour_Pct_Scale
+		dataType: string
+		lineageTag: 59e0013a-26be-4066-a84e-7bcaf23211b0
+		summarizeBy: none
+		sourceColumn: Cs_Per_Hour_Pct_Scale
+		sortByColumn: Cs_Per_Hour_Pct_Flag
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cs_Per_Hour_Pct_Flag
+		dataType: int64
+		formatString: 0
+		lineageTag: 09b2c232-a382-426a-bf7a-20f529386e0e
+		summarizeBy: sum
+		sourceColumn: Cs_Per_Hour_Pct_Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column Contamination_pct
+		dataType: double
+		lineageTag: e0e38926-7b4c-45c4-b85f-f033284f6d50
+		summarizeBy: sum
+		sourceColumn: Contamination_pct
+		sortByColumn: Contamination_Flag
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Contamination_Scale
+		dataType: string
+		lineageTag: fb87b209-1290-45fa-9ac7-4f94c85ff25a
+		summarizeBy: none
+		sourceColumn: Contamination_Scale
+
+		annotation SummarizationSetBy = Automatic
+
+	column Contamination_Flag
+		dataType: int64
+		formatString: 0
+		lineageTag: 0565a756-ca05-4c51-9cf0-c5d0cb6cf16a
+		summarizeBy: sum
+		sourceColumn: Contamination_Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column Plant = ```
+			
+			    IF(
+			        ISBLANK('factinspection'[Plant_Location]),
+			        "UNKNOWN",
+			        'factinspection'[Plant_Location]
+			    )
+			```
+		dataType: string
+		lineageTag: 39d379c8-7514-47e2-86fa-1db6e7db48e6
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Contamination Scale' = factinspection[Contamination_Scale]
+		dataType: string
+		lineageTag: 92600af0-8e65-42f0-929e-5dbabb49ae08
+		summarizeBy: none
+		isDataTypeInferred
+		sortByColumn: Contamination_Flag
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Name' = ```
+			
+			    IF(
+			        ISBLANK('factinspection'[Customer_Name_Location]),
+			        "UNKNOWN",
+			        'factinspection'[Customer_Name_Location]
+			    )
+			```
+		dataType: string
+		lineageTag: 2616531d-b079-4dd2-8387-5371b5b195e3
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cs/Hr % Diff Scale' = factinspection[Cs_Per_Hour_Pct_Scale]
+		dataType: string
+		lineageTag: b55904c4-5e59-4e14-b1b0-685b63c6f6a5
+		summarizeBy: none
+		isDataTypeInferred
+		sortByColumn: Cs_Per_Hour_Pct_Flag
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pallet_time_org
+		dataType: int64
+		formatString: 0
+		lineageTag: c018a668-4a74-4e8d-b192-d45d23b26e0c
+		summarizeBy: average
+		sourceColumn: Pallet_time_org
+
+		annotation SummarizationSetBy = User
+
+	partition factinspection = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(Databricks.Catalogs("adb-4870947154782637.17.azuredatabricks.net", "/sql/1.0/warehouses/645bfc221bc957b5", [Catalog="Dev_Catalog", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="Dev_Catalog",Kind="Database"]}[Data], "SELECT *#(lf)FROM dw.factinspection T1#(lf)Left join #(lf)(select CustomerID as Dim_Customer_ID,Upper(Customer_Parent_Name) as Customer_Parent_Name#(lf)from (select * , row_number() over (partition by CustomerID order by Start_DateTime desc) as rank from dw.dimcustomer)#(lf)where rank = 1) T2#(lf)on T1.CustomerID = T2.Dim_Customer_ID#(lf)WHERE Year(T1.Date_Inspected) >= year(current_timestamp) - 4", null, [EnableFolding=true]),
+				    #"Inserted End of Week" = Table.AddColumn(Source, "WeekEnding_Date", each Date.AddDays(Date.EndOfWeek([Date_Inspected]), -1))
+				in
+				    #"Inserted End of Week"
+
+	annotation PBI_ResultType = Exception
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,741 @@
+table factinspectionwms
+	lineageTag: 3115922c-faff-47eb-9545-52408593865c
+
+	column Date_IR_Received
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8af63f94-d7b6-4356-b652-e7f3d78be0bf
+		summarizeBy: none
+		sourceColumn: Date_IR_Received
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date_Inspected
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9441e740-9cec-4af9-b3a4-8b9b4fb2d2b4
+		summarizeBy: none
+		sourceColumn: Date_Inspected
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year_Inspected
+		dataType: int64
+		formatString: 0
+		lineageTag: a7960668-4c3c-414d-881b-ca2b5146c70f
+		summarizeBy: sum
+		sourceColumn: Year_Inspected
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Name
+		dataType: string
+		lineageTag: d4ef940a-910e-4574-ac14-7aee31a7d0e8
+		summarizeBy: none
+		sourceColumn: Customer_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Location
+		dataType: string
+		lineageTag: 76f7ddce-8fc7-4982-8305-2b5e477540ce
+		summarizeBy: none
+		sourceColumn: Customer_Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column Load_Nbr
+		dataType: string
+		lineageTag: 396d5bde-13c5-419d-ab26-b04654abfc52
+		summarizeBy: none
+		sourceColumn: Load_Nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column InBound_BOL_Nbr
+		dataType: string
+		lineageTag: 283bdb7e-b4e6-4441-87e3-267d1235a0e2
+		summarizeBy: none
+		sourceColumn: InBound_BOL_Nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column So_Nbr
+		dataType: string
+		lineageTag: 0a0eab6d-808a-4bd7-b633-80b3d7c21551
+		summarizeBy: none
+		sourceColumn: So_Nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column Invoice_Class
+		dataType: string
+		lineageTag: d163e926-1d69-4515-aca3-c5d060877e30
+		summarizeBy: none
+		sourceColumn: Invoice_Class
+
+		annotation SummarizationSetBy = Automatic
+
+	column Po_Nbr
+		dataType: string
+		lineageTag: 193476f5-c4a8-44f3-bf7b-9fc9e4c12719
+		summarizeBy: none
+		sourceColumn: Po_Nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column Service
+		dataType: string
+		lineageTag: 6435630d-b754-44c2-ad25-7e21fa024c8e
+		summarizeBy: none
+		sourceColumn: Service
+
+		annotation SummarizationSetBy = Automatic
+
+	column Batch_Lot
+		dataType: string
+		lineageTag: 897f45d8-ab15-43a9-b106-42b1cf4c61fa
+		summarizeBy: none
+		sourceColumn: Batch_Lot
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product_Description
+		dataType: string
+		lineageTag: 37536948-c4e1-4a83-abd2-67c8ab28ce55
+		summarizeBy: none
+		sourceColumn: Product_Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product_Nbr
+		dataType: string
+		lineageTag: cc3df3e8-bb04-4933-83c5-0109057af0b0
+		summarizeBy: none
+		sourceColumn: Product_Nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column XRay_Machine
+		dataType: string
+		lineageTag: 6899e566-d043-40cd-9c00-8053a1a628b0
+		summarizeBy: none
+		sourceColumn: XRay_Machine
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pallet_Nbr
+		dataType: string
+		lineageTag: 5531d76a-f905-4d01-9664-8a55abe15499
+		summarizeBy: none
+		sourceColumn: Pallet_Nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column Case_Cnt
+		dataType: int64
+		formatString: 0
+		lineageTag: f5c67dd8-2574-439d-84c5-6d9c81a19bc6
+		summarizeBy: sum
+		sourceColumn: Case_Cnt
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pack_Cnt
+		dataType: int64
+		formatString: 0
+		lineageTag: 0fa7c57f-9fc2-422d-a2ac-8b482c99433a
+		summarizeBy: sum
+		sourceColumn: Pack_Cnt
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pass_Cnt
+		dataType: int64
+		formatString: 0
+		lineageTag: 38da2360-eaf8-4953-8d55-cb024bbf41f0
+		summarizeBy: sum
+		sourceColumn: Pass_Cnt
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fail_Cnt
+		dataType: int64
+		formatString: 0
+		lineageTag: 505687f5-1b7b-4abb-9963-04de4d90bf48
+		summarizeBy: sum
+		sourceColumn: Fail_Cnt
+
+		annotation SummarizationSetBy = Automatic
+
+	column Contaminated_Cnt
+		dataType: int64
+		formatString: 0
+		lineageTag: b0fcf88a-1085-4949-8bec-03b7616eefda
+		summarizeBy: sum
+		sourceColumn: Contaminated_Cnt
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rcvd_Damaged_Cnt
+		dataType: int64
+		formatString: 0
+		lineageTag: 79f01074-5c88-4cc0-bb5c-3e02078a9bf9
+		summarizeBy: sum
+		sourceColumn: Rcvd_Damaged_Cnt
+
+		annotation SummarizationSetBy = Automatic
+
+	column Trash_Cnt
+		dataType: int64
+		formatString: 0
+		lineageTag: 81180165-bad5-436a-8624-71b85cdbe84a
+		summarizeBy: sum
+		sourceColumn: Trash_Cnt
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rcvd_Short_Cnt
+		dataType: int64
+		formatString: 0
+		lineageTag: 7fd36ecc-9529-4714-b85d-99c82d098bde
+		summarizeBy: sum
+		sourceColumn: Rcvd_Short_Cnt
+
+		annotation SummarizationSetBy = Automatic
+
+	column Start_Time
+		dataType: string
+		lineageTag: 62e321e5-9591-4ead-a579-480bcd6c3f30
+		summarizeBy: none
+		sourceColumn: Start_Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column Finish_Time
+		dataType: string
+		lineageTag: cd6dded2-9396-4e80-98af-d0990e10ebfd
+		summarizeBy: none
+		sourceColumn: Finish_Time
+
+		annotation SummarizationSetBy = Automatic
+
+	column Start_Temp
+		dataType: string
+		lineageTag: a3c5eed6-fb2c-47be-96b8-2459242462b2
+		summarizeBy: none
+		sourceColumn: Start_Temp
+
+		annotation SummarizationSetBy = Automatic
+
+	column Finish_Temp
+		dataType: string
+		lineageTag: acca1c93-4837-45ea-bf63-4b901f6519de
+		summarizeBy: none
+		sourceColumn: Finish_Temp
+
+		annotation SummarizationSetBy = Automatic
+
+	column Replace_Pallets
+		dataType: string
+		lineageTag: 2180cbff-1534-45f6-9079-7bb1961f82b7
+		summarizeBy: none
+		sourceColumn: Replace_Pallets
+
+		annotation SummarizationSetBy = Automatic
+
+	column Package_Per_Case
+		dataType: int64
+		formatString: 0
+		lineageTag: 1a2e1ac2-7d41-42a5-ad42-ac0dc0e40c91
+		summarizeBy: sum
+		sourceColumn: Package_Per_Case
+
+		annotation SummarizationSetBy = Automatic
+
+	column Lbs_Per_Package
+		dataType: double
+		lineageTag: f68b5f0f-9787-4f58-a50e-ff8f5a6be0bb
+		summarizeBy: sum
+		sourceColumn: Lbs_Per_Package
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Product_Type_Org
+		dataType: string
+		lineageTag: 49a703d8-8ac6-450f-9486-444bb62960b3
+		summarizeBy: none
+		sourceColumn: Product_Type_Org
+
+		annotation SummarizationSetBy = Automatic
+
+	column Lbs_Per_Case
+		dataType: double
+		lineageTag: 25762bb7-7481-4197-877b-9aba625758e1
+		summarizeBy: sum
+		sourceColumn: Lbs_Per_Case
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Contaminant
+		dataType: string
+		lineageTag: 1c75bfa3-13ee-4dd5-8c2d-73c7449f83a2
+		summarizeBy: none
+		sourceColumn: Contaminant
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pricing_UOM
+		dataType: string
+		lineageTag: 02c00271-b229-4d93-a40b-d70d9c44ffc9
+		summarizeBy: none
+		sourceColumn: Pricing_UOM
+
+		annotation SummarizationSetBy = Automatic
+
+	column Price_Per_UOM
+		dataType: double
+		lineageTag: 94c60743-6108-42f2-a22a-8cc08f3cf0ca
+		summarizeBy: sum
+		sourceColumn: Price_Per_UOM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Price_Per_Lbs
+		dataType: double
+		lineageTag: 4231ac98-e314-4d13-8ad0-64fa9a98f926
+		summarizeBy: sum
+		sourceColumn: Price_Per_Lbs
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Product_State
+		dataType: string
+		lineageTag: d9049fd8-6e0c-4017-a718-d826bc588751
+		summarizeBy: none
+		sourceColumn: Product_State
+
+		annotation SummarizationSetBy = Automatic
+
+	column IC_OOC
+		dataType: string
+		lineageTag: 1ce9bffb-65c6-4378-839d-6b14f2efde23
+		summarizeBy: none
+		sourceColumn: IC_OOC
+
+		annotation SummarizationSetBy = Automatic
+
+	column Inspection_Sales
+		dataType: double
+		lineageTag: 74d243db-6f26-4e33-af3b-1b241188c1ae
+		summarizeBy: sum
+		sourceColumn: Inspection_Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Total_Lbs
+		dataType: double
+		lineageTag: 44f17539-721a-4fec-83ff-976a600c4c62
+		summarizeBy: sum
+		sourceColumn: Total_Lbs
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Invoice_Nbr
+		dataType: string
+		lineageTag: f57cd25a-bbb0-4855-aacd-36a08f42387c
+		summarizeBy: none
+		sourceColumn: Invoice_Nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nbr_Of_Pallets
+		dataType: int64
+		formatString: 0
+		lineageTag: d240b9f8-e550-4e04-b939-783f7c8a26c6
+		summarizeBy: sum
+		sourceColumn: Nbr_Of_Pallets
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pallet_Unique_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 7f9fd026-4733-4d84-967f-d6e6c2062827
+		summarizeBy: count
+		sourceColumn: Pallet_Unique_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pallet_Service_Unique_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 96e5bac6-1dfd-48a8-899d-8ec822fa5a8a
+		summarizeBy: count
+		sourceColumn: Pallet_Service_Unique_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pallet_Inspection_Unique_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: b9142935-c331-428d-9abd-d2fc36e3ee43
+		summarizeBy: count
+		sourceColumn: Pallet_Inspection_Unique_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Project_Unique_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 61d38798-8f82-4f70-b9c7-2226c65d7ca8
+		summarizeBy: count
+		sourceColumn: Project_Unique_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column HDR_PO_Nbr
+		dataType: string
+		lineageTag: 0c796268-c1d0-4c57-8ba0-e8de890bae1b
+		summarizeBy: none
+		sourceColumn: HDR_PO_Nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column PO_Service_Unique_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 15ae4259-2d1f-4865-b74b-44a35a71c5ff
+		summarizeBy: count
+		sourceColumn: PO_Service_Unique_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceSystem
+		dataType: string
+		lineageTag: 1fe15d30-17d5-42f2-8286-f48e1e357e5a
+		summarizeBy: none
+		sourceColumn: SourceSystem
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hashkey
+		dataType: string
+		lineageTag: 74ba24ba-749e-4dcf-8ffe-c1153546f0d8
+		summarizeBy: none
+		sourceColumn: Hashkey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product_Spec_ID
+		dataType: string
+		lineageTag: 396a0002-bc07-4870-ba79-8dd5f6ad57b1
+		summarizeBy: none
+		sourceColumn: Product_Spec_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product_Spec_Number
+		dataType: string
+		lineageTag: f3d36a2a-faf2-489d-b75f-b8656f363241
+		summarizeBy: none
+		sourceColumn: Product_Spec_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quoted_Cases_Per_Hour
+		dataType: int64
+		formatString: 0
+		lineageTag: 50457443-d7b2-4b7c-a440-e93609883be2
+		summarizeBy: sum
+		sourceColumn: Quoted_Cases_Per_Hour
+
+		annotation SummarizationSetBy = Automatic
+
+	column Labor_rate
+		dataType: double
+		lineageTag: 517ba44a-b7c7-4a40-ae88-f0079139cdf5
+		summarizeBy: sum
+		sourceColumn: Labor_rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Xray_Line_Count
+		dataType: int64
+		formatString: 0
+		lineageTag: 84358507-c2f3-4943-af45-5929f8e97053
+		summarizeBy: sum
+		sourceColumn: Xray_Line_Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pallet_time
+		dataType: int64
+		formatString: 0
+		lineageTag: e25658b5-7e74-47ce-94f1-e8b417f47082
+		summarizeBy: sum
+		sourceColumn: Pallet_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column Plant_Location
+		dataType: string
+		lineageTag: fe353243-b5db-4fbc-a2d6-7972a73d71bc
+		summarizeBy: none
+		sourceColumn: Plant_Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column Inspection_Machine_Hrs
+		dataType: double
+		lineageTag: 67e0cb0c-1d1d-4044-a05e-9ae92e968bb2
+		summarizeBy: sum
+		sourceColumn: Inspection_Machine_Hrs
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Inspection_Labor_Man_Hours
+		dataType: double
+		lineageTag: d87f913a-ae46-4c22-a1b6-528fcf76d1bb
+		summarizeBy: sum
+		sourceColumn: Inspection_Labor_Man_Hours
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Labor_Dollars
+		dataType: double
+		lineageTag: 9186ec17-a01c-4d75-b4a6-6f12ac09f148
+		summarizeBy: sum
+		sourceColumn: Labor_Dollars
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Labour_Dollars_Per_Cases
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 5963aaf7-32f5-4258-b5db-9e0f14bccb8b
+		summarizeBy: sum
+		sourceColumn: Labour_Dollars_Per_Cases
+
+		annotation SummarizationSetBy = Automatic
+
+	column Contamination_pct
+		dataType: double
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: fc7b4456-5979-4483-914a-d9c4c53b2f51
+		summarizeBy: sum
+		sourceColumn: Contamination_pct
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ops_Cases_per_hour
+		dataType: int64
+		formatString: 0
+		lineageTag: 5d268e35-d620-4006-be6b-0af7728bb6f0
+		summarizeBy: sum
+		sourceColumn: Ops_Cases_per_hour
+
+		annotation SummarizationSetBy = Automatic
+
+	column Load_Start_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b06044c6-71bc-4895-a020-9146e630cdb1
+		summarizeBy: none
+		sourceColumn: Load_Start_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Load_End_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b30f1877-8875-4a42-9eac-9297f1b57ad8
+		summarizeBy: none
+		sourceColumn: Load_End_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product_Type
+		dataType: string
+		lineageTag: ba1dbc21-4168-4acf-ab11-9304a2097594
+		summarizeBy: none
+		sourceColumn: Product_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sub_Product_Types
+		dataType: string
+		lineageTag: b0b10970-ba40-4254-846a-b5cdae54a1e6
+		summarizeBy: none
+		sourceColumn: Sub_Product_Types
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mgn_Pct
+		dataType: double
+		lineageTag: 36282643-953d-4129-922d-c257a48e448b
+		summarizeBy: sum
+		sourceColumn: Mgn_Pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Cs_Per_Hour_Pct_Diff
+		dataType: double
+		lineageTag: fd80efe7-13c0-4ef9-8dda-8dbde1709dc2
+		summarizeBy: sum
+		sourceColumn: Cs_Per_Hour_Pct_Diff
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Updated_At
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 59884813-f2ea-4acb-a7ac-51286998b181
+		summarizeBy: none
+		sourceColumn: Updated_At
+
+		annotation SummarizationSetBy = Automatic
+
+	column Updated_By
+		dataType: string
+		lineageTag: 55f08e49-39a9-455e-baa4-2e34da349f11
+		summarizeBy: none
+		sourceColumn: Updated_By
+
+		annotation SummarizationSetBy = Automatic
+
+	column Join_key
+		dataType: string
+		lineageTag: a52340c9-2898-497a-8b12-0cb9b211d610
+		summarizeBy: none
+		sourceColumn: Join_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pallet_Key
+		dataType: string
+		lineageTag: 13e61046-d62e-42df-838d-79278203cfb2
+		summarizeBy: none
+		sourceColumn: Pallet_Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month_Inspected
+		dataType: string
+		lineageTag: 7d1978eb-4917-4703-a6dc-a12a1736a465
+		summarizeBy: none
+		sourceColumn: Month_Inspected
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter_Inspected
+		dataType: string
+		lineageTag: 69a69e21-24b7-46e1-a34a-3c6568bdad28
+		summarizeBy: none
+		sourceColumn: Quarter_Inspected
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month_Num_Inspected
+		dataType: int64
+		formatString: 0
+		lineageTag: 083c7257-1925-45a1-9ba7-cc51dfcb2de8
+		summarizeBy: sum
+		sourceColumn: Month_Num_Inspected
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceDelete
+		dataType: int64
+		formatString: 0
+		lineageTag: eb7205de-07e1-441a-b758-17db506ad94b
+		summarizeBy: sum
+		sourceColumn: SourceDelete
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Created_By
+		dataType: string
+		lineageTag: 47c3746c-c3c8-432a-a5c8-8f5c624a0efb
+		summarizeBy: none
+		sourceColumn: ETL_Created_By
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Created_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 44e8d306-04d2-4ebd-8bfe-a74de24d2e96
+		summarizeBy: none
+		sourceColumn: ETL_Created_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Modified_By
+		dataType: string
+		lineageTag: afc2bbe3-31d2-48b4-a694-d18a225fdb71
+		summarizeBy: none
+		sourceColumn: ETL_Modified_By
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Modified_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a0122fb5-c96c-4f99-a0b8-1b53b5c836e1
+		summarizeBy: none
+		sourceColumn: ETL_Modified_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inspection Date' = FORMAT(factinspectionwms[Date_Inspected],"MM/DD/YYYY")
+		dataType: string
+		lineageTag: 11c06b84-c3d9-418a-a61e-f5c6bc303ed0
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pallet_time_org
+		dataType: int64
+		formatString: 0
+		lineageTag: f24d22a9-383b-49e6-96f0-79f48473c86e
+		summarizeBy: sum
+		sourceColumn: Pallet_time_org
+
+		annotation SummarizationSetBy = Automatic
+
+	partition factinspectionwms = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(Databricks.Catalogs(SourceName, "/sql/1.0/warehouses/645bfc221bc957b5", [Catalog="Dev_Catalog", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="Dev_Catalog",Kind="Database"]}[Data], "Select *#(lf)From dw.factinspection_wms", null, [EnableFolding=true])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

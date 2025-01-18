@@ -1,0 +1,99 @@
+table Rollback_Calendar
+	lineageTag: c225ee48-7c2b-4316-b2a0-7ac9a44e197f
+
+	column 'Invoice Date'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 45bfc694-d131-4ca5-9345-70bb93f6be6f
+		summarizeBy: none
+		isDataTypeInferred
+		sourceColumn: factsales[Invoice_Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Invoice Month'
+		dataType: string
+		lineageTag: 7f3f3c2d-ff8a-42e6-ab40-66be07c834cf
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Invoice Month]
+		sortByColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Invoice Year'
+		dataType: int64
+		formatString: 0
+		lineageTag: afc77f6a-815c-4c26-9134-d5a5bfabfb43
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Invoice Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: 123eb841-3732-4c81-8266-8f301ebf11fe
+		summarizeBy: sum
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Year Text'
+		dataType: string
+		lineageTag: 333caa01-b2cf-4cf6-90c2-88f2edbf71cc
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Year Text]
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Month Level Description
+	column 'Current Month' =
+			
+			Var Current_Month = Year(TODAY())
+			VAR MAX_ValidationDate =Month(TODAY())
+			VAR Previous_Month_Date =
+			    IF(Month(Rollback_Calendar[Invoice Date]) =MAX_ValidationDate && Year(Rollback_Calendar[Invoice Date]) = Current_Month ,"Current Month", Rollback_Calendar[Invoice Month])
+			RETURN Previous_Month_Date
+		dataType: string
+		lineageTag: 95201920-2855-4e4f-bfda-d06bb40d1d19
+		summarizeBy: none
+		isDataTypeInferred
+		sortByColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Year' =
+			
+			Var Current_Year = Year(TODAY())
+			VAR Current_Year_Date =
+			    IF(Year(Rollback_Calendar[Invoice Date])= Current_Year,"Current Year",Rollback_Calendar[Year Text])
+			RETURN Current_Year_Date
+		dataType: string
+		lineageTag: 8f1301d5-9c23-4332-b6da-4ceb50bea428
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Rollback_Calendar = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS (
+				    DISTINCT('factsales'[Invoice_Date]),
+				     "Invoice Month", FORMAT ( [Invoice_Date], "MMM" ),
+				    "Invoice Year", YEAR ( [Invoice_Date] ),
+				    "Month", MONTH ( [Invoice_Date] ),
+				    "Year Text", FORMAT ( [Invoice_Date], "YYYY" )
+				)
+
+	annotation PBI_Id = 079682df3c7a4c86ab8f411579aae867
+

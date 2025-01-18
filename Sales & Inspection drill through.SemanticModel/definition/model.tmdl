@@ -1,0 +1,46 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-IN
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBIDesktopVersion = 2.130.754.0 (24.06)
+
+annotation PBI_QueryOrder = ["factinspection","factsales","dimcustomer","commission","remaining_commission","customer_invoice_status","Customer_Activity_Aging","Unbilled_Inspections","Customer_Status","Sales_staff","New_Customer_Status","Sales_Inspection","Commissionable_Customers","Project_Details","Customer_Latest_Invoice","factinspectionwms","SourceName","account","Customer ref","WMS Ref"]
+
+annotation PBI_ProTooling = ["DaxQueryView_Desktop","DevMode"]
+
+ref table factinspection
+ref table factsales
+ref table 'Measure Table'
+ref table Calendar_Table
+ref table dimcustomer
+ref table commission
+ref table remaining_commission
+ref table customer_invoice_status
+ref table Customer_Activity_Aging
+ref table Rollback_Calendar
+ref table Rollback_Customer
+ref table Unbilled_Inspections
+ref table Customer_Calendar_Table
+ref table Customer_Status
+ref table Sales_staff
+ref table New_Customer_Status
+ref table Sales_Inspection
+ref table Commissionable_Customers
+ref table Inspection_Rollback_Calendar
+ref table Project_Details
+ref table Customer_Latest_Invoice
+ref table factinspectionwms
+ref table CategoryTable
+ref table Parameter
+ref table account
+ref table 'Customer ref'
+ref table 'WMS Ref'
+
+ref cultureInfo en-US
+

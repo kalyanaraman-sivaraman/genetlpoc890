@@ -1,0 +1,88 @@
+relationship 6821f17c-34f4-4f62-b38b-1945d3ffe497
+	crossFilteringBehavior: bothDirections
+	fromColumn: factsales.CustomerID
+	toColumn: dimcustomer.CustomerID
+
+relationship 75ba7b4d-d9b0-9f80-2a97-aa5b7cc8749d
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: factsales.Join_key
+	toColumn: factinspection.Join_key
+
+relationship adcfd8df-0632-4a7b-8b82-f8bad9520a4d
+	fromColumn: factsales.Invoice_Date
+	toColumn: Calendar_Table.Date
+
+relationship adc699c3-f69f-46c3-a206-73fe6353aea0
+	fromColumn: Customer_Activity_Aging.CustomerID
+	toColumn: dimcustomer.CustomerID
+
+relationship f8528ea6-06df-89a4-f292-0db684561416
+	crossFilteringBehavior: bothDirections
+	securityFilteringBehavior: bothDirections
+	fromColumn: customer_invoice_status.'Start of Day'
+	toColumn: Customer_Calendar_Table.Invoice_Date
+
+relationship be6c23e1-84d1-4d67-8ae3-8f0f337c64c8
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: factsales.So_Nbr
+	toColumn: Sales_staff.Order_Form
+
+relationship 98746f3e-a4a6-4e64-95ef-3ceb22e7f49a
+	crossFilteringBehavior: bothDirections
+	fromColumn: New_Customer_Status.CustomerID
+	toColumn: dimcustomer.CustomerID
+
+relationship AutoDetected_f52282db-629f-4efa-a1eb-45900bb3c5ae
+	isActive: false
+	fromColumn: factinspection.customerid
+	toColumn: dimcustomer.CustomerID
+
+relationship 97ebe189-cea9-4a2d-b109-a542fa008060
+	crossFilteringBehavior: bothDirections
+	fromColumn: customer_invoice_status.Customerid
+	toColumn: dimcustomer.CustomerID
+
+relationship fbfc1b32-c729-db4b-98ef-f80fe3904179
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: factinspection.Palletkey
+	toColumn: factinspectionwms.Pallet_Key
+
+relationship AutoDetected_8467ff15-8a7c-4c4c-87d9-5173b43b875a
+	fromColumn: factinspection.customerid
+	toColumn: 'Customer ref'.CustomerID
+
+relationship AutoDetected_5211b2c4-20b1-4891-a978-b613d56c5792
+	fromColumn: remaining_commission.CustomerID
+	toColumn: 'Customer ref'.CustomerID
+
+relationship AutoDetected_80b1b788-a16d-4013-9480-6f87e991d798
+	isActive: false
+	fromColumn: Customer_Activity_Aging.CustomerID
+	toColumn: 'Customer ref'.CustomerID
+
+relationship AutoDetected_26d7528b-3829-4c0a-97c5-17c956284e8d
+	fromColumn: Unbilled_Inspections.CustomerID
+	toColumn: 'Customer ref'.CustomerID
+
+relationship AutoDetected_51187568-5933-4326-b9d8-360ab60389c2
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Customer_Latest_Invoice.Customerid
+	toColumn: 'Customer ref'.CustomerID
+
+relationship 6204b639-08d0-447e-a918-d982ad9f490e
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Customer ref'.CustomerID
+	toColumn: dimcustomer.CustomerID
+
+relationship AutoDetected_f487a0a8-2ebc-462d-8d40-82933b9d30a0
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'WMS Ref'.Hashkey
+	toColumn: factinspectionwms.Hashkey
+

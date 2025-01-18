@@ -1,0 +1,248 @@
+table Customer_Status
+	lineageTag: 48c91d7d-845e-4f03-9194-9c6d027c919c
+
+	column CustomerID
+		dataType: int64
+		formatString: 0
+		lineageTag: 27bb26bc-9e23-4fd1-893c-78d73412c5a4
+		summarizeBy: count
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_DisplayName
+		dataType: string
+		lineageTag: 32a4b369-5500-4b93-a5c7-8e0812f05b1c
+		summarizeBy: none
+		sourceColumn: Customer_DisplayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 40455e4c-4024-43ac-9991-48179cb1085f
+		summarizeBy: none
+		sourceColumn: StartDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Enddate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6027fe79-4390-45e6-b92d-67254d895318
+		summarizeBy: none
+		sourceColumn: Enddate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Status
+		dataType: string
+		lineageTag: 8bace0e0-f552-4702-a9cc-14d65d3017b4
+		summarizeBy: none
+		sourceColumn: Customer_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Category
+		dataType: string
+		lineageTag: 9fbfed5f-3950-4410-b9a3-97e356605130
+		summarizeBy: none
+		sourceColumn: Customer_Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Name_Location
+		dataType: string
+		lineageTag: ae7339c6-fa55-496e-9f0b-0a343e560057
+		summarizeBy: none
+		sourceColumn: Customer_Name_Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column Print_OnCheck_Name
+		dataType: string
+		lineageTag: 57d20291-083c-449d-91aa-5a2a64bff96a
+		summarizeBy: none
+		sourceColumn: Print_OnCheck_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Location
+		dataType: string
+		lineageTag: 799ffbcf-38a9-4b0e-9cf3-a6b96ee8ae04
+		summarizeBy: none
+		sourceColumn: Customer_Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: da7ef3ce-3991-45b3-927d-dc0efdd864b2
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: fb3f621c-7e0d-43f7-88de-302255509fa3
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column KA_Type
+		dataType: string
+		lineageTag: 5ce673f5-b081-471b-a1c7-63ce98f5d001
+		summarizeBy: none
+		sourceColumn: KA_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column KAM
+		dataType: string
+		lineageTag: b81b6845-d764-4d89-88a5-36b22e65392c
+		summarizeBy: none
+		sourceColumn: KAM
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Parent_Name
+		dataType: string
+		lineageTag: c875039a-3097-4070-9296-45086c415909
+		summarizeBy: none
+		sourceColumn: Customer_Parent_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hashkey
+		dataType: string
+		lineageTag: 1f0e5834-234b-49d0-8306-5d031aa7799d
+		summarizeBy: none
+		sourceColumn: Hashkey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Created_By
+		dataType: string
+		lineageTag: a3b407d0-246f-48ac-a456-45b008b48bc0
+		summarizeBy: none
+		sourceColumn: ETL_Created_By
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Created_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b6d745bc-f0e7-4c1f-b086-b71013d71135
+		summarizeBy: none
+		sourceColumn: ETL_Created_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Modified_By
+		dataType: string
+		lineageTag: 5a6150ae-e0aa-4857-b9cd-5eb649b2aa01
+		summarizeBy: none
+		sourceColumn: ETL_Modified_By
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Modified_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2a8137ba-73cf-42f7-a21e-88139e1fa1ba
+		summarizeBy: none
+		sourceColumn: ETL_Modified_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 8d6de46e-a4db-4f3e-9fd7-55d6dc3d9c37
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: 5e4cb367-6a5f-4990-b120-48876af66886
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Montn_Name = FORMAT ( [StartDate], "MMM" )
+		dataType: string
+		lineageTag: 382650ac-2315-4688-aa0e-fa69254ef012
+		summarizeBy: none
+		isDataTypeInferred
+		sortByColumn: Month
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column comm_start_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 01b4c1a0-288a-4a5a-bcfc-696583f33427
+		summarizeBy: none
+		sourceColumn: comm_start_date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column commissionable
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 2c3d8cec-4561-4ee7-a871-ba86a001578f
+		summarizeBy: none
+		sourceColumn: commissionable
+
+		annotation SummarizationSetBy = Automatic
+
+	column comm_End_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c271110d-d1cf-4232-b251-af938c73d6ef
+		summarizeBy: none
+		sourceColumn: comm_End_Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Sf_Customer_Status
+		dataType: string
+		lineageTag: b50c7e9d-3c7d-4bcc-b93d-64b7896f8680
+		summarizeBy: none
+		sourceColumn: Sf_Customer_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column Commissionable_status
+		dataType: string
+		lineageTag: bc64e57c-b3f0-453e-b5c5-a3ca3caa6eee
+		summarizeBy: none
+		sourceColumn: Commissionable_status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Customer_Status = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(Databricks.Catalogs("adb-4870947154782637.17.azuredatabricks.net", "/sql/1.0/warehouses/645bfc221bc957b5", [Catalog="Dev_Catalog", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="Dev_Catalog",Kind="Database"]}[Data], "SELECT *#(lf)FROM dw.Customer_Status T1#(lf)where Year(T1.StartDate) >= year(current_timestamp) - 4", null, [EnableFolding=true]),
+				    #"Inserted Year" = Table.AddColumn(Source, "Year", each Date.Year([StartDate]), Int64.Type),
+				    #"Inserted Month" = Table.AddColumn(#"Inserted Year", "Month", each Date.Month([StartDate]), Int64.Type)
+				in
+				    #"Inserted Month"
+
+	annotation PBI_ResultType = Table
+

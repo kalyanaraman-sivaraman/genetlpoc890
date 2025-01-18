@@ -1,0 +1,121 @@
+table Sales_staff
+	lineageTag: cb5562ba-59b1-4b84-83ca-088f0d10b72f
+
+	column Order_Form
+		dataType: string
+		lineageTag: b1479800-1103-41bc-8747-34facf3d9df1
+		summarizeBy: none
+		sourceColumn: Order_Form
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sales_Person_Name
+		dataType: string
+		lineageTag: b2a16756-afc5-4204-a3fd-7990c262b86b
+		summarizeBy: none
+		sourceColumn: Sales_Person_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sales_Manager_Name
+		dataType: string
+		lineageTag: 2486d09e-2a28-4590-9ddd-f3b130b61ad3
+		summarizeBy: none
+		sourceColumn: Sales_Manager_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Opportunity_ID
+		dataType: string
+		lineageTag: bea6b04a-0c2e-497f-ac75-73102f6f6b53
+		summarizeBy: none
+		sourceColumn: Opportunity_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sales_Person_ID
+		dataType: string
+		lineageTag: 3513d5d4-54f1-4077-af43-0375baf0d3e7
+		summarizeBy: none
+		sourceColumn: Sales_Person_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sales_Manager_ID
+		dataType: string
+		lineageTag: 9fcc3637-50f1-4003-a602-53b8dd4ad288
+		summarizeBy: none
+		sourceColumn: Sales_Manager_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hashkey
+		dataType: string
+		lineageTag: b324d25e-1ae1-40f2-9e6c-d0b1e7766d91
+		summarizeBy: none
+		sourceColumn: Hashkey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Source_Delete
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 57ef5b4d-3c9e-428b-a605-424c79e1c2fe
+		summarizeBy: none
+		sourceColumn: Source_Delete
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Created_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7c86ba4a-6a91-480e-99db-574942c43689
+		summarizeBy: none
+		sourceColumn: ETL_Created_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Created_BY
+		dataType: string
+		lineageTag: fcd919e3-0691-409c-9bec-02c3aca00702
+		summarizeBy: none
+		sourceColumn: ETL_Created_BY
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Modified_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7518e5bc-6c5a-4e00-be5f-b22f9ba42b27
+		summarizeBy: none
+		sourceColumn: ETL_Modified_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Modified_By
+		dataType: string
+		lineageTag: d9e9954c-2a87-4f9d-ae1a-bfed08b0a3a2
+		summarizeBy: none
+		sourceColumn: ETL_Modified_By
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Opportunity_ID - Copy'
+		dataType: string
+		lineageTag: 7d3313c1-7d34-449a-b532-52dd86707c2c
+		summarizeBy: none
+		sourceColumn: Opportunity_ID - Copy
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Sales_staff = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(Databricks.Catalogs("adb-4870947154782637.17.azuredatabricks.net", "/sql/1.0/warehouses/645bfc221bc957b5", [Catalog="Dev_Catalog", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="Dev_Catalog",Kind="Database"]}[Data], "Select *#(lf)From dw.Sales_staff", null, [EnableFolding=true]),
+				    #"Duplicated Column" = Table.DuplicateColumn(Source, "Opportunity_ID", "Opportunity_ID - Copy")
+				in
+				    #"Duplicated Column"
+
+	annotation PBI_ResultType = Table
+

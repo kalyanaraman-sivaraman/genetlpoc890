@@ -1,0 +1,50 @@
+table CategoryTable
+	lineageTag: 7a7c6032-361e-4b8b-927e-c6ee3dbd0839
+
+	measure SelectedCategory = SELECTEDVALUE('CategoryTable'[Category])
+		lineageTag: 7c3094e6-0aa7-4588-baf7-1810a1aa4e3b
+
+	/// Measure Table
+	measure 'Dynamic Measure' =
+			
+			SWITCH (
+			    [SelectedCategory],
+			    "Churned customer Count", [Churned customer Count],
+			    "Logo expansion Customer Count", [Logo expansion Customer Count],
+			    "New Logo Customer Count", [New Logo Customer count],
+			    "Active Customers Count", [Active Customers Count],
+			    BLANK()
+			)
+		formatString: 0
+		lineageTag: a85cb795-876c-40bf-a43d-20804ba14ada
+
+	measure 'Hide Visual' = IF([SelectedCategory] = "Active Customers Count",0,1)
+		formatString: 0
+		lineageTag: 674f0b60-24e5-4425-9ef2-c80de62cca91
+
+	/// Description
+	column Category
+		dataType: string
+		lineageTag: 5aa2bb83-c2b2-44f4-80a1-6df7dbba5b0b
+		summarizeBy: none
+		isNameInferred
+		isDataTypeInferred
+		sourceColumn: [Category]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition CategoryTable = calculated
+		mode: import
+		source =
+				DATATABLE (
+				    "Category", STRING,
+				    {
+				        {"Churned customer Count"},
+				        {"Logo expansion Customer Count"},
+				        {"New Logo Customer Count"},
+				        {"Active Customers Count"}
+				    }
+				)
+
+	annotation PBI_Id = 7ed0d61782c94c1e8418e0edca7dc4b4
+

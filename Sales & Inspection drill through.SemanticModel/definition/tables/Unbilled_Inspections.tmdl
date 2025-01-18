@@ -1,0 +1,271 @@
+table Unbilled_Inspections
+	lineageTag: 9e66c94e-023f-4d46-b525-d4c16a639b72
+
+	column CustomerID
+		dataType: int64
+		formatString: 0
+		lineageTag: 792c8ee8-054d-4e44-ae5e-14f2ef88b8b8
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Location
+		dataType: string
+		lineageTag: c1a1abb2-399d-4213-8d6e-cb30921c4c09
+		summarizeBy: none
+		sourceColumn: Customer_Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column Load_Nbr
+		dataType: string
+		lineageTag: 3a5009a0-9897-477a-a0ef-253a7da9ec9d
+		summarizeBy: none
+		sourceColumn: Load_Nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year_Inspected
+		dataType: int64
+		formatString: 0
+		lineageTag: 68399da4-9db4-42d1-a3f8-f1a34a3612a6
+		summarizeBy: sum
+		sourceColumn: Year_Inspected
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter_Inspected
+		dataType: string
+		lineageTag: 4e2f4f37-5c27-4c03-a837-fe3738e07fe2
+		summarizeBy: none
+		sourceColumn: Quarter_Inspected
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month_Inspected
+		dataType: string
+		lineageTag: 048287ac-9720-46ca-8c69-27d3f2c17c4b
+		summarizeBy: none
+		sourceColumn: Month_Inspected
+		sortByColumn: Month_Num_Inspected
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month_Num_Inspected
+		dataType: int64
+		formatString: 0
+		lineageTag: de06cd01-7d36-4919-a202-6a4b7287e7dd
+		summarizeBy: sum
+		sourceColumn: Month_Num_Inspected
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pallet_Nbr
+		dataType: string
+		lineageTag: e8853418-93d9-4fa1-bf05-bdccbe0fd7f2
+		summarizeBy: none
+		sourceColumn: Pallet_Nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column Invoice_Class
+		dataType: string
+		lineageTag: cac3c3cc-5039-4934-b1bc-e026c0c168a5
+		summarizeBy: none
+		sourceColumn: Invoice_Class
+
+		annotation SummarizationSetBy = Automatic
+
+	column Inspection_Sales
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 46289c37-6c0e-4e8b-9774-89934db8e382
+		summarizeBy: sum
+		sourceColumn: Inspection_Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column Invoice_Nbr
+		dataType: string
+		lineageTag: e8b846c5-de7d-4387-96aa-da64e1ebcb86
+		summarizeBy: none
+		sourceColumn: Invoice_Nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Name_FI
+		dataType: string
+		lineageTag: 893f7fa6-a073-4b77-bec4-519b7f0676fb
+		summarizeBy: none
+		sourceColumn: Customer_Name_FI
+
+		annotation SummarizationSetBy = Automatic
+
+	column Service
+		dataType: string
+		lineageTag: d34bac8b-2485-49ce-9e22-31142aa18c01
+		summarizeBy: none
+		sourceColumn: Service
+
+		annotation SummarizationSetBy = Automatic
+
+	column Load_End_Date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 6cc6aac5-d26d-42a1-bd89-8582d6edb189
+		summarizeBy: none
+		sourceColumn: Load_End_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column So_Nbr
+		dataType: string
+		lineageTag: fba46f93-5a1b-4bb5-81c5-11262902ac03
+		summarizeBy: none
+		sourceColumn: So_Nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product_Nbr
+		dataType: string
+		lineageTag: 17f03604-6508-4d51-9ae1-13262957af3e
+		summarizeBy: none
+		sourceColumn: Product_Nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_name
+		dataType: string
+		lineageTag: 494171b2-dcf6-4d64-a3c2-ed7c33771e71
+		summarizeBy: none
+		sourceColumn: customer_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Service_ID
+		dataType: string
+		lineageTag: fe6d4cac-25bb-4695-b799-d001eb299a18
+		summarizeBy: none
+		sourceColumn: Service_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Service_Name
+		dataType: string
+		lineageTag: b58e369d-3350-4cbd-87bf-087114a61714
+		summarizeBy: none
+		sourceColumn: Service_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product_Description
+		dataType: string
+		lineageTag: 42242be1-2c70-412b-a2cb-330c6e26fd30
+		summarizeBy: none
+		sourceColumn: Product_Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Invoice Class' = Unbilled_Inspections[Invoice_Class]
+		dataType: string
+		lineageTag: f6f65297-8459-4abe-994b-223dc7e2f0c5
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Name' = Unbilled_Inspections[customer_name]
+		dataType: string
+		lineageTag: 6de8cfde-f122-494a-b6c1-ed3b365547ea
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer ID' = Unbilled_Inspections[CustomerID]
+		dataType: int64
+		formatString: 0
+		lineageTag: 0195242e-8dcd-4abb-9217-a3a861dd2a6c
+		summarizeBy: count
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inspection End   Date' = Unbilled_Inspections[Load_End_Date]
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: bafd873d-e2e5-41f8-b773-50400e7865ae
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Load Nbr' = Unbilled_Inspections[Load_Nbr]
+		dataType: string
+		lineageTag: 6f1db5c8-42f1-4ec0-ba76-ff87b5f17eb6
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Invoice  Class' = Unbilled_Inspections[Invoice_Class]
+		dataType: string
+		lineageTag: 321c91f7-53c5-4830-a040-a5aa7baf0076
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Inspection End  Date' = Unbilled_Inspections[Load_End_Date]
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 68ebf474-0691-4aa0-82b1-704727b14441
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Price_Per_Case
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: f0cae29e-93bd-4124-a4ab-fa5cd7b7fb26
+		summarizeBy: average
+		sourceColumn: Price_Per_Case
+
+		annotation SummarizationSetBy = User
+
+	column case_cnt
+		dataType: int64
+		formatString: #,##0;(#,##0);0
+		lineageTag: 51ac2407-cc71-439e-be04-c95d3ad03edc
+		summarizeBy: sum
+		sourceColumn: case_cnt
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column 'Inspection  End Date' = Unbilled_Inspections[Load_End_Date]
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 78db96f7-4b8b-40f8-9413-563a4c181317
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Unbilled_Inspections = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(Databricks.Catalogs("adb-4870947154782637.17.azuredatabricks.net", "/sql/1.0/warehouses/645bfc221bc957b5", [Catalog="Dev_Catalog", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="Dev_Catalog",Kind="Database"]}[Data], "select#(lf)  A.Customer_Name as Customer_Name_FI,#(lf)  a.Customer_Location,#(lf)  a.Load_Nbr,#(lf)  a.Year_Inspected,#(lf)  a.Quarter_Inspected,#(lf)  a.Month_Inspected,#(lf)  a.Month_Num_Inspected,#(lf)  a.Pallet_Nbr,#(lf)  a.Invoice_Class,#(lf)  a.Inspection_Sales,#(lf)  a.Invoice_Nbr,#(lf)  a.Service,#(lf)  A.Load_End_Date,#(lf)  a.So_Nbr,#(lf)  a.Product_Nbr,#(lf)  a.Product_Description,#(lf)  a.Price_Per_Case,#(lf)  a.case_cnt,#(lf)  case#(lf)    when A.Customer_Name = ""Tyson""#(lf)    and A.Customer_Location = ""Vicksburg , MS"" then ""Tyson Foods - Vicksburg""#(lf)    when A.Customer_Name = ""Tyson""#(lf)    and A.Customer_Location = ""Union City, TN"" then ""Tyson Foods - Union City""#(lf)    when A.Customer_Name = ""Tyson""#(lf)    and A.Customer_Location = ""Cincinnati, OH"" then ""Tyson Foods - Cincinnati OH""#(lf)    when A.Customer_Name = ""Tyson""#(lf)    and A.Customer_Location = ""New Holland, PA(2116)"" then ""Tyson Foods - New Holland 2116""#(lf)    else d.QBO_Account_Name__c#(lf)  end as customer_name,#(lf)  case#(lf)    when A.Customer_Name = ""Tyson""#(lf)    and A.Customer_Location = ""Vicksburg , MS"" then 1623#(lf)    when A.Customer_Name = ""Tyson""#(lf)    and A.Customer_Location = ""Union City, TN"" then 1621#(lf)    when A.Customer_Name = ""Tyson""#(lf)    and A.Customer_Location = ""Cincinnati, OH"" then 1571#(lf)    when A.Customer_Name = ""Tyson""#(lf)    and A.Customer_Location = ""New Holland, PA(2116)"" then 1602#(lf)    else d.QBO_Cust_ID__c#(lf)  end as CustomerID,#(lf)  e.SKU__c as Service_ID,#(lf)  e.Service_Description__c as Service_Name#(lf)from#(lf)  dw.factinspection A#(lf)  left join raw.opportunity c on a.So_Nbr = c.Order_Form__c#(lf)  left join raw.account d on d.Id = c.AccountId#(lf)  left join raw.opportunitylineitem e on e.OpportunityId = c.Opportunity_Id_18__c#(lf)  and left(Trim(e.SKU__c), 2) = a.Service#(lf)WHERE Year(a.Date_Inspected) >= year(current_timestamp) - 4 and A.Invoice_Nbr='Open'group by all", null, [EnableFolding=true])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

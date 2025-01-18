@@ -1,0 +1,5 @@
+expression SourceName = "adb-4870947154782637.17.azuredatabricks.net" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 88f141ea-4420-440f-a0ea-d66f9a24254b
+
+	annotation PBI_ResultType = Text
+

@@ -1,0 +1,169 @@
+table Commissionable_Customers
+	lineageTag: d457fba7-104e-4570-a822-e49f85b5726b
+
+	column Customerid
+		dataType: int64
+		lineageTag: dd838fb8-510e-487e-975f-50814f346dc2
+		summarizeBy: sum
+		sourceColumn: Customerid
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Customer_DisplayName
+		dataType: string
+		lineageTag: 21f9944e-fc0f-4ddd-9549-10504c456cd0
+		summarizeBy: none
+		sourceColumn: Customer_DisplayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Parent_Name
+		dataType: string
+		lineageTag: d9cdf8b6-c1ae-40d3-96dc-d1a4be5b311c
+		summarizeBy: none
+		sourceColumn: Customer_Parent_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Category
+		dataType: string
+		lineageTag: 8d6f87bc-cb9b-4b60-b40d-4bbfa2810416
+		summarizeBy: none
+		sourceColumn: Customer_Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Status
+		dataType: string
+		lineageTag: 79d930bc-e82f-42cb-bd0e-4dbc074a68d4
+		summarizeBy: none
+		sourceColumn: Customer_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartDate
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: b0bb4ecd-9704-448d-8d6e-61782b2f42e2
+		summarizeBy: none
+		sourceColumn: StartDate
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column Commissionable
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7aa3d0bc-e4f2-4476-8be6-0851214390d3
+		summarizeBy: none
+		sourceColumn: Commissionable
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hashkey
+		dataType: string
+		lineageTag: bee50d54-6388-42a9-af7b-c92232de2853
+		summarizeBy: none
+		sourceColumn: Hashkey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceDelete
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 8ec7c5b7-bc7d-4336-b25c-abcc09289343
+		summarizeBy: none
+		sourceColumn: SourceDelete
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Created_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2479c0b9-f3ad-45b0-b848-ca72014850b5
+		summarizeBy: none
+		sourceColumn: ETL_Created_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Created_By
+		dataType: string
+		lineageTag: fa840b6f-6976-472a-adc6-7fd8130939dc
+		summarizeBy: none
+		sourceColumn: ETL_Created_By
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Modified_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: dc28f7e5-1af3-4252-ad3b-d2cfe6c5c1a3
+		summarizeBy: none
+		sourceColumn: ETL_Modified_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Modified_By
+		dataType: string
+		lineageTag: 4e6b0235-fe4f-4726-9db5-652c63bb9548
+		summarizeBy: none
+		sourceColumn: ETL_Modified_By
+
+		annotation SummarizationSetBy = Automatic
+
+	column Enddate
+		dataType: dateTime
+		formatString: mm-dd-yyyy
+		lineageTag: d207f931-6ade-4b63-96e1-4e746d7ea981
+		summarizeBy: none
+		sourceColumn: Enddate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Comm_StartDate
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: feb7443f-85bb-4e2a-9145-e4157edd396f
+		summarizeBy: none
+		sourceColumn: Comm_StartDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Comm_EndDate
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 69c5e113-b88e-48a8-8ded-953288435064
+		summarizeBy: none
+		sourceColumn: Comm_EndDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Commissionable_Status
+		dataType: string
+		lineageTag: 2023f17e-7a97-4cc3-8ff1-c6aa1faa4dff
+		summarizeBy: none
+		sourceColumn: Commissionable_Status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Commissionable_Customers = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(Databricks.Catalogs("adb-4870947154782637.17.azuredatabricks.net", "/sql/1.0/warehouses/645bfc221bc957b5", [Catalog="Dev_Catalog", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="Dev_Catalog",Kind="Database"]}[Data], "SELECT *#(lf)FROM dw.Commissionable_Customers #(lf)WHERE Commissionable = true", null, [EnableFolding=true])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,953 @@
+table factsales
+	lineageTag: d476264e-767c-4d85-995d-b2f7ae724ecc
+
+	column 'Region.' = IF(ISBLANK('factsales'[Region]), "Unknown", 'factsales'[Region])
+		dataType: string
+		lineageTag: 6fab18ab-f45d-415c-9ae1-9468b736479a
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parent Name' = IF(ISBLANK('factsales'[Customer_Parent_Name]), "Unknown", 'factsales'[Customer_Parent_Name])
+		dataType: string
+		lineageTag: bbdeb947-e3cb-489d-96d1-30bdb6674039
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'State.' = IF(ISBLANK('factsales'[State]), "Unknown", 'factsales'[State])
+		dataType: string
+		lineageTag: de605763-e8da-4947-81b1-7ffd6119cfa7
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Service_Type.' = IF(ISBLANK('factsales'[Invoice_Item_Type]), "Unknown", 'factsales'[Invoice_Item_Type])
+		dataType: string
+		lineageTag: 40af6d14-7f44-4f40-9731-5bd8ddfd42fa
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'City.' = IF(ISBLANK('factsales'[City]), "Unknown", 'factsales'[City])
+		dataType: string
+		lineageTag: cd0638a6-eb47-411c-b3d5-29ecce240d02
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Load Nbr' = IF(ISBLANK('factsales'[Load_Nbr]), "Unknown", 'factsales'[Load_Nbr])
+		dataType: string
+		lineageTag: 66c3cd25-94f7-40e4-9625-767f40fa1860
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Invoice Class' = IF(ISBLANK('factsales'[Invoice_Class]), "Unknown", 'factsales'[Invoice_Class])
+		dataType: string
+		lineageTag: 67d16ec3-2888-4adc-a9de-c47411f8e95b
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Invoice Line Acct Nbr' = IF(ISBLANK('factsales'[Invoice_Line_Acct_Nbr]), "Unknown", 'factsales'[Invoice_Line_Acct_Nbr])
+		dataType: string
+		lineageTag: 4f841d2d-7866-4105-a8bd-6efc35bdc0a9
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Invoice Line Item' = IF(ISBLANK('factsales'[Invoice_Line_Item]), "Unknown", 'factsales'[Invoice_Line_Item])
+		dataType: string
+		lineageTag: 2f595912-c2db-4ce3-876f-ff628c3a7761
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Invoice Line Description' = IF(ISBLANK('factsales'[Invoice_Line_Item_Description]), "Unknown", 'factsales'[Invoice_Line_Item_Description])
+		dataType: string
+		lineageTag: 4f4b06bd-fa52-48e0-9ade-e0dbff8c65a1
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Invoice Memo' = IF(ISBLANK('factsales'[Invoice_Memo]), "Unknown", 'factsales'[Invoice_Memo])
+		dataType: string
+		lineageTag: 42b38279-4f5f-455e-884e-0f79143021e1
+		summarizeBy: none
+		isDataTypeInferred
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Invoice Nbr' = IF(ISBLANK('factsales'[Invoice_Nbr]), "Unknown", 'factsales'[Invoice_Nbr])
+		dataType: string
+		lineageTag: 5de5f440-e1a7-4d5d-bb8c-fa62ab10b967
+		summarizeBy: none
+		isDataTypeInferred
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SO Prefix' = IF(ISBLANK('factsales'[SO_Prefix]), "Unknown", 'factsales'[SO_Prefix])
+		dataType: string
+		lineageTag: 51353ca4-1e63-42de-9f02-7828d86b7bb7
+		summarizeBy: none
+		isDataTypeInferred
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TSM.' = IF(ISBLANK('factsales'[TSM]), "Unknown", 'factsales'[TSM])
+		dataType: string
+		lineageTag: 33dc06b9-61ae-45e1-a5c8-c4274e083863
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'RSM.' = IF(ISBLANK('factsales'[RSM]), "Unknown", 'factsales'[RSM])
+		dataType: string
+		lineageTag: 118986d0-bafe-4478-9845-a4ee3de8fc52
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SO Nbr' = IF(ISBLANK('factsales'[So_Nbr]), "Unknown", 'factsales'[So_Nbr])
+		dataType: string
+		lineageTag: 244df567-c2ee-47ed-9a52-0c8bb6ea6eaa
+		summarizeBy: none
+		isDataTypeInferred
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region_Groupby =
+			
+			Var a = IF('factsales'[Region] in {"Southeast","South Central","North Central","North East","South East","South West","West","Canada","Old"},1,0)
+			Return a
+		dataType: int64
+		formatString: 0
+		lineageTag: 39a094af-9ae8-4e8c-bf21-1a6071a4a77a
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Service Type' =
+			var a = IF('factsales'[Invoice_Item_Type] in {"Inspection","TapTone", "Relabeling"},'factsales'[Invoice_Item_Type],"Ancillary Services")
+			               Return a
+		dataType: string
+		isHidden
+		lineageTag: c43d3869-91da-4380-ad11-0a80ac363b14
+		summarizeBy: none
+		isDataTypeInferred
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Location' = IF(ISBLANK('factsales'[CustomerLocation]), "Unknown", 'factsales'[CustomerLocation])
+		dataType: string
+		lineageTag: 908ba823-0fea-418b-8c2d-2903a69f57ce
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Commission_Month.' = IF(ISBLANK('factsales'[Comm_Month]), "Unknown", 'factsales'[Comm_Month])
+		dataType: string
+		lineageTag: 28d6eaa4-647e-4e29-b490-4d0ce7a3cd93
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Commission_Year.' = IF(ISBLANK('factsales'[Comm_Year]), 0000, 'factsales'[Comm_Year])
+		dataType: string
+		lineageTag: b05c7b07-cd16-4865-8b9d-159eac0de94a
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Last_Sold_Month.' = IF(ISBLANK('factsales'[Last_Sold_Month]), "Unknown", 'factsales'[Last_Sold_Month])
+		dataType: string
+		lineageTag: f01799c6-e6f4-4508-b707-199e81378432
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Last_Sold_Year.' = IF(ISBLANK('factsales'[Last_Sold_Year]), 0000, 'factsales'[Last_Sold_Year])
+		dataType: int64
+		formatString: 0
+		lineageTag: d79cc5c4-4b3e-4184-ae08-7e4f3740f861
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Since Last Sale' = ```
+			
+			Var A=
+			DATEDIFF(
+			    MAX('factsales'[Last_Sold_Date]), 
+			    MAX('factsales'[Invoice_Date]),MONTH)
+			Return A
+			```
+		dataType: int64
+		formatString: 0
+		lineageTag: e68d3a4b-5861-4cb0-984c-23263b7e6d23
+		summarizeBy: sum
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Parent_Name = UPPER(IF(ISBLANK(factsales[Customer_Parent_Name]), factsales[CustomerName], factsales[Customer_Parent_Name]))
+		dataType: string
+		lineageTag: ff666119-684e-4917-b87a-44e4964fa18e
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quickbook_Invoice_ID
+		dataType: string
+		isHidden
+		lineageTag: cf582b1b-bb04-40bc-af8f-6902f8809070
+		summarizeBy: none
+		sourceColumn: Quickbook_Invoice_ID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Line_Id
+		dataType: string
+		isHidden
+		lineageTag: 3de2298b-bd97-4bb9-983c-e440a13bb2f8
+		summarizeBy: none
+		sourceColumn: Line_Id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quickbook_Payment_ID
+		dataType: string
+		isHidden
+		lineageTag: 7e7e79ac-5c34-4ada-9c32-8163aa9f0c04
+		summarizeBy: none
+		sourceColumn: Quickbook_Payment_ID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Invoice_Type
+		dataType: string
+		lineageTag: 3d4894dc-d28d-49dd-a0bb-825e0b8294cc
+		summarizeBy: none
+		sourceColumn: Invoice_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Invoice_Class
+		dataType: string
+		lineageTag: 5d71ac05-cd07-47cf-9fe6-1255fbf61d25
+		summarizeBy: none
+		sourceColumn: Invoice_Class
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Invoice_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 35b9aabb-9d53-4436-a56e-f6b9298e20ec
+		summarizeBy: none
+		sourceColumn: Invoice_Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Invoice_Nbr
+		dataType: string
+		lineageTag: 28835114-3f42-47b6-86bf-c1999cb39da7
+		summarizeBy: none
+		sourceColumn: Invoice_Nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column Po_Nbr
+		dataType: string
+		isHidden
+		lineageTag: fd045b89-5583-4716-8ae6-72ce198824d5
+		summarizeBy: none
+		sourceColumn: Po_Nbr
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column So_Nbr
+		dataType: string
+		lineageTag: 869c4d7d-5139-4455-8161-37435929be27
+		summarizeBy: none
+		sourceColumn: So_Nbr
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerID
+		dataType: int64
+		formatString: 0
+		lineageTag: 7417ddba-60ea-468b-bd95-30799006d9fe
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Name_Location
+		dataType: string
+		lineageTag: db07e9b6-f2bb-4a33-a5cb-eb054a081387
+		summarizeBy: none
+		sourceColumn: Customer_Name_Location
+
+		annotation SummarizationSetBy = Automatic
+
+	column Invoice_Memo
+		dataType: string
+		isHidden
+		lineageTag: 72158881-26ca-4b44-bef0-c54121b4ea96
+		summarizeBy: none
+		sourceColumn: Invoice_Memo
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Invoice_Line_Item
+		dataType: string
+		isHidden
+		lineageTag: 0c6dca89-9119-4ba2-af2a-ada5038a49a9
+		summarizeBy: none
+		sourceColumn: Invoice_Line_Item
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Invoice_Line_Item_Description
+		dataType: string
+		isHidden
+		lineageTag: 21d578f4-13e5-42ab-ae1e-3b97aae5259d
+		summarizeBy: none
+		sourceColumn: Invoice_Line_Item_Description
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Invoice_Line_Acct_Nbr
+		dataType: string
+		isHidden
+		lineageTag: 9385e69a-5582-4165-8742-685b6a3c47a8
+		summarizeBy: none
+		sourceColumn: Invoice_Line_Acct_Nbr
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Invoice_Line_Qty
+		dataType: int64
+		formatString: #,0
+		lineageTag: 7ae26099-bce2-4b45-b17f-89edcfbec207
+		summarizeBy: sum
+		sourceColumn: Invoice_Line_Qty
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Invoice_Line_UOM
+		dataType: string
+		isHidden
+		lineageTag: 9c810cf1-1ceb-4f5a-9488-74a85e24a9cc
+		summarizeBy: none
+		sourceColumn: Invoice_Line_UOM
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Invoice_Line_Price
+		dataType: double
+		isHidden
+		lineageTag: 1a7f0eb1-1db8-41bc-95ac-77acec41bbd1
+		summarizeBy: sum
+		sourceColumn: Invoice_Line_Price
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Invoice_Line_Amount
+		dataType: double
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 22950eb2-2235-4f59-a1be-87b28d777393
+		summarizeBy: sum
+		sourceColumn: Invoice_Line_Amount
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column Load_Nbr
+		dataType: string
+		lineageTag: 4b510722-37da-4809-a417-0405ad291165
+		summarizeBy: none
+		sourceColumn: Load_Nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column Invoice_Item_Type
+		dataType: string
+		lineageTag: 54be0342-f4c1-4f3d-818d-37037fa00709
+		summarizeBy: none
+		sourceColumn: Invoice_Item_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Parent_Name
+		dataType: string
+		lineageTag: 09437507-a566-4f68-ab90-f089398fd306
+		summarizeBy: none
+		sourceColumn: Customer_Parent_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: a818935e-ffab-45bf-8765-5e6fbe0c9368
+		summarizeBy: none
+		sourceColumn: Region
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		isHidden
+		lineageTag: ec389534-09b4-40be-98e5-e0f3f1d3c367
+		summarizeBy: none
+		sourceColumn: City
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		isHidden
+		lineageTag: 9b1f7b76-1569-4758-b91e-23dbb11a776f
+		summarizeBy: none
+		sourceColumn: State
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Commission_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 928700bd-dc03-4bfc-ae04-97c1d20f0398
+		summarizeBy: none
+		sourceColumn: Commission_Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Last_Sold_Date
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: 97e74b9a-ffb6-449f-b6d9-87cd198f6806
+		summarizeBy: none
+		sourceColumn: Last_Sold_Date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column SO_Prefix
+		dataType: string
+		isHidden
+		lineageTag: 223e6bf8-0419-49de-a1a4-3a0d438fc90a
+		summarizeBy: none
+		sourceColumn: SO_Prefix
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Comm_Rate_TSM
+		dataType: string
+		lineageTag: 52df3858-b3ae-42e8-a860-2c3f41f0f87a
+		summarizeBy: none
+		sourceColumn: Comm_Rate_TSM
+
+		annotation SummarizationSetBy = Automatic
+
+	column Commission_TSM
+		dataType: double
+		lineageTag: 1a643d20-9256-4b6d-b994-4788d04c1fea
+		summarizeBy: sum
+		sourceColumn: Commission_TSM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Comm_Rate_RSM
+		dataType: string
+		lineageTag: 29039454-e617-4f5b-aed7-a2dc2ec84c2b
+		summarizeBy: none
+		sourceColumn: Comm_Rate_RSM
+
+		annotation SummarizationSetBy = Automatic
+
+	column Commission_RSM
+		dataType: double
+		lineageTag: f46f5de4-5881-4a26-b2cc-39009e2aaa8c
+		summarizeBy: sum
+		sourceColumn: Commission_RSM
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Original_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9d2bd240-b198-4a64-ab2f-109cad4c5233
+		summarizeBy: none
+		sourceColumn: Original_Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column End_User
+		dataType: string
+		isHidden
+		lineageTag: d29079d4-37db-40f7-9d48-fa44651e79e6
+		summarizeBy: none
+		sourceColumn: End_User
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ancillary_Charges
+		dataType: double
+		isHidden
+		lineageTag: d50740d5-e482-4318-93b8-86abb5b10c13
+		summarizeBy: sum
+		sourceColumn: Ancillary_Charges
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TSM
+		dataType: string
+		lineageTag: 30f1b508-4358-4a7d-8d5a-a8f90b390b50
+		summarizeBy: none
+		sourceColumn: TSM
+
+		annotation SummarizationSetBy = Automatic
+
+	column RSM
+		dataType: string
+		isHidden
+		lineageTag: 3aefa9d6-9f1d-4485-b54e-bfd1acf851c8
+		summarizeBy: none
+		sourceColumn: RSM
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column TAM
+		dataType: string
+		lineageTag: 36b5dded-a0d8-4410-bc73-ded2f457f87a
+		summarizeBy: none
+		sourceColumn: TAM
+
+		annotation SummarizationSetBy = Automatic
+
+	column KAM
+		dataType: string
+		isHidden
+		lineageTag: da386de4-ee3c-4fb5-8037-699b254f8f20
+		summarizeBy: none
+		sourceColumn: KAM
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceSystem
+		dataType: string
+		isHidden
+		lineageTag: 1dd33a60-0cf1-4646-95d1-dc0d979bf687
+		summarizeBy: none
+		sourceColumn: SourceSystem
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceDelete
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 2f65ac0a-7217-4674-b934-1605143bb8ae
+		summarizeBy: sum
+		sourceColumn: SourceDelete
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hashkey
+		dataType: string
+		isHidden
+		lineageTag: b9e3a03e-8571-42a0-90b7-82902c372369
+		summarizeBy: none
+		sourceColumn: Hashkey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Created_By
+		dataType: string
+		isHidden
+		lineageTag: 34f6d070-ca55-4fb5-b2d3-24d0df78ad7a
+		summarizeBy: none
+		sourceColumn: ETL_Created_By
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Created_Date
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 2b328022-670f-4318-a4e2-16827f708323
+		summarizeBy: none
+		sourceColumn: ETL_Created_Date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Modified_By
+		dataType: string
+		isHidden
+		lineageTag: 07c5fac2-0414-47e2-837b-e5fcac070400
+		summarizeBy: none
+		sourceColumn: ETL_Modified_By
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Modified_Date
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 3535baa2-81fe-4329-bd24-6aadb0aebe7e
+		summarizeBy: none
+		sourceColumn: ETL_Modified_Date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerName
+		dataType: string
+		lineageTag: f418a5f9-243d-46f1-b169-8135f22fba05
+		summarizeBy: none
+		sourceColumn: CustomerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerLocation
+		dataType: string
+		lineageTag: 5f2ddef2-de1e-4b5c-96bc-cdbb802c1a8c
+		summarizeBy: none
+		sourceColumn: CustomerLocation
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total_Customer_Count
+		dataType: string
+		lineageTag: 6902503d-89f1-4888-84f5-2c87d606f532
+		summarizeBy: none
+		sourceColumn: Total_Customer_Count
+
+		annotation SummarizationSetBy = Automatic
+
+	column Invoice_Quarter
+		dataType: string
+		lineageTag: fd3e463e-30b9-4712-92f8-4dda27105046
+		summarizeBy: none
+		sourceColumn: Invoice_Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Location
+		dataType: string
+		isHidden
+		lineageTag: 8a6d7eba-4803-4193-99c7-e0fb5a178493
+		summarizeBy: none
+		sourceColumn: Customer_Location
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Invoice_Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 3b125f80-4db3-461d-bb9e-4e9650c6c622
+		summarizeBy: sum
+		sourceColumn: Invoice_Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Invoice_Month_Num
+		dataType: int64
+		formatString: 0
+		lineageTag: 9b4f4cfb-caf2-4182-b99e-9f426c2ac63f
+		summarizeBy: sum
+		sourceColumn: Invoice_Month_Num
+
+		annotation SummarizationSetBy = Automatic
+
+	column Invoice_Month
+		dataType: string
+		lineageTag: b460aceb-6462-47a3-8f78-177c43e07e84
+		summarizeBy: none
+		sourceColumn: Invoice_Month
+		sortByColumn: Invoice_Month_Num
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Comm_Year
+		dataType: int64
+		formatString: 0
+		lineageTag: c2ef5ce5-22d2-401c-94f1-b2e08912404d
+		summarizeBy: sum
+		sourceColumn: Comm_Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Comm_Month
+		dataType: string
+		isHidden
+		lineageTag: 703bd956-bd2c-452c-97a8-3b4eda5f0101
+		summarizeBy: none
+		sourceColumn: Comm_Month
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Comm_Quarter
+		dataType: string
+		lineageTag: 5da8d22f-59bd-4be1-b59f-37d65659bab6
+		summarizeBy: none
+		sourceColumn: Comm_Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column Comm_Month_Num
+		dataType: string
+		lineageTag: 4a7c9175-4a68-4018-820d-35ac5a715fbd
+		summarizeBy: none
+		sourceColumn: Comm_Month_Num
+
+		annotation SummarizationSetBy = Automatic
+
+	column Last_Sold_Year
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: bcb8fa0d-3bba-441f-a663-db6daeceb518
+		summarizeBy: sum
+		sourceColumn: Last_Sold_Year
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Last_Sold_Month
+		dataType: string
+		isHidden
+		lineageTag: 0e322453-1370-4b00-863a-8872272e87af
+		summarizeBy: none
+		sourceColumn: Last_Sold_Month
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Join_key
+		dataType: string
+		lineageTag: 28f58dee-2a42-45a9-9cef-4e6b4fa2c863
+		summarizeBy: none
+		sourceColumn: Join_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Deposit_Account_Id
+		dataType: int64
+		formatString: 0
+		lineageTag: 29a580cb-83e6-4b08-8b7c-dc81ea0e8ff5
+		summarizeBy: count
+		sourceColumn: Deposit_Account_Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Deposit_Account_Type
+		dataType: string
+		lineageTag: 781f4735-0fb6-47e6-b91b-9a74a4caeb2a
+		summarizeBy: none
+		sourceColumn: Deposit_Account_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parent  Name' = factsales[Parent_Name]
+		dataType: string
+		lineageTag: daa77772-787e-4c22-b8d2-f1ffd66b7d92
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Invoice Year Text' = Format(factsales[Invoice_Date],"YYYY")
+		dataType: string
+		lineageTag: b5162abe-279b-4ded-88ff-a3a182453f58
+		summarizeBy: none
+		isDataTypeInferred
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Month' = ```
+			
+			VAR Current_Year = YEAR(TODAY())
+			VAR Current_Month = MONTH(TODAY())
+			VAR Previous_Month_Date =
+			    IF(
+			        MONTH(factsales[Invoice_Date]) = Current_Month && 
+			        YEAR(factsales[Invoice_Date]) = Current_Year,
+			        "Current Month",
+			        factsales[Invoice_Month]
+			    )
+			RETURN Previous_Month_Date
+			
+			```
+		dataType: string
+		lineageTag: 28f24d11-c435-4dc1-966b-a939be412eca
+		summarizeBy: none
+		isDataTypeInferred
+		sortByColumn: Invoice_Month_Num
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Current Year' = ```
+			
+			VAR Current_Year = YEAR(TODAY())
+			VAR Current_Year_Date =
+			    IF(
+			        YEAR(factsales[Invoice_Date]) = Current_Year,
+			        "Current Year",
+			        factsales[Invoice Year Text]
+			    )
+			RETURN Current_Year_Date
+			
+			```
+		dataType: string
+		lineageTag: e8c6d08a-139f-4a84-86a6-599857a3e400
+		summarizeBy: none
+		isDataTypeInferred
+		sortByColumn: Invoice_Year
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Branch
+		dataType: string
+		lineageTag: 43bd2572-61d9-40d9-9008-b7e970d7faf5
+		summarizeBy: none
+		sourceColumn: Branch
+
+		annotation SummarizationSetBy = Automatic
+
+	partition factsales = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(Databricks.Catalogs("adb-4870947154782637.17.azuredatabricks.net", "/sql/1.0/warehouses/645bfc221bc957b5", [Catalog="Dev_Catalog", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="Dev_Catalog",Kind="Database"]}[Data], "SELECT *#(lf)FROM dw.factsales T1#(lf)WHERE Year(T1.Invoice_Date) >= year(current_timestamp) - 4", null, [EnableFolding=true]),
+				    #"Duplicated Column4" = Table.DuplicateColumn(Source, "Customer_Name_Location", "Customer_Name_Location - Copy"),
+				    #"Split Column by Delimiter1" = Table.SplitColumn(#"Duplicated Column4", "Customer_Name_Location - Copy", Splitter.SplitTextByEachDelimiter({"-"}, QuoteStyle.Csv, true), {"Customer_Name_Location - Copy.1", "Customer_Name_Location - Copy.2"}),
+				    #"Renamed Columns5" = Table.RenameColumns(#"Split Column by Delimiter1",{{"Customer_Name_Location - Copy.1", "CustomerName"}, {"Customer_Name_Location - Copy.2", "CustomerLocation"}}),
+				    #"Added Custom" = Table.AddColumn(#"Renamed Columns5", "Total_Customer_Count", each [CustomerName]+"-"+[CustomerLocation]),
+				    #"Removed Columns3" = Table.RemoveColumns(#"Added Custom",{"Total_Customer_Count"}),
+				    #"Inserted Merged Column" = Table.AddColumn(#"Removed Columns3", "Total_Customer_Count", each Text.Combine({[CustomerName], "-", [CustomerLocation]}), type text)
+				in
+				    #"Inserted Merged Column"
+
+	annotation PBI_ResultType = Table
+

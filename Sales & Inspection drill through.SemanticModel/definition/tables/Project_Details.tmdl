@@ -1,0 +1,396 @@
+table Project_Details
+	lineageTag: a05786aa-ca7b-4dee-8abd-8838da3c7eea
+
+	column Project_unique_Id
+		dataType: int64
+		formatString: 0
+		lineageTag: 345283b7-1851-4699-8561-9a7fd2d530b3
+		summarizeBy: count
+		sourceColumn: Project_unique_Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column PO_Service_Unique_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 6d179dd6-dc0c-4d07-9f9b-cc76b2f508c0
+		summarizeBy: count
+		sourceColumn: PO_Service_Unique_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Project_Service_Unique_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 2bce20ec-15c5-415e-a84e-e3d9960ac11e
+		summarizeBy: count
+		sourceColumn: Project_Service_Unique_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Event_Unique_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 51745e52-31f9-4c94-97dd-a84f6aab466a
+		summarizeBy: count
+		sourceColumn: Event_Unique_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pallet_Unique_ID
+		dataType: int64
+		formatString: 0
+		lineageTag: b1bdf189-544e-449f-a6ed-60cdb464ee5c
+		summarizeBy: count
+		sourceColumn: Pallet_Unique_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Id
+		dataType: double
+		formatString: 0.00
+		lineageTag: 270c65dc-416d-4680-92e6-63caa2a7074e
+		summarizeBy: count
+		sourceColumn: Customer_Id
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_Name_location
+		dataType: string
+		lineageTag: 1c745df9-057d-4f17-b8d5-1e09ef8743a8
+		summarizeBy: none
+		sourceColumn: Customer_Name_location
+
+		annotation SummarizationSetBy = Automatic
+
+	column So_nbr
+		dataType: string
+		lineageTag: fd29b585-ab3c-4213-b06c-d55fa4f55cbf
+		summarizeBy: none
+		sourceColumn: So_nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column Customer_PO_nbr
+		dataType: string
+		lineageTag: 78b3f3e0-5f08-4a5d-a347-e1f051d2ba0a
+		summarizeBy: none
+		sourceColumn: Customer_PO_nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column Inv_Acct
+		dataType: string
+		lineageTag: bed729b8-47ef-4abe-a0b4-9c8936bd9084
+		summarizeBy: none
+		sourceColumn: Inv_Acct
+
+		annotation SummarizationSetBy = Automatic
+
+	column Load_nbr
+		dataType: string
+		lineageTag: 6ad1716b-a76a-4ccf-8aa0-8da5c71463bf
+		summarizeBy: none
+		sourceColumn: Load_nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column Inbound_BOL_nbr
+		dataType: string
+		lineageTag: e42613c6-4a7b-417f-b554-53999e140c88
+		summarizeBy: none
+		sourceColumn: Inbound_BOL_nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column Inspection_Start_At
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: bce5d5ae-73b1-43a8-ae71-8d8a7efb7dfa
+		summarizeBy: none
+		sourceColumn: Inspection_Start_At
+
+		annotation SummarizationSetBy = Automatic
+
+	column Inspection_End_At
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ae84364d-7478-447e-b52f-b5f1d7e3fdba
+		summarizeBy: none
+		sourceColumn: Inspection_End_At
+
+		annotation SummarizationSetBy = Automatic
+
+	column status_code
+		dataType: int64
+		formatString: 0
+		lineageTag: e9fd53f0-e689-4d07-b762-e5a25a97f9f1
+		summarizeBy: sum
+		sourceColumn: status_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status_Description
+		dataType: string
+		lineageTag: 2451ce81-2492-4e3c-92f6-de80f8ad3509
+		summarizeBy: none
+		sourceColumn: Status_Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product_Code
+		dataType: string
+		lineageTag: 89816127-2f16-438e-a9c8-7955f28dd911
+		summarizeBy: none
+		sourceColumn: Product_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product_Description
+		dataType: string
+		lineageTag: 1f87555d-7ca1-4bba-933f-0f44f5733b7e
+		summarizeBy: none
+		sourceColumn: Product_Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column QB_Service_Id
+		dataType: int64
+		formatString: 0
+		lineageTag: e4afd61c-631d-46b3-b6bc-79fad5f3f54c
+		summarizeBy: count
+		sourceColumn: QB_Service_Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Service_Code
+		dataType: string
+		lineageTag: df53a1ac-9402-4518-890b-c2b1e958292c
+		summarizeBy: none
+		sourceColumn: Service_Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column Service_Description
+		dataType: string
+		lineageTag: dd36c28f-036b-4d8b-a224-b8e25b69c2a9
+		summarizeBy: none
+		sourceColumn: Service_Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column storage_type
+		dataType: string
+		lineageTag: 2b9b4e02-b68f-4f1c-b9b6-d3e755dae0d8
+		summarizeBy: none
+		sourceColumn: storage_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order_Number
+		dataType: string
+		lineageTag: 6e06921d-bdf0-409f-93b2-8a0be8d9e9db
+		summarizeBy: none
+		sourceColumn: Order_Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ancillary_Flag
+		dataType: string
+		lineageTag: 52c72a16-1025-4bcc-a555-99fecf52e8ae
+		summarizeBy: none
+		sourceColumn: Ancillary_Flag
+
+		annotation SummarizationSetBy = Automatic
+
+	column Price
+		dataType: double
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 1bc01e84-2e1c-4023-b6a0-4467054194c5
+		summarizeBy: sum
+		sourceColumn: Price
+
+		annotation SummarizationSetBy = Automatic
+
+	column Qty
+		dataType: int64
+		formatString: 0
+		lineageTag: 0a1f7925-149e-4b9e-b585-f2a1d9ab78cb
+		summarizeBy: sum
+		sourceColumn: Qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total_price
+		dataType: double
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: d1d5ecb6-d9ba-45d5-8e6e-ff094e528054
+		summarizeBy: sum
+		sourceColumn: Total_price
+
+		annotation SummarizationSetBy = Automatic
+
+	column weight
+		dataType: double
+		lineageTag: 3cc76967-49fc-463e-9715-962e8d8a0827
+		summarizeBy: sum
+		sourceColumn: weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_weight
+		dataType: double
+		lineageTag: ce5736bc-a04a-4380-ac73-3ff79069a40c
+		summarizeBy: sum
+		sourceColumn: total_weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Product_Spec_number
+		dataType: string
+		lineageTag: 9721367d-ead5-4d83-8274-8d5d3acb2891
+		summarizeBy: none
+		sourceColumn: Product_Spec_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column HDR_PO_Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9ab067d1-18c0-4145-8c9f-e2856d342492
+		summarizeBy: none
+		sourceColumn: HDR_PO_Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column UOM
+		dataType: string
+		lineageTag: a59cbb1e-a6c2-4978-835f-68551ec93595
+		summarizeBy: none
+		sourceColumn: UOM
+
+		annotation SummarizationSetBy = Automatic
+
+	column invoice_nbr
+		dataType: string
+		lineageTag: f7831ab8-0913-4399-91da-33a7157dd4a8
+		summarizeBy: none
+		sourceColumn: invoice_nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column Source_Delete
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: bccbeff9-3f3c-4223-827f-826476bd8903
+		summarizeBy: none
+		sourceColumn: Source_Delete
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hashkey
+		dataType: string
+		lineageTag: df00825f-8dc2-47a0-be4e-9b404447ab59
+		summarizeBy: none
+		sourceColumn: Hashkey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Created_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ea1c6b48-1e22-4b85-b56a-497fd0f28d15
+		summarizeBy: none
+		sourceColumn: ETL_Created_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Created_By
+		dataType: string
+		lineageTag: b2208dcb-fe6a-41fb-8fba-64c8b45e9903
+		summarizeBy: none
+		sourceColumn: ETL_Created_By
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Modified_By
+		dataType: string
+		lineageTag: 9516f7ff-fa6a-479e-b2e0-78febcc05bce
+		summarizeBy: none
+		sourceColumn: ETL_Modified_By
+
+		annotation SummarizationSetBy = Automatic
+
+	column ETL_Modified_Date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7a28226e-328d-4d7b-a9ae-91e324f039ef
+		summarizeBy: none
+		sourceColumn: ETL_Modified_Date
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sales_Person_Name
+		dataType: string
+		lineageTag: bcaf974d-4d2b-40ca-a432-9652eb00ad98
+		summarizeBy: none
+		sourceColumn: Sales_Person_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sales_Manager_Name
+		dataType: string
+		lineageTag: 7667aa88-1576-44ec-aa6e-fef6b30f7184
+		summarizeBy: none
+		sourceColumn: Sales_Manager_Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 9c347a90-04aa-44d5-90cc-d6fd480c36bf
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column HDR_Po_nbr
+		dataType: string
+		lineageTag: e6eb7336-c456-418c-9dc0-f905f20ee253
+		summarizeBy: none
+		sourceColumn: HDR_Po_nbr
+
+		annotation SummarizationSetBy = Automatic
+
+	column Class
+		dataType: string
+		lineageTag: 3d4c96bc-8af8-4216-995f-ba37d600250a
+		summarizeBy: none
+		sourceColumn: Class
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Project_Details = m
+		mode: import
+		source =
+				let
+				    Source = Value.NativeQuery(Databricks.Catalogs("adb-4870947154782637.17.azuredatabricks.net", "/sql/1.0/warehouses/645bfc221bc957b5", [Catalog="Dev_Catalog", Database=null, EnableAutomaticProxyDiscovery=null]){[Name="Dev_Catalog",Kind="Database"]}[Data], "Select * from dw.Project_Details", null, [EnableFolding=true]),
+				    #"Added Custom" = Table.AddColumn(Source, "Description", each [Product_Code] & " - " & [Product_Description]),
+				    #"Replaced Value" = Table.ReplaceValue(#"Added Custom","tbd","TBD",Replacer.ReplaceText,{"Customer_PO_nbr"}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Replaced Value",null,"",Replacer.ReplaceValue,{"Customer_PO_nbr"}),
+				    #"Replaced Value2" = Table.ReplaceValue(#"Replaced Value1",null,"",Replacer.ReplaceValue,{"Customer_PO_nbr"}),
+				    #"Replaced Value3" = Table.ReplaceValue(#"Replaced Value2",null,"",Replacer.ReplaceValue,{"Customer_PO_nbr"}),
+				    #"Replaced Value4" = Table.ReplaceValue(#"Replaced Value3",null,"",Replacer.ReplaceValue,{"Customer_PO_nbr"})
+				in
+				    #"Replaced Value4"
+
+	annotation PBI_ResultType = Table
+
